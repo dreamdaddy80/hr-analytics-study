@@ -269,7 +269,7 @@ input[type=range]{width:100%;accent-color:var(--accent-2)}
 <div class="shell">
 <nav class="rail" aria-label="학습 목차">
   <a class="brand" href="#home"><b>HR 통계 분석 노트</b><span>HR 데이터애널리틱스와 활용 · 2026-2</span></a>
-  <div class="prog"><span id="progtxt">학습 완료 0 / 12</span><div class="bar"><i id="progbar"></i></div></div>
+  <div class="prog"><span id="progtxt">학습 완료 0 / 18</span><div class="bar"><i id="progbar"></i></div></div>
   <div id="navlist"></div>
   <button class="themebtn" id="themebtn" type="button">화면 테마 전환</button>
 </nav>
@@ -518,6 +518,12 @@ input[type=range]{width:100%;accent-color:var(--accent-2)}
         </tbody></table></div>
       <p class="caption">유의하지 않은(ns) 항목은 효과크기를 해석하지 않습니다.</p>
       <div class="note"><span class="lab">HR 의사결정 연결</span><p>수리·언어 적성과 문제해결 역량은 고성과자를 구별하지 못하므로 과도한 가중치가 불필요합니다. 성실성과 정서적안정성은 유의하면서 효과크기도 매우 크므로 채용 평가의 배점과 가중치를 집중적으로 높이는 방향으로 선발 프로세스를 재설계합니다. 외향성은 별표가 있지만 효과가 미미해 가중치 상향 근거로는 약합니다.</p></div>
+      <div class="note warn"><span class="lab">비평 · 결과가 지나치게 좋으면 의심하라</span>
+        <p>성실성 d = 3.707은 두 집단 분포가 약 6%만 겹친다는 뜻으로, 실제 성격검사와 직무성과의 관계에서는 거의 나오지 않는 크기입니다. 이런 결과를 보면 다음을 먼저 확인합니다.</p>
+        <p><b>① 교육용 데이터일 가능성</b>: 실습용으로 만들어지거나 가공된 데이터라면 효과가 의도적으로 뚜렷하게 설계되었을 수 있습니다. 실제 채용 의사결정의 근거로 일반화하지 않습니다.</p>
+        <p><b>② 준거 오염 가능성</b>: 고성과/저성과 집단을 성실성과 비슷한 지표(예: 근태, 규정 준수, 상사의 성실성 인상 평가)로 나눴다면, 같은 특성을 두 번 잰 셈이 되어 차이가 부풀려집니다.</p>
+        <p><b>③ 선행연구와의 비교</b>: 메타분석에서 성실성과 직무성과의 상관은 보통 .2 안팎입니다(Barrick &amp; Mount, 1991). r = .2를 두 집단 비교로 바꾸면 d ≈ 0.4 수준이므로, 3.7은 그보다 약 9배 큽니다.</p>
+      </div>
     </div>
   </div>
 
@@ -660,7 +666,7 @@ mean(diff) / sd(diff)</pre></div>
   <div class="sec">
     <h2><span class="no">3.4</span>결과표 해석 3단계</h2>
     <div class="steps">
-      <div class="step"><div><h4>F값과 p-value <span class="q">전체 신호등이 켜졌는가?</span></h4><p>p &lt; 0.05이면 "적어도 한 쌍 이상의 평균이 다르다". p ≥ 0.05이면 여기서 분석을 멈추고 사후검정을 해석하지 않습니다.</p></div></div>
+      <div class="step"><div><h4>F값과 p-value <span class="q">전체 신호등이 켜졌는가?</span></h4><p>p &lt; 0.05이면 "적어도 한 쌍 이상의 평균이 다르다". p ≥ 0.05이면 여기서 분석을 멈추고 사후검정을 해석하지 않습니다(강의 관례). 엄밀히 말하면 Games-Howell과 Tukey는 그 자체로 가족오류율(FWER)을 통제하므로 ANOVA 유의가 수학적 필수 조건은 아닙니다. 다만 이 강의와 많은 논문은 "ANOVA 유의 → 사후검정" 순서를 관례로 따릅니다.</p></div></div>
       <div class="step"><div><h4>사후검정(Games-Howell) <span class="q">어느 집단끼리 다른가?</span></h4><p>신호가 켜졌을 때만 모든 1:1 조합의 보정된 p를 확인합니다. (4번 모듈)</p></div></div>
       <div class="step"><div><h4>효과크기 <span class="q">실무적으로 얼마나 큰가?</span></h4><p>쌍별 Cohen's d(0.2/0.5/0.8)로 봅니다. 전체 효과크기로 η²(에타제곱, 0.01/0.06/0.14)를 보고하기도 합니다.</p></div></div>
     </div>
@@ -706,7 +712,7 @@ summary(aov(프라이버시불안 ~ 연령대, data = df))</pre></div>
   <div class="sec">
     <h2><span class="no">4.1</span>개념: 왜 '사후(post-hoc)'인가</h2>
     <div class="prose">
-      <p>사후검정은 ANOVA <b>이후에</b> 실시합니다. ANOVA가 유의하지 않으면 개별 비교를 해석할 명분이 없습니다. 사후검정은 여러 번 비교하면서 생기는 1종 오류 누적을 <mark>보정된 p-value</mark>로 통제합니다.</p>
+      <p>사후검정은 ANOVA <b>이후에</b> 실시합니다. ANOVA가 유의하지 않으면 개별 비교를 해석하지 않는 것이 강의의 관례입니다. 엄밀히 말하면 Games-Howell과 Tukey는 그 자체로 가족오류율(FWER)을 통제하므로 ANOVA 유의가 수학적 필수 조건은 아닙니다. 다만 이 강의와 많은 논문은 "ANOVA 유의 → 사후검정" 순서를 관례로 따릅니다. 사후검정은 여러 번 비교하면서 생기는 1종 오류 누적을 <mark>보정된 p-value</mark>로 통제합니다.</p>
       <div class="tbl"><table>
         <thead><tr><th>집단 수 k</th><th>비교 쌍 수 k(k−1)/2</th><th>보정 없을 때 오판 확률</th></tr></thead>
         <tbody><tr><td class="num">3</td><td class="num">3</td><td class="num">14.3%</td></tr><tr><td class="num">4</td><td class="num">6</td><td class="num">26.5%</td></tr><tr><td class="num">5</td><td class="num">10</td><td class="num">40.1%</td></tr><tr><td class="num">6</td><td class="num">15</td><td class="num">53.7%</td></tr></tbody></table></div>
@@ -754,9 +760,13 @@ summary(aov(프라이버시불안 ~ 연령대, data = df))</pre></div>
           <tr><td>20대 (4.458)</td><td>50대 (5.177)</td><td class="num">−0.720</td><td class="num">.017</td><td class="num">−0.551</td><td><span class="tag sig">유의 · 중간</span></td></tr>
           <tr><td>20대 (4.458)</td><td>60대 (5.263)</td><td class="num">−0.806</td><td class="num">.003</td><td class="num">−0.638</td><td><span class="tag sig">유의 · 중간</span></td></tr>
           <tr><td>30대 (5.010)</td><td>40대 (5.344)</td><td class="num">−0.334</td><td class="num">.497</td><td class="num">−0.287</td><td><span class="tag ns">ns</span></td></tr>
+          <tr><td>30대 (5.010)</td><td>50대 (5.177)</td><td class="num">−0.167</td><td class="num">.937</td><td class="num">−0.138</td><td><span class="tag ns">ns</span></td></tr>
+          <tr><td>30대 (5.010)</td><td>60대 (5.263)</td><td class="num">−0.253</td><td class="num">.737</td><td class="num">−0.218</td><td><span class="tag ns">ns</span></td></tr>
           <tr><td>40대 (5.344)</td><td>50대 (5.177)</td><td class="num">+0.167</td><td class="num">.926</td><td class="num">+0.147</td><td><span class="tag ns">ns</span></td></tr>
+          <tr><td>40대 (5.344)</td><td>60대 (5.263)</td><td class="num">+0.081</td><td class="num">.994</td><td class="num">+0.075</td><td><span class="tag ns">ns</span></td></tr>
+          <tr><td>50대 (5.177)</td><td>60대 (5.263)</td><td class="num">−0.086</td><td class="num">.993</td><td class="num">−0.076</td><td><span class="tag ns">ns</span></td></tr>
         </tbody></table></div>
-      <p class="caption">20대 vs 30대는 d = −0.417로 '작은 효과' 수준의 차이가 있어 보이지만 p = .124로 유의하지 않으므로 해석하지 않습니다.</p>
+      <p class="caption">5개 집단의 10쌍 전체입니다(강의 자료 「분석 결과_Welch_ANOVA.xlsx」의 GamesHowell_CohenD 시트). 20대 vs 30대는 d = −0.417로 '작은 효과' 수준의 차이가 있어 보이지만 p = .124로 유의하지 않으므로 해석하지 않습니다.</p>
       <div class="note"><span class="lab">보고 문장 예시</span><p>"Games-Howell 사후검정 결과, 20대는 40대·50대·60대보다 프라이버시침해불안이 유의하게 낮았으며(p &lt; .05), 효과크기는 모두 중간 수준(|d| = 0.551~0.701)이었다. 30대 이상 연령대 간 차이는 유의하지 않았다." → HR 시사점: AI 도입 시 개인정보 활용 투명성 커뮤니케이션은 40대 이상을 주 대상으로 설계합니다.</p></div>
     </div>
   </div>
@@ -842,7 +852,7 @@ cohens_d(df, 프라이버시불안 ~ 연령대)</pre></div>
           <tr><td>근태사고율</td><td class="num">.0317</td><td><span class="tag sig">*</span></td><td class="num">0.0000087</td><td class="wrap">높을수록 오즈 크게 감소 (아래 해설 참고)</td></tr>
           <tr><td>결혼여부 · 연차</td><td class="num">&gt; .05</td><td><span class="tag ns">ns</span></td><td class="num">—</td><td class="wrap">해석 제외</td></tr>
         </tbody></table></div>
-      <p class="caption">모든 변수의 GVIF &lt; 10. 모형 분류 정확도 약 72.4%.</p>
+      <p class="caption">모든 변수의 GVIF &lt; 10. 모형 분류 정확도 약 72.4%. 직무만족도 OR(1.322, p = .0177)은 6번 모듈 직무대체불안의 누적 OR(1.322, p = .018)과 거의 같지만, 서로 다른 데이터(ch3_performance, AI Anxiety)를 원자료로 다시 분석해 두 값이 모두 맞음을 확인했습니다.</p>
       <div class="note"><span class="lab">심화 · OR 0.0000087은 어떻게 읽어야 하나</span><p>OR은 "X가 1단위 늘 때"의 배율입니다. 근태사고율이 0~1 비율로 입력되었다면 1단위 = 0%에서 100%로의 변화라 현실성이 없는 극단값이 나옵니다. 이럴 땐 단위를 바꿔 읽습니다. 1%p(0.01) 증가 시 OR = 0.0000087<sup>0.01</sup> ≈ <b>0.89</b>, 즉 <mark>근태사고율 1%p 상승마다 고성과 오즈 약 11% 감소</mark>입니다. 실제 입력 척도는 강의 데이터에서 확인하세요.</p></div>
       <div class="note warn"><span class="lab">정확도 72.4% 읽는 법</span><p>정확도는 "아무 정보 없이 모두 다수 집단으로 예측했을 때"의 기준 정확도와 비교해야 의미가 있습니다. 고성과자가 전체의 70%라면 모두 고성과로 찍어도 70%가 나오기 때문입니다. 실무 보고에서는 민감도(실제 고성과자를 맞힌 비율)와 특이도도 함께 보는 것이 좋습니다.</p></div>
     </div>
@@ -1032,6 +1042,7 @@ exp(coef(m2))</pre></div>
         <tr><td>단계적 선택 (Stepwise)</td><td class="wrap">통계 기준으로 변수를 하나씩 넣고 빼며 선택</td><td class="wrap">공기업 성과평가 효과성·수용성 → 조직몰입</td></tr>
         <tr><td>위계적 회귀 (Hierarchical)</td><td class="wrap">연구자가 이론적 순서로 블록 단위 투입, 블록별 R² 증가분(ΔR²) 확인</td><td class="wrap">기업 조건 → 인사 방식 → 대표 경험 순으로 투입</td></tr>
       </tbody></table></div>
+      <div class="note warn"><span class="lab">단계적 선택(Stepwise)에 대한 주의</span><p>단계적 선택은 표본의 우연한 변동에 맞춰 변수를 고르기 때문에 <b>R²를 부풀리고</b>, 남은 변수의 <b>계수를 실제보다 크게(편향되게)</b> 추정하며, 변수 선택 과정을 반영하지 않아 <b>p값과 신뢰구간이 왜곡</b>됩니다. 다른 표본에서 같은 변수가 다시 선택된다는 보장도 없어 학계에서 비판을 많이 받습니다(Harrell, 2015 등). 이론과 선행연구에 근거해 변수를 정하고 <b>동시 투입</b>하거나, 이론적 순서에 따라 <b>위계적 투입</b>하는 방식을 권장합니다.</p></div>
       <div class="note warn"><span class="lab">회귀분석의 기본 가정</span><p>선형성(X와 Y가 직선 관계), 잔차의 정규성, 잔차의 등분산성, 관측치의 독립성. R에서 <code>plot(m)</code>으로 잔차 그림을 확인합니다.</p></div>
     </div>
   </div>
@@ -1121,8 +1132,10 @@ coef(m_std)</pre></div>
 prop.table(tab, margin = 1)          <span class="cm"># 행 백분율 = 부서별 이직률</span>
 res &lt;- chisq.test(tab)
 res; res$expected; res$stdres         <span class="cm"># χ², 기대빈도, 표준화 잔차</span>
+chisq.test(tab, correct = FALSE)      <span class="cm"># 2×2 표에서 Yates 보정 없이 계산</span>
 effectsize::cramers_v(tab)
 fisher.test(tab)                      <span class="cm"># 기대빈도가 작을 때</span></pre></div>
+    <div class="note" style="margin-top:12px"><span class="lab">메모 · Yates 연속성 보정</span><p>R의 <code>chisq.test()</code>는 <b>2×2 표</b>에 Yates 연속성 보정을 기본으로 적용합니다. 그래서 SPSS 출력의 "Pearson 카이제곱" 행이나 손으로 계산한 값과 다르게(더 작게) 나올 수 있습니다. 보정 없이 계산하려면 <code>correct = FALSE</code>를 씁니다. 이 페이지의 교차표 계산기도 보정 없는 Pearson χ²를 계산합니다. 3×2 이상의 표에는 보정이 적용되지 않습니다.</p></div>
   </div>
 
   <div class="sec"><h2><span class="no">✓</span>확인 퀴즈</h2><div class="quiz" data-quiz="chisq"></div></div>
@@ -1198,7 +1211,15 @@ survdiff(Surv(근속개월, 퇴사) ~ 직군, data = df)  <span class="cm"># 로
 
 cox &lt;- coxph(Surv(근속개월, 퇴사) ~ 직군 + 연봉인상률 + 직무만족, data = df)
 summary(cox)       <span class="cm"># exp(coef) = 위험비 HR</span>
-cox.zph(cox)       <span class="cm"># 비례위험 가정 점검</span></pre></div>
+cox.zph(cox)       <span class="cm"># 비례위험 가정 점검</span>
+
+<span class="cm"># 주의: 연봉인상률은 근속 중 해마다 바뀌는 시간가변 공변량일 가능성이 큽니다.</span>
+<span class="cm"># 입사 시점 값 하나(또는 최종 값)로만 넣으면 편향이 생길 수 있습니다.</span>
+<span class="cm"># (예: 오래 재직한 사람만 높은 누적 인상률을 가질 수 있어 위험비가 왜곡됨)</span>
+<span class="cm"># 이럴 때는 기간을 나눈 데이터(counting process: tstart, tstop, event)로 다룹니다.</span>
+long &lt;- tmerge(base, base, id = ID, 퇴사 = event(근속개월, 퇴사))         <span class="cm"># base: 1인 1행</span>
+long &lt;- tmerge(long, raise_hist, id = ID, 연봉인상률 = tdc(시점, 인상률))  <span class="cm"># raise_hist: 인상 이력</span>
+coxph(Surv(tstart, tstop, 퇴사) ~ 직군 + 연봉인상률 + 직무만족, data = long)</pre></div>
   </div>
 
   <div class="sec"><h2><span class="no">✓</span>확인 퀴즈</h2><div class="quiz" data-quiz="survival"></div></div>
@@ -1407,8 +1428,8 @@ edge_density(g)</pre></div>
         <tr><td>실루엣 계수</td><td class="wrap">≥ 0.5 양호 · &lt; 0.25 약함</td><td class="wrap">군집이 잘 분리되었나</td></tr>
         <tr><td>매개 중심성</td><td class="wrap">상대 비교 (높을수록 브리지)</td><td class="wrap">집단 사이를 잇는 길목 역할</td></tr>
         <tr><td>왜도 / 첨도</td><td class="wrap">|왜도| &lt; 3, |첨도| &lt; 10 (Kline) · 엄격 2 / 7</td><td class="wrap">정규성 가정 점검</td></tr>
-        <tr><td>CFI / TLI</td><td class="wrap">≥ .90 수용 · ≥ .95 우수</td><td class="wrap">기저모형 대비 모형 개선 정도</td></tr>
-        <tr><td>RMSEA / SRMR</td><td class="wrap">≤ .08 수용 (논문에 따라 .10) · RMSEA ≤ .05 우수</td><td class="wrap">모형 오차 정도</td></tr>
+        <tr><td>CFI / TLI</td><td class="wrap">≥ .90 수용 · ≥ .95 우수(Hu &amp; Bentler, 1999)</td><td class="wrap">기저모형 대비 모형 개선 정도</td></tr>
+        <tr><td>RMSEA / SRMR</td><td class="wrap">RMSEA .05 이하 우수·.08 이하 수용(Browne &amp; Cudeck, 1993), .06 이하(Hu &amp; Bentler, 1999) (논문에 따라 .10) · SRMR ≤ .08(Hu &amp; Bentler, 1999)</td><td class="wrap">모형 오차 정도</td></tr>
         <tr><td>요인적재량</td><td class="wrap">≥ .5 (최소 .4) · ≥ .7 우수</td><td class="wrap">문항이 개념을 대표하는 정도</td></tr>
         <tr><td>Cronbach's α</td><td class="wrap">≥ .7 양호 · .6 탐색적 허용</td><td class="wrap">문항 응답의 일관성</td></tr>
         <tr><td>상관계수 r</td><td class="wrap">.2 / .4 / .6 / .8 (성태제) · .1 / .3 / .5 (Cohen)</td><td class="wrap">두 변수의 직선적 관련 강도</td></tr>
@@ -1608,14 +1629,14 @@ psych::describe(df[, c("기술수용성","직무몰입","AI리터러시")])  <sp
         <thead><tr><th>지표</th><th class="wrap">무엇을 보나</th><th>논문 기준</th><th class="wrap">흔히 쓰는 기준</th></tr></thead>
         <tbody>
           <tr><td>χ²</td><td class="wrap">구조와 데이터의 차이 (작을수록 좋음)</td><td>p &gt; .05</td><td class="wrap">표본이 크면 거의 항상 유의해 참고만</td></tr>
-          <tr><td>CFI</td><td class="wrap">아무 관계 없는 기저모형 대비 개선 정도</td><td>≥ .90</td><td class="wrap">≥ .90 수용, ≥ .95 우수</td></tr>
-          <tr><td>TLI</td><td class="wrap">CFI와 유사, 모형이 단순할수록 유리</td><td>≥ .90</td><td class="wrap">≥ .90 수용, ≥ .95 우수</td></tr>
-          <tr><td>RMSEA</td><td class="wrap">자유도당 근사 오차</td><td>≤ .10</td><td class="wrap">≤ .08 수용, ≤ .05 우수</td></tr>
-          <tr><td>SRMR</td><td class="wrap">관측·예측 상관의 평균 차이</td><td>≤ .10</td><td class="wrap">≤ .08</td></tr>
+          <tr><td>CFI</td><td class="wrap">아무 관계 없는 기저모형 대비 개선 정도</td><td>≥ .90</td><td class="wrap">≥ .90 수용, ≥ .95 우수(Hu &amp; Bentler, 1999)</td></tr>
+          <tr><td>TLI</td><td class="wrap">CFI와 유사, 모형이 단순할수록 유리</td><td>≥ .90</td><td class="wrap">≥ .90 수용, ≥ .95 우수(Hu &amp; Bentler, 1999)</td></tr>
+          <tr><td>RMSEA</td><td class="wrap">자유도당 근사 오차</td><td>≤ .10</td><td class="wrap">.05 이하 우수·.08 이하 수용(Browne &amp; Cudeck, 1993), .06 이하(Hu &amp; Bentler, 1999). .10 이상은 부적합(Browne &amp; Cudeck)</td></tr>
+          <tr><td>SRMR</td><td class="wrap">관측·예측 상관의 평균 차이</td><td>≤ .10</td><td class="wrap">≤ .08 (Hu &amp; Bentler, 1999)</td></tr>
           <tr><td>요인적재량</td><td class="wrap">문항이 개념을 대표하는 정도</td><td>≥ .4, p &lt; .05</td><td class="wrap">≥ .5, ≥ .7 우수</td></tr>
         </tbody></table></div>
       <div class="formula">RMSEA = √( max(χ² − df, 0) ÷ ( df × (N − 1) ) )</div>
-      <p>RMSEA는 χ², 자유도, 표본 크기만으로 직접 계산할 수 있습니다. 아래 판정기에서 논문 수치를 넣어 확인해 보세요.</p>
+      <p>RMSEA는 χ², 자유도, 표본 크기만으로 직접 계산할 수 있습니다. 아래 판정기에서 논문 수치를 넣어 확인해 보세요. 판정기의 "엄격 기준"은 Hu &amp; Bentler(1999)의 CFI·TLI ≥ .95, RMSEA ≤ .06, SRMR ≤ .08이며, RMSEA는 비고란에 Browne &amp; Cudeck(1993)의 우수(.05)·수용(.08) 구간도 함께 표시합니다.</p>
       <div class="simbox" id="sim-cfa"></div>
     </div>
   </div>
@@ -2527,7 +2548,7 @@ SIMINIT['sim-anova'] = (root) => {
 /* 4. 사후검정 */
 SIMINIT['sim-posthoc'] = (root) => {
   const names = ['20대', '30대', '40대', '50대', '60대'], means = [4.458, 5.010, 5.344, 5.177, 5.263];
-  const pairs = [[0, 1, -0.553, 0.124, -0.417], [0, 2, -0.887, 0.001, -0.701], [0, 3, -0.720, 0.017, -0.551], [0, 4, -0.806, 0.003, -0.638], [1, 2, -0.334, 0.497, -0.287], [2, 3, 0.167, 0.926, 0.147]];
+  const pairs = [[0, 1, -0.553, 0.124, -0.417], [0, 2, -0.887, 0.001, -0.701], [0, 3, -0.720, 0.017, -0.551], [0, 4, -0.806, 0.003, -0.638], [1, 2, -0.334, 0.497, -0.287], [1, 3, -0.167, 0.937, -0.138], [1, 4, -0.253, 0.737, -0.218], [2, 3, 0.167, 0.926, 0.147], [2, 4, 0.081, 0.994, 0.075], [3, 4, -0.086, 0.993, -0.076]];
   root.innerHTML = labHead('실험 4 · 돋보기로 쌍 비교', '강의 결과: 프라이버시침해불안 (Welch F = 4.687, p = .0013)') +
     `<div class="presets">${pairs.map((p, i) => `<button class="btn${i === 1 ? ' on' : ''}" data-ph="${i}">${names[p[0]]} vs ${names[p[1]]}</button>`).join('')}</div><div class="viz" id="ph-viz"></div><div class="readout" id="ph-ro"></div><div class="verdict" id="ph-v"></div>`;
   let sel = 1;
@@ -2873,7 +2894,7 @@ const QUIZ = {
   anova: [
     { q: '5개 연령대를 t-검정으로 모두 비교하면 비교 횟수와 문제점은?', o: ['5번, 검정력 상승', '10번, 1종 오류 누적(약 40%)', '10번, 효과크기 감소', '25번, 표본 부족'], a: 1, e: '5×4÷2 = 10쌍입니다. 1 − 0.95¹⁰ ≈ 40%로, 적어도 한 번 잘못 "유의하다"고 할 확률이 크게 늘어납니다.' },
     { q: 'F값이 크다는 것의 의미는?', o: ['집단 내 흩어짐이 집단 간 차이보다 크다', '집단 평균 간 차이가 집단 내 개인차에 비해 크다', '표본이 작다', '등분산 가정이 깨졌다'], a: 1, e: 'F = 집단 간 분산 ÷ 집단 내 분산입니다. 신호가 소음보다 클수록 F가 커지고 차이의 근거가 강해집니다.' },
-    { q: 'Welch ANOVA에서 학습불안 p = .097이 나왔습니다. 다음 단계는?', o: ['Games-Howell로 어느 연령대가 다른지 찾는다', '연령대별 차이가 없다고 보고 사후검정을 해석하지 않는다', '유의수준을 0.10으로 바꿔 유의하다고 보고한다', 't-검정을 10번 해서 확인한다'], a: 1, e: '전체 신호등이 꺼져 있으면(p ≥ .05) 사후검정 결과를 해석할 명분이 없습니다. 사후에 기준을 바꾸는 것도 피해야 합니다.' }
+    { q: 'Welch ANOVA에서 학습불안 p = .097이 나왔습니다. 다음 단계는?', o: ['Games-Howell로 어느 연령대가 다른지 찾는다', '연령대별 차이가 없다고 보고 사후검정을 해석하지 않는다', '유의수준을 0.10으로 바꿔 유의하다고 보고한다', 't-검정을 10번 해서 확인한다'], a: 1, e: '강의 관례에 따라 전체 신호등이 꺼져 있으면(p ≥ .05) 사후검정 결과를 해석하지 않습니다. 엄밀히는 Games-Howell·Tukey가 자체적으로 가족오류율(FWER)을 통제해 ANOVA 유의가 필수 조건은 아니지만, 이 경우 사후검정에서도 유의한 쌍이 없었습니다. 사후에 유의수준을 바꾸는 것은 피해야 합니다.' }
   ],
   posthoc: [
     { q: 'Games-Howell 검정의 장점은?', o: ['집단 간 분산과 인원이 달라도 쓸 수 있다', 'ANOVA 없이 단독으로만 쓴다', '범주형 결과변수를 예측한다', '효과크기가 필요 없다'], a: 0, e: 'Tukey 등은 등분산·동일 인원을 가정하지만 Games-Howell은 쌍마다 Welch 방식으로 보정해 이 가정이 필요 없습니다. Welch ANOVA와 짝입니다.' },
@@ -2963,8 +2984,8 @@ SIMINIT['sim-cfa'] = (root) => {
     const rmsea = Math.sqrt(Math.max(x - df, 0) / (df * (n - 1))), p = S.pChi(x, df);
     const ok = (b) => `<span class="tag ${b ? 'sig' : 'warn'}">${b ? '충족' : '미충족'}</span>`;
     const rows = [['χ² p-value', fmtP(p), p > .05, p > .05, '표본이 크면 참고만'], ['CFI', cfi.toFixed(3), cfi >= .90, cfi >= .95, ''], ['TLI', tli.toFixed(3), tli >= .90, tli >= .95, ''],
-      ['RMSEA (자동 계산)', rmsea.toFixed(3), rmsea <= .10, rmsea <= .06, `√(${(x - df).toFixed(1)} ÷ (${df} × ${n - 1}))`], ['SRMR', srmr.toFixed(3), srmr <= .10, srmr <= .08, '']];
-    $('#cf-t').innerHTML = `<table><thead><tr><th>지표</th><th>값</th><th>논문 기준</th><th>엄격 기준 (Hu &amp; Bentler)</th><th class="wrap">비고</th></tr></thead><tbody>${rows.map(r => `<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td>${ok(r[2])}</td><td>${ok(r[3])}</td><td class="wrap">${r[4]}</td></tr>`).join('')}</tbody></table>`;
+      ['RMSEA (자동 계산)', rmsea.toFixed(3), rmsea <= .10, rmsea <= .06, `√(${(x - df).toFixed(1)} ÷ (${df} × ${n - 1})) · Browne &amp; Cudeck: ${rmsea <= .05 ? '우수(≤ .05)' : rmsea <= .08 ? '수용(≤ .08)' : rmsea < .10 ? '보통(.08~.10)' : '부적합(≥ .10)'}`], ['SRMR', srmr.toFixed(3), srmr <= .10, srmr <= .08, '']];
+    $('#cf-t').innerHTML = `<table><thead><tr><th>지표</th><th>값</th><th>논문 기준</th><th>엄격 기준 (Hu &amp; Bentler, 1999)</th><th class="wrap">비고</th></tr></thead><tbody>${rows.map(r => `<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td>${ok(r[2])}</td><td>${ok(r[3])}</td><td class="wrap">${r[4]}</td></tr>`).join('')}</tbody></table>`;
     const main = rows.slice(1), passP = main.every(r => r[2]), passS = main.every(r => r[3]);
     const v = $('#cf-v'); v.className = 'verdict ' + (passS ? 'sig' : passP ? 'ns' : 'warn');
     v.innerHTML = passS ? `<b>엄격한 기준까지 모두 충족합니다.</b> ${p <= .05 ? 'χ²는 유의하지만 N = ' + n + '에서는 흔한 일이므로 다른 지수로 판단합니다.' : ''}` :
@@ -3117,8 +3138,8 @@ const ROAD = {
       '"40대와 50대에서 경로가 다른가?"처럼 효과가 언제, 누구에게서 달라지는지 묻는 분석입니다. 사례 논문도 한계로 언급했고, 기업교육 논문에서 매개 다음으로 가장 많이 쓰입니다.',
       '상호작용항 X×W, 평균중심화, 단순기울기 검정, Johnson-Neyman 구간, 조건부 간접효과, 조절된 매개 지수(index of moderated mediation)', '16 매개효과 · 7 다중회귀'],
     ['구조방정식모형 (SEM)', 'Structural Equation Modeling',
-      'CFA로 측정모형을 확인한 뒤 평균 점수로 회귀하면 측정오차가 경로계수를 약화시킵니다. SEM은 잠재변수 간 경로를 측정오차를 보정해 한 번에 추정하고, 매개변수가 여러 개인 병렬·이중(연쇄) 매개도 다룹니다.',
-      '측정모형→구조모형 2단계 접근, 모형 비교(Δχ²), 병렬·이중 매개(PROCESS Model 6), lavaan·AMOS·Mplus', '13 CFA · 16 매개효과'],
+      'CFA로 측정모형을 확인한 뒤 평균 점수로 회귀하면 측정오차가 경로계수를 약화시킵니다. SEM은 잠재변수 간 경로를 측정오차를 보정해 한 번에 추정하고, 매개변수가 여러 개인 병렬 매개와 연쇄(이중) 매개도 다룹니다.',
+      '측정모형→구조모형 2단계 접근, 모형 비교(Δχ²), 병렬 매개(PROCESS Model 4에 M 여러 개), 연쇄(이중) 매개(PROCESS Model 6), lavaan·AMOS·Mplus', '13 CFA · 16 매개효과'],
     ['타당도 심화: 수렴·판별타당도', 'AVE · CR · Fornell-Larcker · HTMT',
       '적합도 지수만으로는 "각 개념이 서로 구별되는가"를 보여 주지 못합니다. 학위논문 심사와 학술지 리뷰에서 가장 자주 요구하는 보고 항목입니다.',
       'AVE ≥ .5, 개념신뢰도 CR ≥ .7, √AVE &gt; 개념 간 상관(Fornell-Larcker), HTMT &lt; .85 또는 .90, 맥도널드 ω', '13 CFA · 14 신뢰도'],
@@ -3263,8 +3284,8 @@ const CRIT = [
   { t: '측정 기준이 관대하게 설정되었다', lv: '낮음', mod: ['cfa', '13 CFA · 14 신뢰도'],
     now: 'CFA 기준을 CFI·TLI ≥ .90, RMSEA·SRMR ≤ .10으로, 신뢰도 기준을 α ≥ .60으로 설정했습니다.',
     why: 'RMSEA .10과 α .60은 관대한 기준입니다. 실제 값은 대부분 엄격한 기준도 충족하므로, 엄격 기준을 인용하는 편이 결과를 더 돋보이게 합니다. 기술수용성 RMSEA .078은 .08 기준은 충족하고 .06 기준은 넘습니다.',
-    fix: ['Hu & Bentler(1999) 등 엄격 기준을 병기', '신뢰도는 .70 기준을 제시하고 ω를 함께 보고'],
-    rep: '모형 적합도는 CFI·TLI ≥ .95, RMSEA ≤ .06, SRMR ≤ .08(Hu & Bentler, 1999)을 우수 기준으로 하여 평가하였다.' },
+    fix: ['RMSEA는 .05 이하 우수·.08 이하 수용(Browne & Cudeck, 1993), .06 이하(Hu & Bentler, 1999)처럼 출처와 함께 병기', 'CFI·TLI ≥ .95, SRMR ≤ .08(Hu & Bentler, 1999) 기준도 함께 제시', '신뢰도는 .70 기준을 제시하고 ω를 함께 보고'],
+    rep: '모형 적합도는 CFI·TLI ≥ .95, SRMR ≤ .08(Hu & Bentler, 1999)과 RMSEA .05 이하 우수·.08 이하 수용(Browne & Cudeck, 1993), .06 이하(Hu & Bentler, 1999)를 기준으로 평가하였다.' },
   { t: '부트스트랩 세부 정보와 효과크기 보고', lv: '낮음', mod: ['boot', '17 부트스트랩'],
     now: '5,000회 반복은 보고했지만, 신뢰구간 산출 방식(백분위·편향교정)과 seed는 기재되지 않았습니다.',
     why: '산출 방식에 따라 구간이 조금 달라지고, seed가 있어야 같은 결과를 재현할 수 있습니다. 또 CI가 0을 포함하지 않는다는 것만으로는 효과의 크기를 알 수 없습니다.',
