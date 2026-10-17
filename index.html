@@ -82,6 +82,8 @@ mark,.hl{background:linear-gradient(transparent 45%,var(--marker) 45%,var(--mark
 main{min-width:0;padding-block:44px 80px;padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px))}
 .col{max-width:47rem;margin:0 auto}
 .module[hidden]{display:none!important}
+.sec[id],.note[id],h3[id]{scroll-margin-top:72px}
+a[data-goto]{cursor:pointer}
 
 @media (max-width:960px){
   .shell{grid-template-columns:minmax(0,1fr)}
@@ -349,6 +351,13 @@ input[type=range]{width:100%;accent-color:var(--accent-2)}
           <tr><td><b>명목형</b></td><td class="wrap">범주 3개 이상, 순서 없음</td><td class="wrap">부서, 직군, 선호 교육 과정</td><td class="wrap">다항 로지스틱, 카이제곱</td></tr>
           <tr><td><b>시간 + 사건</b></td><td class="wrap">사건까지 걸린 시간과 발생 여부</td><td class="wrap">입사 후 퇴사까지 근속 개월 수</td><td class="wrap">생존분석</td></tr>
         </tbody></table></div>
+      <div class="note warn" id="cut-box"><span class="lab">연속변수를 범주로 쪼갤 때 치르는 비용</span>
+        <p>강의 자료의 "성과점수 80점 이상 = 고성과(1)"처럼 연속 점수를 범주로 바꾸는 일은 흔하지만 대가가 있습니다.</p>
+        <p><b>① 정보 손실</b>: 79점과 81점은 다른 집단이 되고, 81점과 100점은 같은 집단이 됩니다. 집단 안의 차이가 모두 사라집니다.</p>
+        <p><b>② 검정력 저하</b>: 중앙값으로 둘로 나누면 상관이 약 20% 줄어들고, 표본의 약 1/3을 버리는 것과 비슷한 검정력 손실이 생깁니다(Cohen, 1983; MacCallum 외, 2002). 실제 있는 효과를 놓치기 쉬워집니다.</p>
+        <p><b>③ 경계값의 임의성</b>: 80점 대신 75점을 기준으로 삼으면 결론이 달라질 수 있습니다. 경계를 여러 번 바꿔 보다 유의한 것을 고르면 결과를 조작하는 셈이 됩니다.</p>
+        <p><b>대안</b>: 가능하면 연속 점수 그대로 분석합니다(상관, 회귀). 범주가 꼭 필요하다면 실제 의사결정 기준(합격선 등)이나 이론적 근거가 있는 경계를 쓰고, 연속형 분석 결과를 함께 보고합니다. 이 문제는 <a href="#ttest">1번</a>(성과를 고/저 2집단으로)과 <a href="#ordinal">6번</a>(7점 척도를 3범주로) 모듈에도 해당합니다.</p>
+      </div>
       <h3>연습: 이 변수는 어떤 척도일까요?</h3>
       <div class="sorter" id="sorter"></div>
     </div>
@@ -518,6 +527,17 @@ input[type=range]{width:100%;accent-color:var(--accent-2)}
         </tbody></table></div>
       <p class="caption">유의하지 않은(ns) 항목은 효과크기를 해석하지 않습니다.</p>
       <div class="note"><span class="lab">HR 의사결정 연결</span><p>수리·언어 적성과 문제해결 역량은 고성과자를 구별하지 못하므로 과도한 가중치가 불필요합니다. 성실성과 정서적안정성은 유의하면서 효과크기도 매우 크므로 채용 평가의 배점과 가중치를 집중적으로 높이는 방향으로 선발 프로세스를 재설계합니다. 외향성은 별표가 있지만 효과가 미미해 가중치 상향 근거로는 약합니다.</p></div>
+      <h3 id="util">효용분석: 선발도구 개선의 가치를 금액으로</h3>
+      <p>가중치 재설계를 경영진에게 설득하려면 "얼마의 가치가 있나"로 바꿔 말해야 합니다. <b>Brogden-Cronbach-Gleser(BCG) 효용 모형</b>은 선발도구가 만들어 내는 성과 향상을 금액으로 추정합니다.</p>
+      <div class="formula">ΔU = 선발 인원 Ns × 평균 재직기간 T × 타당도 r × SDy × 선발자 평균 표준점수 Z̄x − 총비용 C</div>
+      <ul>
+        <li><b>타당도 r</b>: 선발점수와 입사 후 성과의 상관. 지원자 집단 기준 값이어야 하므로 입사자 데이터라면 아래 1.6절의 범위 제한 교정이 필요합니다.</li>
+        <li><b>SDy</b>: 직무성과의 개인차를 금액으로 환산한 표준편차. 실무에서는 평균 연봉의 40%로 어림하는 경우가 많습니다(Schmidt &amp; Hunter의 40% 규칙).</li>
+        <li><b>Z̄x</b>: 점수 높은 순으로 뽑을 때 선발자의 평균 표준점수. 선발률이 낮을수록 커집니다(선발률 20%면 약 1.40).</li>
+        <li><b>C</b>: 지원자 수 × 1인당 평가 비용.</li>
+      </ul>
+      <div class="simbox" id="sim-util"></div>
+      <p class="caption">효용 추정치는 가정(SDy, 재직기간)에 매우 민감합니다. 경영진 보고에는 보수적인 가정의 값과 범위를 함께 제시합니다.</p>
       <div class="note warn"><span class="lab">비평 · 결과가 지나치게 좋으면 의심하라</span>
         <p>성실성 d = 3.707은 두 집단 분포가 약 6%만 겹친다는 뜻으로, 실제 성격검사와 직무성과의 관계에서는 거의 나오지 않는 크기입니다. 이런 결과를 보면 다음을 먼저 확인합니다.</p>
         <p><b>① 교육용 데이터일 가능성</b>: 실습용으로 만들어지거나 가공된 데이터라면 효과가 의도적으로 뚜렷하게 설계되었을 수 있습니다. 실제 채용 의사결정의 근거로 일반화하지 않습니다.</p>
@@ -528,17 +548,31 @@ input[type=range]{width:100%;accent-color:var(--accent-2)}
   </div>
 
   <div class="sec">
-    <h2><span class="no">1.6</span>주의할 점</h2>
+    <h2><span class="no">1.6</span>범위 제한: 합격자끼리만 비교하면 생기는 일</h2>
+    <div class="prose">
+      <div class="analogy"><span class="lab">비유 · 프로농구 선수의 키</span><p class="big">일반인 사이에서는 키가 농구 실력을 잘 예측하지만, 프로 선수끼리 비교하면 키와 득점의 관계는 거의 사라집니다. 이미 모두 키가 크기 때문입니다.</p></div>
+      <p>선발도구 점수로 사람을 뽑으면 입사자 집단에서는 그 점수의 범위(분산)가 좁아집니다. 범위가 좁아지면 상관이 작아지므로, <mark>입사자 데이터로 계산한 타당도는 지원자 전체에서의 실제 예측력보다 낮게 나옵니다</mark>. 이것이 범위 제한(range restriction)입니다.</p>
+      <div class="note"><span class="lab">강의 사례와 연결 · L사 입사자 919명</span><p>919명은 모두 <b>합격한 사람</b>입니다. 만약 수리·언어 적성검사가 실제 선발에 쓰였다면 입사자는 이미 적성 점수가 높은 사람들뿐이라, 고성과자와 저성과자 사이에 적성 차이가 잘 보이지 않습니다. 따라서 "수리 적성은 고성과를 구별하지 못한다"는 결과는 <b>"적성이 쓸모없다"가 아니라 "이미 적성 높은 사람만 뽑혀서 차이가 안 보인다"</b>일 수도 있습니다. 탈락자 정보 없이 적성검사를 폐지하면 위험한 이유입니다.</p></div>
+      <div class="formula">교정된 타당도 R = (r ÷ u) ÷ √( 1 + r² × (1/u² − 1) )　　u = 입사자 SD ÷ 지원자 SD　(Thorndike Case II)</div>
+      <p>예: 입사자 집단의 r = .20, 입사자 SD가 지원자 SD의 60%(u = .6)라면 교정된 R ≈ .32입니다. 지원자 SD는 채용 시스템에 남아 있는 전체 지원자 점수로 구할 수 있습니다.</p>
+      <div class="simbox" id="sim-rr"></div>
+      <p class="caption">직접 범위 제한(그 점수로 선발)뿐 아니라, 상관된 다른 기준(면접 등)으로 뽑아서 생기는 간접 범위 제한도 있습니다. 간접 제한은 교정 공식이 더 복잡합니다.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2><span class="no">1.7</span>주의할 점</h2>
     <div class="prose"><ul>
       <li><b>같은 사람을 두 번 측정한 데이터</b>(교육 전/후)에 독립표본 t-검정을 쓰면 안 됩니다. 2번 모듈의 종속표본 t-검정을 씁니다.</li>
       <li><b>세 집단 이상</b>을 t-검정 여러 번으로 비교하면 1종 오류가 누적됩니다. 3번 모듈의 ANOVA를 씁니다.</li>
       <li>평가 항목을 여러 개 동시에 검정할 때도 우연히 하나쯤 유의하게 나올 수 있습니다. 효과크기와 이론적 근거를 함께 봅니다.</li>
+      <li>성과 점수를 고성과/저성과 <b>두 집단으로 나눠</b> 비교하면 정보와 검정력을 잃습니다. 가능하면 성과 점수를 연속형 그대로 회귀분석에 쓰는 방법을 함께 검토합니다. (<a data-goto="basics/cut-box">0.1 연속변수를 범주로 쪼갤 때의 비용</a>)</li>
       <li>t-검정은 <b>차이</b>를 보여줄 뿐 <b>인과</b>를 증명하지 않습니다. 성실성이 고성과를 "만든다"고 말하려면 다른 요인 통제가 필요합니다(5·7번 모듈의 회귀분석).</li>
     </ul></div>
   </div>
 
   <div class="sec">
-    <h2><span class="no">1.7</span>R 코드 맛보기</h2>
+    <h2><span class="no">1.8</span>R 코드 맛보기</h2>
     <div class="code"><button type="button" class="copy">복사</button><pre><span class="cm"># Welch's t-test (var.equal = FALSE 가 R의 기본값)</span>
 t.test(성실성 ~ 성과집단, data = df, var.equal = FALSE)
 
@@ -604,12 +638,57 @@ cohens_d(성실성 ~ 성과집단, data = df)</pre></div>
         <tr><td>제도 도입 전후</td><td class="wrap">새 성과평가 제도 도입 전 조직몰입</td><td class="wrap">도입 6개월 후 조직몰입</td></tr>
         <tr><td>평가 방식 비교</td><td class="wrap">같은 응답자의 선다형 적성검사 인지 노력</td><td class="wrap">같은 응답자의 논술형 평가 인지 노력</td></tr>
       </tbody></table></div>
-      <div class="note warn"><span class="lab">설계상 주의</span><p>사전·사후 비교만으로는 "교육 때문에" 올랐다고 단정하기 어렵습니다. 같은 기간의 시간 경과, 연습 효과, 시즌 요인도 점수를 바꿀 수 있습니다. 가능하면 교육을 받지 않은 비교집단을 두고, 두 집단의 변화량을 비교하면 근거가 훨씬 강해집니다.</p></div>
+      <div class="note warn"><span class="lab">설계상 주의 ① · 다른 설명들</span><p>사전·사후 비교만으로는 "교육 때문에" 올랐다고 단정하기 어렵습니다. 같은 기간의 시간 경과, 연습 효과, 시즌 요인도 점수를 바꿀 수 있습니다. 가능하면 교육을 받지 않은 비교집단을 두고 비교합니다(2.6절).</p></div>
+      <div class="note warn" id="rtm"><span class="lab">설계상 주의 ② · 평균으로의 회귀</span><p>사전 점수가 <b>낮은 사람만 골라</b> 교육하면, 교육 효과가 전혀 없어도 사후 점수가 오릅니다. 사전 점수에는 그날 컨디션 같은 우연 오차가 섞여 있는데, 하위 점수자는 "운 나쁘게 낮게 나온 사람"이 많이 포함되기 때문입니다. 다시 재면 그 운이 사라져 평균 쪽으로 돌아옵니다. 7.1절에서 본 골턴의 '회귀' 현상과 같습니다.</p><p>"역량 하위 20% 대상 보충교육"처럼 점수로 대상을 고르는 HR 프로그램에서 특히 자주 생깁니다. 2.3절 시뮬레이터에서 <b>"사전 하위 12명만 선발"</b>을 고르고 교육 효과를 0으로 두면 직접 확인할 수 있습니다. 대책은 같은 기준으로 고른 비교집단을 두거나, 사전 점수를 통제하는 ANCOVA(2.6절)를 쓰는 것입니다.</p></div>
     </div>
   </div>
 
+  <div class="sec" id="pre-post">
+    <h2><span class="no">2.6</span>비교집단이 있는 사전·사후 설계</h2>
+    <div class="prose">
+      <div class="analogy"><span class="lab">비유 · 같은 기간, 두 반</span><p class="big">교육을 받은 반과 받지 않은 반이 같은 기간에 같은 시험을 두 번 봅니다. 두 반 모두 올랐다면 그만큼은 교육이 아닌 다른 이유입니다. 교육의 몫은 "교육반이 더 오른 만큼"입니다.</p></div>
+      <div class="tbl"><table>
+        <thead><tr><th>설계</th><th class="wrap">구조</th><th class="wrap">한계</th></tr></thead>
+        <tbody>
+          <tr><td>단일집단 사전·사후</td><td class="wrap">교육집단만 전·후 측정 (2.1~2.5절)</td><td class="wrap">시간 경과, 연습 효과, 평균으로의 회귀를 구별 못 함</td></tr>
+          <tr><td>비교집단 사후만</td><td class="wrap">두 집단을 교육 후에만 측정</td><td class="wrap">원래부터 달랐는지 알 수 없음</td></tr>
+          <tr><td><b>비교집단 사전·사후</b></td><td class="wrap">두 집단 모두 전·후 측정</td><td class="wrap"><mark>권장.</mark> 무작위 배정이면 가장 강력</td></tr>
+        </tbody></table></div>
+      <h3>분석 방법 세 가지</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>방법</th><th class="wrap">무엇을 비교하나</th><th class="wrap">특징</th></tr></thead>
+        <tbody>
+          <tr><td>변화량 비교</td><td class="wrap">두 집단의 (사후 − 사전) 평균을 독립표본 t-검정</td><td class="wrap">직관적이지만 사전 점수 차이와 측정 오차에 취약</td></tr>
+          <tr><td><b>ANCOVA</b></td><td class="wrap">사전 점수를 통제한 뒤 사후 점수의 집단 차이 (사후 ~ 집단 + 사전)</td><td class="wrap">오차 분산이 줄어 <b>검정력이 높고</b>, 사전 점수의 우연한 차이와 평균으로의 회귀를 보정. 무작위 배정 시 권장 방법</td></tr>
+          <tr><td>혼합 ANOVA</td><td class="wrap">집단(피험자 간) × 시점(피험자 내) <b>상호작용</b></td><td class="wrap">"교육반이 더 많이 올랐는가"가 상호작용 F로 나타남. 2집단 × 2시점에서는 변화량 t-검정과 같은 결론. 3시점 이상(추후 측정)에 유용</td></tr>
+        </tbody></table></div>
+      <div class="note warn"><span class="lab">주의 · 무작위 배정이 아닐 때</span><p>희망자만 교육을 받는 식으로 집단이 원래 다르면, ANCOVA와 변화량 비교가 서로 다른 결론을 낼 수 있습니다(Lord의 역설). 이때는 두 결과를 함께 보고하고, 성향점수매칭 같은 인과추론 방법을 검토합니다(<a data-goto="next/road-causal">추가 학습 로드맵 · 인과추론 기초</a>).</p></div>
+      <h3>Kirkpatrick 4단계 평가와의 연결</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>단계</th><th class="wrap">측정</th><th class="wrap">어울리는 설계와 분석</th></tr></thead>
+        <tbody>
+          <tr><td>1 반응</td><td class="wrap">교육 만족도 설문</td><td class="wrap">기술통계, 과정 간 비교는 t-검정·ANOVA</td></tr>
+          <tr><td>2 학습</td><td class="wrap">사전·사후 지식·역량 시험</td><td class="wrap">종속표본 t-검정 → 비교집단이 있으면 ANCOVA</td></tr>
+          <tr><td>3 행동</td><td class="wrap">3~6개월 후 현업 적용(상사·동료 평가)</td><td class="wrap">비교집단 + 혼합 ANOVA(사전·사후·추후), 팀 단위면 다층모형</td></tr>
+          <tr><td>4 결과</td><td class="wrap">성과, 이직률, 생산성</td><td class="wrap">비교집단의 이중차분(DID), 이직은 생존분석(9번)</td></tr>
+        </tbody></table></div>
+      <p>평생교육·기업교육 프로그램 개발에서 평가 계획을 세울 때, 단계가 올라갈수록 비교집단과 시간 간격이 필요해진다는 점을 설계 단계에서 반영합니다. 3시점 이상 측정은 <a data-goto="next/road-long">추가 학습 로드맵 · 반복측정과 종단 분석</a>으로 이어집니다.</p>
+    </div>
+    <div class="code" style="margin-top:14px"><button type="button" class="copy">복사</button><pre><span class="cm"># 1) ANCOVA: 사전 점수를 통제한 사후 점수의 집단 차이</span>
+m &lt;- lm(사후 ~ 집단 + 사전, data = df)
+car::Anova(m, type = 3)
+emmeans::emmeans(m, ~ 집단)               <span class="cm"># 사전 점수를 맞춘 조정 평균</span>
+
+<span class="cm"># 2) 혼합 ANOVA: 집단 × 시점 상호작용 (long 형식: ID, 집단, 시점, 점수)</span>
+library(rstatix)
+anova_test(data = long, dv = 점수, wid = ID, between = 집단, within = 시점)
+
+<span class="cm"># 3) 변화량 비교 (참고용)</span>
+t.test(I(사후 - 사전) ~ 집단, data = df)</pre></div>
+  </div>
+
   <div class="sec">
-    <h2><span class="no">2.6</span>R 코드와 AI 프롬프트</h2>
+    <h2><span class="no">2.7</span>R 코드와 AI 프롬프트</h2>
     <div class="code"><button type="button" class="copy">복사</button><pre><span class="cm"># 같은 행에 사전·사후가 함께 있는 wide 형식 데이터</span>
 t.test(df$사후, df$사전, paired = TRUE)
 
@@ -848,24 +927,104 @@ cohens_d(df, 프라이버시불안 ~ 연령대)</pre></div>
           <tr><td>나이</td><td class="num">.0008</td><td><span class="tag sig">***</span></td><td class="num">1.041</td><td class="wrap">1살 많을 때마다 오즈 4.1% 증가</td></tr>
           <tr><td>학력: 학사</td><td class="num">.0073</td><td><span class="tag sig">**</span></td><td class="num">2.292</td><td class="wrap">고졸 이하 대비 오즈 2.29배</td></tr>
           <tr><td>학력: 석사 이상</td><td class="num">.0014</td><td><span class="tag sig">**</span></td><td class="num">2.906</td><td class="wrap">고졸 이하 대비 오즈 2.91배</td></tr>
+          <tr><td>연봉 (1,000만 원당)</td><td class="num">&lt;.001</td><td><span class="tag sig">***</span></td><td class="num">1.360</td><td class="wrap">연봉이 1,000만 원 높을 때 고성과 오즈 36.0% 증가 (천원 단위 가정, 아래 해설)</td></tr>
           <tr><td>성별: 남성</td><td class="num">.0030</td><td><span class="tag sig">**</span></td><td class="num">0.591</td><td class="wrap">여성 대비 오즈 약 41% 낮음</td></tr>
           <tr><td>근태사고율</td><td class="num">.0317</td><td><span class="tag sig">*</span></td><td class="num">0.0000087</td><td class="wrap">높을수록 오즈 크게 감소 (아래 해설 참고)</td></tr>
           <tr><td>결혼여부 · 연차</td><td class="num">&gt; .05</td><td><span class="tag ns">ns</span></td><td class="num">—</td><td class="wrap">해석 제외</td></tr>
         </tbody></table></div>
       <p class="caption">모든 변수의 GVIF &lt; 10. 모형 분류 정확도 약 72.4%. 직무만족도 OR(1.322, p = .0177)은 6번 모듈 직무대체불안의 누적 OR(1.322, p = .018)과 거의 같지만, 서로 다른 데이터(ch3_performance, AI Anxiety)를 원자료로 다시 분석해 두 값이 모두 맞음을 확인했습니다.</p>
       <div class="note"><span class="lab">심화 · OR 0.0000087은 어떻게 읽어야 하나</span><p>OR은 "X가 1단위 늘 때"의 배율입니다. 근태사고율이 0~1 비율로 입력되었다면 1단위 = 0%에서 100%로의 변화라 현실성이 없는 극단값이 나옵니다. 이럴 땐 단위를 바꿔 읽습니다. 1%p(0.01) 증가 시 OR = 0.0000087<sup>0.01</sup> ≈ <b>0.89</b>, 즉 <mark>근태사고율 1%p 상승마다 고성과 오즈 약 11% 감소</mark>입니다. 실제 입력 척도는 강의 데이터에서 확인하세요.</p></div>
-      <div class="note warn"><span class="lab">정확도 72.4% 읽는 법</span><p>정확도는 "아무 정보 없이 모두 다수 집단으로 예측했을 때"의 기준 정확도와 비교해야 의미가 있습니다. 고성과자가 전체의 70%라면 모두 고성과로 찍어도 70%가 나오기 때문입니다. 실무 보고에서는 민감도(실제 고성과자를 맞힌 비율)와 특이도도 함께 보는 것이 좋습니다.</p></div>
+      <div class="note"><span class="lab">심화 · 연봉 OR 1.00003을 1,000만 원 단위로 바꾸기</span><p>결과표에는 연봉 OR이 1.00003으로 나와 "영향이 거의 없다"처럼 보이지만, p = 5.9 × 10⁻¹⁸로 가장 강력한 변수 중 하나입니다. 1단위가 너무 작아서 생긴 착시입니다. 원자료의 연봉은 21,600~184,000(중앙값 51,250)이고, 데이터와 강의 자료 어디에도 단위 표기가 없습니다. 국내 연봉 수준에 비추어 <b>천원 단위로 가정</b>하면 중앙값은 5,125만 원입니다.</p><p>1,000만 원 = 10,000단위이므로 OR<sub>1,000만</sub> = e<sup>B × 10,000</sup> = e<sup>0.0000308 × 10,000</sup> = e<sup>0.308</sup> ≈ <mark><b>1.36</b></mark>(95% CI 1.27~1.46), 즉 <b>연봉 1,000만 원당 고성과 오즈 36% 증가</b>입니다. 100만 원 단위로는 1.031(3.1% 증가)입니다. 실무에서는 분석 전에 연봉을 백만 원·천만 원 단위로 바꾸거나 표준화(1SD 증가당 OR 2.41)해 두면 이런 착시를 피할 수 있습니다. 근태사고율의 1%p 해석과 같은 원리입니다.</p></div>
+      <div class="note warn"><span class="lab">정확도 72.4% 읽는 법 · 원자료 기준</span><p>ch3_performance 700명 중 고성과자는 278명(<b>39.7%</b>)입니다. 아무 정보 없이 <b>모두 저성과로 예측해도 정확도는 60.3%</b>이므로, 모형의 실제 개선 폭은 72.4% − 60.3% = <mark><b>약 12.1%p</b></mark>입니다. 정확도 하나만 보면 성능을 과대평가하기 쉽습니다.</p>
+        <div class="tbl" style="margin:6px 0"><table>
+          <thead><tr><th>예측확률 ≥ .5 기준</th><th>실제 고성과 (278)</th><th>실제 저성과 (422)</th></tr></thead>
+          <tbody><tr><td>고성과로 예측</td><td class="num">152 (맞힘)</td><td class="num">67 (오경보)</td></tr><tr><td>저성과로 예측</td><td class="num">126 (놓침)</td><td class="num">355 (맞힘)</td></tr></tbody></table></div>
+        <p><b>민감도 54.7%</b>(실제 고성과자 중 맞힌 비율), <b>특이도 84.1%</b>(실제 저성과자 중 맞힌 비율), 정밀도 69.4%(고성과로 예측한 사람 중 실제 고성과), AUC .769. 이 모형은 저성과자를 걸러내는 데는 강하지만 <b>실제 고성과자의 45%를 놓칩니다</b>. 채용에서 인재를 놓치는 비용이 크다면 기준 확률을 .5보다 낮춰 민감도를 높이고, 대신 늘어나는 오경보를 감수하는 식으로 조정합니다.</p></div>
+    </div>
+  </div>
+
+  <div class="sec" id="fit">
+    <h2><span class="no">5.7</span>모형 전체는 얼마나 맞는가: 로지스틱 모형 적합도</h2>
+    <div class="prose">
+      <p>변수별 OR을 보기 전에 모형 전체가 쓸 만한지 확인합니다. ch3_performance 원자료로 계산한 값입니다. <span class="tag sig">원자료 계산값</span></p>
+      <div class="tbl"><table>
+        <thead><tr><th>지표</th><th>값</th><th class="wrap">기준</th><th class="wrap">해석</th></tr></thead>
+        <tbody>
+          <tr><td>우도비(LR) χ²</td><td class="num">χ²(12) = 174.27, p &lt; .001</td><td class="wrap">p &lt; .05</td><td class="wrap">변수 없는 빈 모형보다 유의하게 잘 예측함</td></tr>
+          <tr><td>Nagelkerke R²</td><td class="num">.298</td><td class="wrap">0~1, 클수록 좋음</td><td class="wrap">유사 R². 회귀의 "분산 설명률"이 아니므로 모형 비교용으로만 씀 (Cox &amp; Snell .220, McFadden .185)</td></tr>
+          <tr><td>Hosmer-Lemeshow</td><td class="num">χ²(8) = 16.22, p = .039</td><td class="wrap">p ≥ .05면 적합</td><td class="wrap">예측확률과 실제 비율이 일부 구간에서 어긋남. 다만 아래 한계 참고</td></tr>
+          <tr><td>변수당 사건 수(EPV)</td><td class="num">278 ÷ 12 = 23.2</td><td class="wrap">≥ 10</td><td class="wrap">추정 계수 12개에 비해 사건(고성과) 수가 충분해 과적합 위험이 낮음</td></tr>
+          <tr><td>AUC</td><td class="num">.769</td><td class="wrap">.7 수용 · .8 우수</td><td class="wrap">고성과자와 저성과자를 무작위로 한 명씩 뽑았을 때 고성과자에게 더 높은 확률을 줄 확률 77%</td></tr>
+        </tbody></table></div>
+      <div class="note warn"><span class="lab">Hosmer-Lemeshow 검정의 한계</span><p>표본이 크면 사소한 어긋남에도 p &lt; .05가 쉽게 나오고, 표본이 작으면 큰 문제도 놓칩니다. 결과가 집단을 몇 개로 나누느냐(보통 10개)에 따라 달라지기도 합니다. n = 700에서 p = .039라면 "모형이 틀렸다"보다 "예측확률이 일부 구간에서 덜 맞는다" 정도로 읽고, 구간별 예측확률과 실제 비율을 비교하는 보정 그림(calibration plot)으로 어디가 어긋나는지 확인합니다.</p></div>
+      <p>EPV는 <b>사건 수가 적은 쪽</b>(여기서는 고성과 278명)을 추정 계수 수로 나눕니다. 학력처럼 범주가 3개인 변수는 계수 2개로 셉니다. EPV가 10 미만이면 계수가 불안정하고 과적합되기 쉬우므로 변수를 줄입니다. 예측 성능 지표의 읽는 법은 <a data-goto="next/road-pred">추가 학습 로드맵 · 예측 모형 평가</a>로 이어집니다.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="ame">
+    <h2><span class="no">5.8</span>경영진에게는 확률로: 예측확률과 평균 한계효과(AME)</h2>
+    <div class="prose">
+      <p>"오즈가 47.9% 증가"는 정확하지만 경영진이 바로 이해하기 어렵습니다. 같은 결과를 <b>"확률이 몇 %p 바뀌는가"</b>로 바꾸면 전달력이 높아집니다. 평균 한계효과(AME)는 직원 한 명 한 명에 대해 X가 1 늘 때의 확률 변화를 계산한 뒤 평균한 값입니다. 5.3절 시뮬레이터에서 본 것처럼 확률 변화는 위치마다 다르기 때문에, 실제 직원 분포 전체로 평균을 냅니다. <span class="tag sig">원자료 계산값</span></p>
+      <div class="tbl"><table>
+        <thead><tr><th>조직적합도</th><th>1점</th><th>2점</th><th>3점</th><th>4점</th><th>5점</th></tr></thead>
+        <tbody><tr><td>평균 예측 고성과 확률</td><td class="num">22.5%</td><td class="num">28.3%</td><td class="num">35.0%</td><td class="num">42.4%</td><td class="num">50.1%</td></tr></tbody></table></div>
+      <p class="caption">다른 변수는 각 직원의 실제 값을 그대로 두고 조직적합도만 1~5점으로 바꿔 예측한 확률의 평균입니다.</p>
+      <ul>
+        <li><b>조직적합도 AME = 7.2%p</b>(미분 기준). 1점 올렸을 때의 평균 변화(이산 변화)로 계산하면 7.4%p입니다.</li>
+        <li>OR 1.479(오즈 47.9% 증가)와 같은 결과를 다른 말로 표현한 것입니다.</li>
+      </ul>
+      <div class="note"><span class="lab">보고 문장 예시</span><p>"다른 조건이 같을 때 조직적합도가 1점 높아지면 입사 후 고성과자가 될 확률이 평균 약 7%p 높아집니다. 조직적합도 1점인 지원자의 예측 고성과 확률은 22%, 5점인 지원자는 50%로 두 배 이상 차이가 납니다."</p></div>
+    </div>
+  </div>
+
+  <div class="sec" id="fair">
+    <h2><span class="no">5.9</span>윤리와 공정성: 유의한 변수를 모두 채용 기준으로 써도 될까</h2>
+    <div class="prose">
+      <div class="note warn"><span class="lab">윤리 박스 · 성별·나이·학력은 채용 기준이 될 수 없다</span>
+        <p>5.6절에서 성별(남성 OR 0.591), 나이(OR 1.041), 학력(OR 2.29~2.91)이 유의했지만, 이것을 채용 점수에 넣으면 안 됩니다.</p>
+        <p><b>① 법적 금지</b>: 남녀고용평등과 일·가정 양립 지원에 관한 법률 제7조는 모집·채용에서 성별 차별을, 고용상 연령차별금지 및 고령자고용촉진에 관한 법률 제4조의4는 연령 차별을 금지합니다. 국가인권위원회법은 학력을 이유로 한 고용 차별을 평등권 침해로 규정하고, 채용절차의 공정화에 관한 법률은 직무와 무관한 개인정보 수집을 제한합니다. 구체적인 적용은 노무·법률 검토가 필요합니다.</p>
+        <p><b>② 과거 편향의 재생산</b>: 데이터의 "고성과" 판정 자체가 과거의 평가 관행을 반영합니다. 성별 효과는 평가 편향이나 직무 배치 차이의 결과일 수 있고, 모형은 그 편향을 미래 채용으로 옮깁니다.</p>
+        <p><b>③ 인과가 아님</b>: 나이가 성과를 "만드는" 것이 아니라 경력·직무 경험의 대리 지표일 수 있습니다. 직무 관련 역량을 직접 측정하는 편이 정확하고 공정합니다.</p>
+      </div>
+      <h3>불리효과 점검: 4/5 규칙</h3>
+      <p>어떤 집단의 선발률이 가장 높은 집단 선발률의 <b>80%(4/5) 미만</b>이면 불리효과(adverse impact)를 의심합니다. 미국 고용기회평등위원회(EEOC) 등의 통일 지침(1978)에서 나온 실무 기준입니다. 국내 법정 기준은 아니지만 선발도구를 점검하는 간단한 도구로 널리 쓰입니다.</p>
+      <div class="formula">선발률 비율 = 낮은 집단 선발률 ÷ 높은 집단 선발률　　&lt; 0.8 이면 불리효과 의심</div>
+      <p>원자료에서 5.6절 모형으로 "예측확률 .5 이상을 선발"한다고 가정해 점검했습니다. <span class="tag sig">원자료 계산값</span></p>
+      <div class="tbl"><table>
+        <thead><tr><th>모형</th><th>정확도</th><th>여성 선발률</th><th>남성 선발률</th><th>성별 비율</th><th class="wrap">40세 미만 / 이상 선발률</th></tr></thead>
+        <tbody>
+          <tr><td>성별·나이·학력 포함</td><td class="num">72.4%</td><td class="num">43.1%</td><td class="num">20.7%</td><td><span class="tag warn">0.48</span></td><td class="wrap">21.0% / 41.8% → <span class="tag warn">0.50</span></td></tr>
+          <tr><td>성별·나이·학력 제외</td><td class="num">71.0%</td><td class="num">29.8%</td><td class="num">25.5%</td><td><span class="tag sig">0.86</span></td><td class="wrap">—</td></tr>
+        </tbody></table></div>
+      <p>보호 속성을 넣은 모형은 남성 선발률이 여성의 48%, 40세 미만 선발률이 40세 이상의 50%로 4/5 규칙을 크게 위반합니다. 세 변수를 빼면 정확도는 1.4%p만 떨어지고 성별 비율은 0.86으로 기준을 통과합니다. 다만 변수를 빼는 것만으로 공정성이 보장되지는 않습니다. 연차·연봉처럼 나이와 얽힌 <b>대리 변수</b>가 같은 효과를 낼 수 있으므로, 최종 선발 결과에 대해 4/5 규칙을 계속 점검합니다.</p>
     </div>
   </div>
 
   <div class="sec">
-    <h2><span class="no">5.7</span>R 코드 맛보기</h2>
+    <h2><span class="no">5.10</span>R 코드 맛보기</h2>
     <div class="code"><button type="button" class="copy">복사</button><pre>m &lt;- glm(고성과 ~ 조직적합도 + 직무만족도 + 나이 + 학력 + 성별 + 근태사고율,
          data = df, family = binomial)
 summary(m)                     <span class="cm"># β와 p</span>
 exp(coef(m))                   <span class="cm"># 오즈비 OR</span>
 exp(confint.default(m))        <span class="cm"># OR의 95% 신뢰구간</span>
-car::vif(m)                    <span class="cm"># 범주형 포함 시 GVIF 출력</span></pre></div>
+car::vif(m)                    <span class="cm"># 범주형 포함 시 GVIF 출력</span>
+
+<span class="cm"># 모형 적합도와 분류 성능</span>
+m0 &lt;- glm(고성과 ~ 1, data = df, family = binomial)
+anova(m0, m, test = "Chisq")                         <span class="cm"># 우도비 χ²</span>
+performance::r2_nagelkerke(m)
+ResourceSelection::hoslem.test(df$고성과, fitted(m), g = 10)
+table(예측 = fitted(m) &gt;= .5, 실제 = df$고성과)      <span class="cm"># 혼동행렬 → 민감도·특이도</span>
+pROC::auc(df$고성과, fitted(m))
+
+<span class="cm"># 평균 한계효과(AME)와 예측확률</span>
+library(marginaleffects)
+avg_slopes(m, variables = "조직적합도")               <span class="cm"># 확률 변화 %p</span>
+avg_predictions(m, variables = list(조직적합도 = 1:5))
+
+<span class="cm"># 4/5 규칙 점검</span>
+선발 &lt;- fitted(m) &gt;= .5
+r &lt;- tapply(선발, df$성별, mean); min(r) / max(r)</pre></div>
   </div>
 
   <div class="sec"><h2><span class="no">✓</span>확인 퀴즈</h2><div class="quiz" data-quiz="logit"></div></div>
@@ -928,7 +1087,7 @@ car::vif(m)                    <span class="cm"># 범주형 포함 시 GVIF 출�
   <div class="sec">
     <h2><span class="no">6.5</span>강의 실습 사례: AI 불안 → AI 사용 수준</h2>
     <div class="prose">
-      <p>AI 사용 수준을 1~3점 '낮음', 4점 '보통', 5~7점 '높음'으로 구분한 순서형 로지스틱 회귀입니다.</p>
+      <p>AI 사용 수준을 1~3점 '낮음', 4점 '보통', 5~7점 '높음'으로 구분한 순서형 로지스틱 회귀입니다. 7점 척도를 3범주로 묶으면 정보가 줄고 경계 선택에 따라 결과가 달라질 수 있으므로, 원래 7점 점수를 그대로 쓴 순서형 모형(또는 회귀)과 비교해 보는 것이 좋습니다(<a data-goto="basics/cut-box">0.1 연속변수를 범주로 쪼갤 때의 비용</a>).</p>
       <div class="tbl"><table>
         <thead><tr><th>독립변수</th><th>VIF</th><th>비례오즈 p</th><th>p</th><th>유의성</th><th>OR</th></tr></thead>
         <tbody>
@@ -1118,8 +1277,28 @@ coef(m_std)</pre></div>
     </ul></div>
   </div>
 
+  <div class="sec" id="simpson">
+    <h2><span class="no">8.6</span>심슨의 역설과 교란변수</h2>
+    <div class="prose">
+      <div class="analogy"><span class="lab">비유 · 두 병원의 생존율</span><p class="big">중증 환자를 많이 받는 대학병원은 전체 생존율이 낮아 보이지만, 경증·중증을 나눠 보면 두 경우 모두 더 잘 살립니다. 환자 구성이 다를 뿐입니다.</p></div>
+      <p>전체를 합쳐 본 관계가 하위집단별로 나누면 사라지거나 <b>뒤집히는</b> 현상이 심슨의 역설입니다. 원인은 두 변수 모두와 관련된 제3의 변수, 즉 <b>교란변수</b>입니다. <span class="tag ns">설명용 가상 예시</span></p>
+      <div class="tbl"><table>
+        <thead><tr><th></th><th>영업부</th><th>연구부</th><th>차이 검정</th></tr></thead>
+        <tbody>
+          <tr><td><b>전체</b></td><td class="num">84 / 500 = <b>16.8%</b></td><td class="num">42 / 500 = <b>8.4%</b></td><td class="wrap">χ² = 16.0, p &lt; .001 → 영업부가 높아 보임</td></tr>
+          <tr><td>사원</td><td class="num">80 / 400 = 20.0%</td><td class="num">22 / 100 = 22.0%</td><td class="wrap">p = .66, 오히려 연구부가 약간 높음</td></tr>
+          <tr><td>관리자</td><td class="num">4 / 100 = 4.0%</td><td class="num">20 / 400 = 5.0%</td><td class="wrap">p = .68, 오히려 연구부가 약간 높음</td></tr>
+        </tbody></table></div>
+      <p>영업부는 이직률이 높은 <b>사원 비중이 80%</b>, 연구부는 20%입니다. 영업부의 높은 이직률은 부서 특성이 아니라 <b>직급 구성</b> 때문이었습니다. 전체 결과만 보고 "영업부 리텐션 프로그램"을 만들었다면 잘못된 처방이 됩니다. 8.3절 계산기에서 <b>"부서별 이직 (직급 교란)"</b> 예시를 고른 뒤 <b>"직급별로 나눠 보기"</b>를 눌러 확인해 보세요.</p>
+      <div class="note"><span class="lab">대응 · 층화와 통제</span><p>교란이 의심되면 ① 하위집단별로 나눠 보고(층화), ② 층을 합쳐 검정하는 Cochran-Mantel-Haenszel 검정을 쓰거나, ③ 로지스틱 회귀에 교란변수를 함께 넣어 <b>통제</b>합니다. "이직 ~ 부서 + 직급"으로 모형을 세우면 직급이 같다는 조건에서 부서의 효과만 따로 볼 수 있습니다. 이것이 카이제곱에서 5번 로지스틱 회귀로 넘어가는 이유입니다.</p></div>
+      <div class="code"><button type="button" class="copy">복사</button><pre>xtabs(~ 부서 + 이직여부 + 직급, data = df)              <span class="cm"># 직급별 교차표</span>
+mantelhaen.test(xtabs(~ 부서 + 이직여부 + 직급, data = df))
+summary(glm(이직여부 ~ 부서 + 직급, data = df, family = binomial))</pre></div>
+    </div>
+  </div>
+
   <div class="sec">
-    <h2><span class="no">8.6</span>강의 맥락: 이직 관리 파트의 1단계</h2>
+    <h2><span class="no">8.7</span>강의 맥락: 이직 관리 파트의 1단계</h2>
     <div class="prose">
       <p>8~9주차 이직 관리 파트에서는 카이제곱 검정으로 <b>"누가"</b> 많이 떠나는지 가려내고, 생존분석으로 <b>"언제"</b> 떠나는지 추적합니다.</p>
       <div class="note"><span class="lab">보고 문장 예시</span><p>"채용 경로(공채 vs 경력)와 입사 1년 내 이직 여부 간에 유의한 관련성이 확인되었다(p &lt; .05, Cramér's V = 0.32). 경력 채용자의 조기 이직률이 유의하게 높으므로 경력직 온보딩 프로그램을 우선 개편한다."</p></div>
@@ -1127,7 +1306,7 @@ coef(m_std)</pre></div>
   </div>
 
   <div class="sec">
-    <h2><span class="no">8.7</span>R 코드 맛보기</h2>
+    <h2><span class="no">8.8</span>R 코드 맛보기</h2>
     <div class="code"><button type="button" class="copy">복사</button><pre>tab &lt;- table(df$부서, df$이직여부)
 prop.table(tab, margin = 1)          <span class="cm"># 행 백분율 = 부서별 이직률</span>
 res &lt;- chisq.test(tab)
@@ -1201,8 +1380,35 @@ fisher.test(tab)                      <span class="cm"># 기대빈도가 작을 
     </div>
   </div>
 
+  <div class="sec" id="compete">
+    <h2><span class="no">9.6</span>심화: 경쟁위험과 정보적 중도절단</h2>
+    <div class="prose">
+      <h3>경쟁위험: 퇴사에도 종류가 있다</h3>
+      <p>퇴사는 자발적 이직, 비자발적 퇴사(권고사직·계약만료), 정년퇴직처럼 여러 종류입니다. 자발적 이직만 관심 있다고 비자발적 퇴사자를 단순히 "중도절단"으로 처리하면 문제가 생깁니다. 중도절단은 "앞으로도 자발적 이직이 일어날 수 있는 사람"이라는 가정인데, 이미 권고사직으로 나간 사람에게는 자발적 이직이 다시 일어날 수 없기 때문입니다. 이렇게 서로의 발생을 막는 사건을 <b>경쟁위험</b>이라고 합니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>방법</th><th class="wrap">답하는 질문</th><th class="wrap">주의</th></tr></thead>
+        <tbody>
+          <tr><td>1 − 카플란-마이어</td><td class="wrap">(경쟁사건이 없다면) 자발적 이직 누적 비율</td><td class="wrap">경쟁사건이 있으면 실제 누적 발생률을 <b>과대추정</b></td></tr>
+          <tr><td><b>누적발생함수(CIF)</b></td><td class="wrap">경쟁사건을 고려한 "3년 안에 자발적으로 떠날 실제 비율"</td><td class="wrap">Aalen-Johansen 추정. 경쟁위험이 있으면 이 값을 보고</td></tr>
+          <tr><td>원인별 Cox 모형</td><td class="wrap">요인이 자발적 이직의 <b>순간 위험</b>을 얼마나 높이나 (원인 탐색)</td><td class="wrap">원인별 위험비(cause-specific HR)</td></tr>
+          <tr><td><b>Fine-Gray 모형</b></td><td class="wrap">요인이 자발적 이직의 <b>누적 발생 확률</b>을 얼마나 높이나 (예측)</td><td class="wrap">부분분포 위험비(sHR). 해석이 일반 HR과 다름</td></tr>
+        </tbody></table></div>
+      <h3>정보적 중도절단 가정</h3>
+      <p>생존분석은 "중도절단된 사람의 앞으로의 퇴사 위험이 관찰이 계속된 사람과 같다"고 가정합니다(비정보적 중도절단). 계열사 전출이나 장기 휴직을 중도절단으로 처리했는데, 실제로는 전출자 대부분이 원래 이직을 고민하던 사람이라면 이 가정이 깨지고 이직 위험이 과소추정됩니다. 중도절단 사유를 기록하고, 그 사람들을 "퇴사"로 바꿔 다시 분석해 결과가 크게 달라지는지 확인하는 민감도 분석을 권장합니다. 9.3절 시뮬레이터에서 재직자를 퇴사로 바꿔 보는 것이 바로 이 감각입니다.</p>
+      <div class="code"><button type="button" class="copy">복사</button><pre>library(survival)
+<span class="cm"># 상태: 첫 수준이 중도절단(재직)이어야 함</span>
+df$상태 &lt;- factor(df$상태, levels = c("재직", "자발적", "비자발적"))
+cif &lt;- survfit(Surv(근속개월, 상태) ~ 직군, data = df)   <span class="cm"># Aalen-Johansen 누적발생함수</span>
+summary(cif, times = c(12, 36))
+
+<span class="cm"># Fine-Gray 모형 (자발적 이직의 부분분포 위험비)</span>
+fg &lt;- finegray(Surv(근속개월, 상태) ~ ., data = df, etype = "자발적")
+summary(coxph(Surv(fgstart, fgstop, fgstatus) ~ 직군 + 직무만족, weights = fgwt, data = fg))</pre></div>
+    </div>
+  </div>
+
   <div class="sec">
-    <h2><span class="no">9.6</span>R 코드 맛보기</h2>
+    <h2><span class="no">9.7</span>R 코드 맛보기</h2>
     <div class="code"><button type="button" class="copy">복사</button><pre>library(survival)
 <span class="cm"># 근속개월, 퇴사(1=퇴사, 0=재직 중 = 중도절단)</span>
 fit &lt;- survfit(Surv(근속개월, 퇴사) ~ 직군, data = df)
@@ -1304,8 +1510,40 @@ coxph(Surv(tstart, tstop, 퇴사) ~ 직군 + 연봉인상률 + 직무만족, dat
     </ul></div>
   </div>
 
+  <div class="sec" id="lpa">
+    <h2><span class="no">10.7</span>더 나아가기: 잠재프로파일분석(LPA)</h2>
+    <div class="prose">
+      <p>국내 HRD 논문에서 구성원을 유형화할 때는 K-means보다 <b>잠재프로파일분석(LPA)</b>을 더 많이 씁니다. 연속형 지표로 보이지 않는 하위 집단(프로파일)을 찾는다는 목표는 같지만 방식이 다릅니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th></th><th class="wrap">K-means</th><th class="wrap">잠재프로파일분석</th></tr></thead>
+        <tbody>
+          <tr><td>소속</td><td class="wrap">한 군집에 딱 배정 (거리 기준)</td><td class="wrap">각 프로파일에 속할 <b>확률</b>로 배정</td></tr>
+          <tr><td>K 결정</td><td class="wrap">엘보우·실루엣 (해석 의존)</td><td class="wrap">정보지수와 우도비 검정으로 <b>통계적 비교</b></td></tr>
+          <tr><td>가정</td><td class="wrap">군집이 둥글고 비슷한 크기</td><td class="wrap">프로파일별 분산을 다르게 둘 수 있음, 결측 처리(FIML) 가능</td></tr>
+          <tr><td>후속 분석</td><td class="wrap">군집을 변수로 사용</td><td class="wrap">분류 불확실성을 반영한 예측·결과 분석(3단계 접근)</td></tr>
+        </tbody></table></div>
+      <h3>프로파일 수 결정 지표</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>프로파일 수</th><th>AIC</th><th>BIC</th><th>엔트로피</th><th>LMR p</th><th>최소 집단</th></tr></thead>
+        <tbody>
+          <tr><td>2</td><td class="num">4210</td><td class="num">4262</td><td class="num">.78</td><td class="num">&lt;.001</td><td class="num">41%</td></tr>
+          <tr><td><b>3</b></td><td class="num">4105</td><td class="num"><b>4183</b></td><td class="num"><b>.84</b></td><td class="num">.003</td><td class="num">18%</td></tr>
+          <tr><td>4</td><td class="num">4089</td><td class="num">4193</td><td class="num">.81</td><td class="num">.210</td><td class="num">6%</td></tr>
+          <tr><td>5</td><td class="num">4080</td><td class="num">4210</td><td class="num">.79</td><td class="num">.480</td><td class="num">3%</td></tr>
+        </tbody></table></div>
+      <p class="caption"><span class="tag ns">설명용 가상 예시</span> AIC·BIC는 낮을수록 좋고, 엔트로피는 .80 이상이면 분류가 명확한 편입니다. LMR(또는 BLRT) 검정은 k개가 k−1개보다 유의하게 나은지(p &lt; .05)를 봅니다. 최소 집단이 5% 미만이면 해석이 불안정합니다. 이 예시에서는 BIC가 가장 낮고, 엔트로피가 .80 이상이며, 4개가 3개보다 낫지 않은(LMR p = .21) <b>3개 프로파일</b>을 선택합니다. AIC는 계속 줄어드는 경향이 있어 BIC를 더 중시합니다.</p>
+      <p>LPA는 <a data-goto="next/road-lpa">추가 학습 로드맵 · 잠재프로파일분석</a>에도 정리했습니다.</p>
+      <div class="code"><button type="button" class="copy">복사</button><pre>library(tidyLPA); library(dplyr)
+df %&gt;%
+  select(자율성, 도전성, 절차준수, 관계협력) %&gt;%
+  single_imputation() %&gt;%
+  estimate_profiles(1:5) %&gt;%
+  compare_solutions(statistics = c("AIC", "BIC", "Entropy", "BLRT_p"))</pre></div>
+    </div>
+  </div>
+
   <div class="sec">
-    <h2><span class="no">10.7</span>R 코드 맛보기</h2>
+    <h2><span class="no">10.8</span>R 코드 맛보기</h2>
     <div class="code"><button type="button" class="copy">복사</button><pre>X &lt;- scale(df[, c("자율성","도전성","절차준수","관계협력")])
 set.seed(2026)
 km &lt;- kmeans(X, centers = 3, nstart = 25)
@@ -1342,7 +1580,7 @@ factoextra::fviz_nbclust(X, kmeans, method = "silhouette")  <span class="cm"># �
       <div class="steps" style="margin-top:6px">
         <div class="step"><div><h4>전처리</h4><p>한국어는 형태소 분석으로 명사 등을 추출하고, '회사', '생각' 같은 불용어를 제거합니다. 결과 품질의 절반이 여기서 결정됩니다.</p></div></div>
         <div class="step"><div><h4>토픽 수 결정과 키워드 확인</h4><p>일관성 점수(coherence) 등을 참고해 토픽 수를 정하고, 토픽별 상위 키워드를 봅니다.</p></div></div>
-        <div class="step"><div><h4>라벨링과 비중 산출</h4><p>키워드 묶음에 주제 이름을 붙이고, 전체 응답에서 각 토픽이 차지하는 비중(%)을 계산합니다.</p></div></div>
+        <div class="step"><div><h4>라벨링과 비중 산출</h4><p>키워드 묶음에 주제 이름을 붙이고, 전체 응답에서 각 토픽이 차지하는 비중(%)을 계산합니다. 토픽 결과를 사람이 직접 분류한 결과나 다른 코더(또는 AI)의 분류와 비교해 일치도를 확인하면 신뢰성이 높아집니다(<a data-goto="alpha/irr">14.4 평가자 간 신뢰도</a>).</p></div></div>
       </div>
     </div>
   </div>
@@ -1434,6 +1672,21 @@ edge_density(g)</pre></div>
         <tr><td>Cronbach's α</td><td class="wrap">≥ .7 양호 · .6 탐색적 허용</td><td class="wrap">문항 응답의 일관성</td></tr>
         <tr><td>상관계수 r</td><td class="wrap">.2 / .4 / .6 / .8 (성태제) · .1 / .3 / .5 (Cohen)</td><td class="wrap">두 변수의 직선적 관련 강도</td></tr>
         <tr><td>간접효과 95% CI</td><td class="wrap">0을 포함하지 않으면 유의</td><td class="wrap">매개효과 존재 여부</td></tr>
+        <tr><td>LR χ² (로지스틱)</td><td class="wrap">p &lt; .05</td><td class="wrap">빈 모형보다 예측이 나아졌나</td></tr>
+        <tr><td>Nagelkerke R²</td><td class="wrap">0~1, 클수록 좋음</td><td class="wrap">유사 R². 분산 설명률이 아니므로 모형 비교용</td></tr>
+        <tr><td>Hosmer-Lemeshow</td><td class="wrap">p ≥ .05 적합 (대표본에서 과민)</td><td class="wrap">예측확률과 실제 비율의 일치</td></tr>
+        <tr><td>EPV</td><td class="wrap">≥ 10</td><td class="wrap">적은 쪽 사건 수 ÷ 추정 계수 수</td></tr>
+        <tr><td>AUC</td><td class="wrap">.7 수용 · .8 우수 · .9 탁월</td><td class="wrap">예측확률로 두 집단을 구별하는 능력</td></tr>
+        <tr><td>민감도 / 특이도</td><td class="wrap">기준 정확도(다수 집단 비율)와 함께 판단</td><td class="wrap">실제 1을 맞힌 비율 / 실제 0을 맞힌 비율</td></tr>
+        <tr><td>AME</td><td class="wrap">확률 변화 %p로 보고</td><td class="wrap">X 1단위 증가 시 평균 확률 변화</td></tr>
+        <tr><td>4/5 규칙</td><td class="wrap">선발률 비율 &lt; .80이면 불리효과 의심</td><td class="wrap">낮은 집단 선발률 ÷ 높은 집단 선발률</td></tr>
+        <tr><td>범위 제한 u</td><td class="wrap">u = 입사자 SD ÷ 지원자 SD (작을수록 제한 심함)</td><td class="wrap">입사자 타당도의 과소추정 교정</td></tr>
+        <tr><td>KMO / Bartlett</td><td class="wrap">KMO ≥ .6 (.8 이상 양호) · Bartlett p &lt; .05</td><td class="wrap">요인분석에 적합한 자료인가</td></tr>
+        <tr><td>요인 수 (EFA)</td><td class="wrap">평행분석: 무작위 고유값보다 큰 요인까지 · 고유값 1 규칙은 참고</td><td class="wrap">몇 개 요인을 뽑을까</td></tr>
+        <tr><td>EFA 적재량</td><td class="wrap">주적재 ≥ .4 · 교차적재 &lt; .3</td><td class="wrap">문항이 한 요인에 깨끗이 걸리는가</td></tr>
+        <tr><td>Cohen's κ</td><td class="wrap">.41 중간 · .61 상당 · .81 거의 완벽 (Landis &amp; Koch)</td><td class="wrap">범주형 평가자 간 일치 (우연 보정)</td></tr>
+        <tr><td>ICC</td><td class="wrap">.50 미만 낮음 · .75 좋음 · .90 초과 우수 (Koo &amp; Li)</td><td class="wrap">연속형 평가자 간 일치. 모형·유형·단위 명시</td></tr>
+        <tr><td>LPA 적합도</td><td class="wrap">AIC·BIC 낮을수록 · 엔트로피 ≥ .80 · LMR/BLRT p &lt; .05 · 최소 집단 ≥ 5%</td><td class="wrap">프로파일 수 결정</td></tr>
       </tbody></table></div>
   </div>
 
@@ -1622,8 +1875,47 @@ psych::describe(df[, c("기술수용성","직무몰입","AI리터러시")])  <sp
     </div></div>
   </div>
 
+  <div class="sec" id="efa">
+    <h2><span class="no">13.3</span>EFA 절차: AI 불안 9문항으로 따라가기</h2>
+    <div class="prose">
+      <p>새 척도를 만들거나 기존 척도의 구조가 불확실할 때는 EFA로 구조를 먼저 탐색합니다. 강의 실습 데이터(AI 불안 9문항, n = 315)로 실제 계산한 값입니다. <span class="tag sig">원자료 계산값</span></p>
+      <div class="steps">
+        <div class="step"><div><h4>요인분석에 적합한 자료인가 <span class="q">KMO와 Bartlett 검정</span></h4><p><b>KMO = .813</b>(≥ .6이면 수용, .8 이상이면 양호), <b>Bartlett χ²(36) = 1676.7, p &lt; .001</b>(문항 간 상관이 0이 아님). 요인분석을 진행해도 됩니다.</p></div></div>
+        <div class="step"><div><h4>요인을 몇 개 뽑을까 <span class="q">평행분석 &gt; 고유값 1 규칙</span></h4><p>상관행렬 고유값은 4.30, 1.88, <b>1.02</b>, 0.49 …입니다. "고유값 1 이상"(Kaiser 규칙)이면 3개지만, 세 번째가 1.02로 경계에 걸려 있어 이 규칙은 자의적입니다. <b>평행분석</b>은 같은 크기의 무작위 데이터 고유값과 비교해 그보다 큰 요인까지만 인정합니다. 요인분석 기준(축소 상관행렬) 고유값 3.91, 1.51, <b>0.60</b>, 0.06이 무작위 95백분위 0.38, 0.26, 0.18, 0.12를 세 번째까지 넘으므로 <b>3요인</b>입니다. 주성분 기준으로 하면 2요인이 나와, 기준에 따라 답이 달라질 수 있다는 점도 보여 줍니다. 최종 결정은 이론(학습·직무대체·프라이버시)과 함께 내립니다.</p></div></div>
+        <div class="step"><div><h4>회전 방식 <span class="q">사교회전 권장</span></h4><p>베리맥스 같은 직교회전은 요인 간 상관을 0으로 가정합니다. 심리적 개념은 대개 서로 관련되므로 <b>오블리민 등 사교회전</b>을 기본으로 씁니다. 실제로 세 요인 간 상관이 .26~.55로 나타났습니다.</p></div></div>
+        <div class="step"><div><h4>적재량 판정 <span class="q">주적재 ≥ .4, 교차적재 &lt; .3</span></h4><p>각 문항이 한 요인에 .4 이상(엄격하게 .5 이상)으로 걸리고, 다른 요인에는 .3 미만이어야 깨끗한 구조입니다. 두 요인에 비슷하게 걸리는 문항은 수정이나 삭제를 검토합니다.</p></div></div>
+      </div>
+      <div class="tbl" style="margin-top:12px"><table>
+        <thead><tr><th>문항</th><th>요인1 학습</th><th>요인2 프라이버시</th><th>요인3 직무대체</th></tr></thead>
+        <tbody>
+          <tr><td>학습불안1</td><td class="num"><b>.86</b></td><td class="num">−.03</td><td class="num">.02</td></tr>
+          <tr><td>학습불안2</td><td class="num"><b>.93</b></td><td class="num">.05</td><td class="num">−.05</td></tr>
+          <tr><td>학습불안3</td><td class="num"><b>.76</b></td><td class="num">−.03</td><td class="num">.10</td></tr>
+          <tr><td>직무대체불안1</td><td class="num">.00</td><td class="num">−.03</td><td class="num"><b>.95</b></td></tr>
+          <tr><td>직무대체불안2</td><td class="num">.22</td><td class="num">.08</td><td class="num"><b>.63</b></td></tr>
+          <tr><td>직무대체불안3</td><td class="num">−.11</td><td class="num">.11</td><td class="num"><b>.68</b></td></tr>
+          <tr><td>프라이버시침해불안1</td><td class="num">.09</td><td class="num"><b>.75</b></td><td class="num">.05</td></tr>
+          <tr><td>프라이버시침해불안2</td><td class="num">−.01</td><td class="num"><b>.95</b></td><td class="num">−.06</td></tr>
+          <tr><td>프라이버시침해불안3</td><td class="num">−.05</td><td class="num"><b>.78</b></td><td class="num">.09</td></tr>
+        </tbody></table></div>
+      <p class="caption">최소잔차(minres) 추출, 오블리민 회전, 패턴 행렬. Python factor_analyzer로 계산했으며 R psych 패키지와 소수점 둘째 자리에서 차이가 날 수 있습니다. 모든 문항이 의도한 요인에 .63 이상으로 걸리고 교차적재는 .22 이하로, 이론대로 3요인 구조가 확인됩니다.</p>
+      <div class="note warn"><span class="lab">EFA와 CFA를 같은 표본에서 하면 안 되는 이유</span><p>EFA로 데이터에 맞춰 찾은 구조를 같은 데이터로 CFA하면, 당연히 잘 맞을 수밖에 없는 순환 논리가 됩니다. 우연히 그 표본에서만 나타난 패턴까지 "확인"한 것처럼 보이게 됩니다. 표본을 무작위로 반씩 나눠 한쪽은 EFA, 다른 쪽은 CFA를 하거나, 새 표본으로 CFA를 실시합니다. 타당도 보고 항목은 <a data-goto="next/road-valid">추가 학습 로드맵 · 타당도 심화</a>를 참고하세요.</p></div>
+      <div class="code"><button type="button" class="copy">복사</button><pre>library(psych)                     <span class="cm"># 오블리민 회전에는 GPArotation 패키지도 필요</span>
+items &lt;- df[, 4:12]                <span class="cm"># AI 불안 9문항</span>
+KMO(items)
+cortest.bartlett(cor(items), n = nrow(items))
+fa.parallel(items, fm = "minres", fa = "both")      <span class="cm"># 요인·주성분 기준 평행분석</span>
+efa &lt;- fa(items, nfactors = 3, rotate = "oblimin", fm = "minres")
+print(efa$loadings, cutoff = .3)
+
+<span class="cm"># 표본 분할: 절반은 EFA, 나머지 절반은 CFA</span>
+set.seed(2026); idx &lt;- sample(nrow(df), nrow(df) / 2)
+efa_half &lt;- df[idx, ]; cfa_half &lt;- df[-idx, ]</pre></div>
+    </div>
+  </div>
+
   <div class="sec">
-    <h2><span class="no">13.3</span>모형 적합도 지수 읽기</h2>
+    <h2><span class="no">13.4</span>모형 적합도 지수 읽기</h2>
     <div class="prose">
       <div class="tbl"><table>
         <thead><tr><th>지표</th><th class="wrap">무엇을 보나</th><th>논문 기준</th><th class="wrap">흔히 쓰는 기준</th></tr></thead>
@@ -1642,7 +1934,7 @@ psych::describe(df[, c("기술수용성","직무몰입","AI리터러시")])  <sp
   </div>
 
   <div class="sec">
-    <h2><span class="no">13.4</span>사례 논문 결과와 모형 수정</h2>
+    <h2><span class="no">13.5</span>사례 논문 결과와 모형 수정</h2>
     <div class="prose">
       <div class="tbl"><table>
         <thead><tr><th>변수</th><th>χ² (df, p)</th><th>CFI</th><th>TLI</th><th>RMSEA</th><th>SRMR</th><th>적재량</th></tr></thead>
@@ -1661,7 +1953,7 @@ psych::describe(df[, c("기술수용성","직무몰입","AI리터러시")])  <sp
   </div>
 
   <div class="sec">
-    <h2><span class="no">13.5</span>R 코드 맛보기</h2>
+    <h2><span class="no">13.6</span>R 코드 맛보기</h2>
     <div class="code"><button type="button" class="copy">복사</button><pre>library(lavaan)
 model &lt;- '
   유용성 =~ I1 + I2 + I3 + I4
@@ -1723,10 +2015,41 @@ modindices(fit, sort. = TRUE)[1:5, ] <span class="cm"># 수정지수 상위 5개
     </div>
   </div>
 
+  <div class="sec" id="irr">
+    <h2><span class="no">14.4</span>평가자 간 신뢰도: Cohen's κ와 ICC</h2>
+    <div class="prose">
+      <div class="analogy"><span class="lab">비유 · 두 심판의 판정</span><p class="big">두 심판이 90% 같은 판정을 내렸어도, 대부분이 누가 봐도 뻔한 장면이었다면 실력 덕분이 아닐 수 있습니다. 우연히도 맞았을 만큼을 빼고 봐야 합니다.</p></div>
+      <p>Cronbach's α는 <b>문항끼리</b>의 일관성이고, 평가자 간 신뢰도는 <b>평가자끼리</b>의 일관성입니다. 면접관 2명의 등급, 상사들의 인사평가, 주관식 응답을 주제별로 분류한 결과가 대상입니다.</p>
+      <h3>범주형 평가: Cohen's κ</h3>
+      <div class="formula">κ = (실제 일치율 p<sub>o</sub> − 우연 일치율 p<sub>e</sub>) ÷ (1 − p<sub>e</sub>)</div>
+      <div class="tbl"><table>
+        <thead><tr><th>κ</th><th>.00 이하</th><th>.01~.20</th><th>.21~.40</th><th>.41~.60</th><th>.61~.80</th><th>.81~1.00</th></tr></thead>
+        <tbody><tr><td>Landis &amp; Koch (1977)</td><td>불일치</td><td>미미</td><td>약간</td><td>중간</td><td>상당</td><td>거의 완벽</td></tr></tbody></table></div>
+      <p>등급(상·중·하)처럼 순서가 있으면, 한 칸 차이와 두 칸 차이를 다르게 취급하는 <b>가중 κ</b>를 씁니다. 평가자가 3명 이상이면 Fleiss' κ를 씁니다.</p>
+      <div class="simbox" id="sim-kappa"></div>
+      <h3>연속형 평가: 급내상관계수(ICC)</h3>
+      <p>점수(예: 100점 만점 면접 점수)를 매겼다면 ICC를 씁니다. ICC는 종류가 여러 개라 <b>어떤 모형을 썼는지 반드시 밝혀야</b> 합니다(Shrout &amp; Fleiss, 1979; McGraw &amp; Wong, 1996).</p>
+      <div class="tbl"><table>
+        <thead><tr><th>구분</th><th class="wrap">선택지</th><th class="wrap">HR 예시</th></tr></thead>
+        <tbody>
+          <tr><td>모형</td><td class="wrap">일원 무선(평가 대상마다 다른 평가자) · 이원 무선(같은 평가자들, 다른 평가자로 일반화) · 이원 혼합(이 평가자들만 관심)</td><td class="wrap">지원자마다 면접관이 다르면 일원, 모든 지원자를 같은 면접관 3명이 보면 이원</td></tr>
+          <tr><td>유형</td><td class="wrap">일관성(순위가 같은가) · 절대 일치(점수 자체가 같은가)</td><td class="wrap">합격선이 점수로 정해지면 절대 일치</td></tr>
+          <tr><td>단위</td><td class="wrap">단일 평가자 · 평균(k명 평균)</td><td class="wrap">최종 점수가 면접관 평균이면 평균 단위</td></tr>
+        </tbody></table></div>
+      <p>해석 기준(Koo &amp; Li, 2016): .50 미만 낮음 · .50~.75 보통 · .75~.90 좋음 · .90 초과 우수.</p>
+      <div class="note"><span class="lab">HR 활용</span><p><b>면접·인사평가</b>: 면접관 간 κ나 ICC가 낮으면 평가 기준이 모호하다는 신호이므로, 구조화 면접 질문과 행동 기준 평가척도(BARS), 평가자 교육으로 개선합니다. <b>주관식 응답 코딩</b>: 자유응답을 사람이 주제별로 분류하거나 생성형 AI가 분류할 때, 일부(예: 100건)를 두 코더(또는 사람과 AI)가 독립적으로 분류해 κ ≥ .70~.80을 확인한 뒤 나머지를 코딩합니다. 11번 토픽모델링 결과를 검증할 때도 같은 방식을 씁니다.</p></div>
+    </div>
+  </div>
+
   <div class="sec">
-    <h2><span class="no">14.4</span>R 코드 맛보기</h2>
+    <h2><span class="no">14.5</span>R 코드 맛보기</h2>
     <div class="code"><button type="button" class="copy">복사</button><pre>psych::alpha(df[, c("V1","V2","V3")])     <span class="cm"># 하위요인 α, 문항 제거 시 α</span>
-psych::omega(df[, paste0("L", 1:12)], nfactors = 4)  <span class="cm"># α의 대안: 맥도널드 ω</span></pre></div>
+psych::omega(df[, paste0("L", 1:12)], nfactors = 4)  <span class="cm"># α의 대안: 맥도널드 ω</span>
+
+<span class="cm"># 평가자 간 신뢰도 (ratings: 평가 대상 × 평가자 열)</span>
+irr::kappa2(ratings[, c("면접관A", "면접관B")])                     <span class="cm"># Cohen's κ</span>
+irr::kappa2(ratings[, c("면접관A", "면접관B")], weight = "squared") <span class="cm"># 가중 κ (순서형)</span>
+irr::icc(scores, model = "twoway", type = "agreement", unit = "single")</pre></div>
   </div>
 
   <div class="sec"><h2><span class="no">✓</span>확인 퀴즈</h2><div class="quiz" data-quiz="alpha"></div></div>
@@ -2263,6 +2586,15 @@ function route() {
   store.set('last', id);
 }
 
+/* ---------- 모듈 안 특정 위치로 이동 (data-goto="모듈/요소id") ---------- */
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[data-goto]'); if (!a) return; e.preventDefault();
+  const [mod, id] = a.dataset.goto.split('/');
+  const go = () => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  if ((location.hash || '#home').slice(1) !== mod) { location.hash = mod; setTimeout(go, 160); } else go();
+});
+document.addEventListener('DOMContentLoaded', () => {});
+
 /* ---------- 테마 ---------- */
 function initTheme() {
   const t = store.get('theme', null); if (t) document.documentElement.dataset.theme = t;
@@ -2470,14 +2802,20 @@ SIMINIT['sim-ttest'] = (root) => {
 
 /* 2. 종속표본 */
 SIMINIT['sim-paired'] = (root) => {
-  root.innerHTML = labHead('실험 2 · 짝 지은 분석의 힘', '가상 직원 12명의 교육 전·후 역량 점수') +
-    `<div class="ctrls">${ctrl('pr-ind', '개인차 (원래 실력의 흩어짐)', 0, 1.5, 0.05, 0.8)}${ctrl('pr-eff', '평균 교육 효과', -0.5, 1.5, 0.05, 0.3)}${ctrl('pr-chg', '변화량의 들쭉날쭉함', 0.05, 1, 0.05, 0.25)}</div>
+  root.innerHTML = labHead('실험 2 · 짝 지은 분석의 힘', '가상 직원 120명 중 12명을 골라 교육 전·후 측정') +
+    `<div class="presets"><button class="btn on" data-sel="rand">선발: 무작위 12명</button><button class="btn" data-sel="low">선발: 사전 하위 12명만</button><button class="btn" id="pr-rtm">평균으로의 회귀 시연</button></div>
+    <div class="ctrls">${ctrl('pr-ind', '개인차 (원래 실력의 흩어짐)', 0, 1.5, 0.05, 0.8)}${ctrl('pr-eff', '평균 교육 효과', -0.5, 1.5, 0.05, 0.3)}${ctrl('pr-chg', '측정 오차 (그날 컨디션)', 0.05, 1, 0.05, 0.25)}</div>
     <div class="legend"><span><i class="swatch" style="background:var(--s1)"></i>점수 상승</span><span><i class="swatch" style="background:var(--s2)"></i>점수 하락</span></div>
     <div class="viz" id="pr-viz"></div><div class="readout" id="pr-ro"></div><div class="verdict" id="pr-v"></div>`;
-  const z = S.sample(12, 0, 1, 11), e = S.sample(12, 0, 1, 23);
+  const N = 120, z = S.sample(N, 0, 1, 11), e1 = S.sample(N, 0, 1, 23), e2 = S.sample(N, 0, 1, 37);
+  let sel = 'rand';
+  $$('[data-sel]', root).forEach(b => b.addEventListener('click', () => { sel = b.dataset.sel; $$('[data-sel]', root).forEach(x => x.classList.toggle('on', x === b)); draw(); }));
+  $('#pr-rtm').addEventListener('click', () => { setVal('pr-ind', 0.6); setVal('pr-eff', 0); setVal('pr-chg', 0.6); sel = 'low'; $$('[data-sel]', root).forEach(x => x.classList.toggle('on', x.dataset.sel === 'low')); draw(); });
   const draw = () => {
-    const ind = val('pr-ind'), eff = val('pr-eff'), chg = val('pr-chg');
-    const pre = z.map(v => 3.2 + ind * v), post = pre.map((v, i) => v + eff + chg * e[i]), diff = post.map((v, i) => v - pre[i]);
+    const ind = val('pr-ind'), eff = val('pr-eff'), err = val('pr-chg');
+    const T = z.map(v => 3.2 + ind * v), PRE = T.map((t, i) => t + err * e1[i]), POST = T.map((t, i) => t + eff + err * e2[i]);
+    const idx = sel === 'rand' ? Array.from({ length: 12 }, (_, i) => i) : Array.from({ length: N }, (_, i) => i).sort((a, b) => PRE[a] - PRE[b]).slice(0, 12);
+    const pre = idx.map(i => PRE[i]), post = idx.map(i => POST[i]), diff = post.map((v, i) => v - pre[i]);
     const md = S.mean(diff), sdd = S.sdev(diff), tP = md / (sdd / Math.sqrt(12)), pP = S.pT2(tP, 11);
     const wI = S.welch(S.mean(post), S.sdev(post), 12, S.mean(pre), S.sdev(pre), 12);
     const W = 640, H = 240, all = pre.concat(post), lo = Math.min(...all) - 0.3, hi = Math.max(...all) + 0.3;
@@ -2485,17 +2823,18 @@ SIMINIT['sim-paired'] = (root) => {
     let g = `<text x="${x1}" y="${H - 8}" text-anchor="middle" class="lbl-strong">교육 전 (사전)</text><text x="${x2}" y="${H - 8}" text-anchor="middle" class="lbl-strong">교육 후 (사후)</text>`;
     const tk = []; for (let t = Math.ceil(lo * 2) / 2; t <= hi; t += 0.5) tk.push(t);
     g += gridY(sy, tk, PAD.l + 60, W - 60, t => t.toFixed(1));
-    pre.forEach((v, i) => { const c = diff[i] >= 0 ? 'var(--s1)' : 'var(--s2)';
+    pre.forEach((v, i) => { const c = diff[i] >= 0 ? 'var(--s1)' : 'var(--s2)', tip = `직원 ${idx[i] + 1}<br>사전 ${v.toFixed(2)} → 사후 ${post[i].toFixed(2)}<br>변화 ${diff[i] >= 0 ? '+' : ''}${diff[i].toFixed(2)}`;
       g += `<line x1="${x1}" x2="${x2}" y1="${sy(v)}" y2="${sy(post[i])}" style="stroke:${c};stroke-width:2;stroke-opacity:.8"/>` +
-        `<circle cx="${x1}" cy="${sy(v)}" r="5" style="fill:${c};stroke:var(--sheet);stroke-width:2" data-tip="직원 ${i + 1}<br>사전 ${v.toFixed(2)} → 사후 ${post[i].toFixed(2)}<br>변화 ${diff[i] >= 0 ? '+' : ''}${diff[i].toFixed(2)}"/>` +
-        `<circle cx="${x2}" cy="${sy(post[i])}" r="5" style="fill:${c};stroke:var(--sheet);stroke-width:2" data-tip="직원 ${i + 1}<br>사전 ${v.toFixed(2)} → 사후 ${post[i].toFixed(2)}<br>변화 ${diff[i] >= 0 ? '+' : ''}${diff[i].toFixed(2)}"/>`; });
+        `<circle cx="${x1}" cy="${sy(v)}" r="5" style="fill:${c};stroke:var(--sheet);stroke-width:2" data-tip="${tip}"/><circle cx="${x2}" cy="${sy(post[i])}" r="5" style="fill:${c};stroke:var(--sheet);stroke-width:2" data-tip="${tip}"/>`; });
     $('#pr-viz').innerHTML = svg(W, H, g, '사전 사후 기울기 그림');
-    $('#pr-ro').innerHTML = ro('평균 변화량', (md >= 0 ? '+' : '') + md.toFixed(3)) + ro('짝 지은 분석 p', fmtP(pP), sigTag(pP) + ' 종속표본 t') +
-      ro('독립 분석 p (잘못된 방법)', fmtP(wI.p), sigTag(wI.p) + ' Welch t') + ro("Cohen's d_z", (md / sdd).toFixed(2), dLabel(md / sdd));
+    $('#pr-ro').innerHTML = ro('평균 변화량', (md >= 0 ? '+' : '') + md.toFixed(3), `실제 교육 효과 ${eff >= 0 ? '+' : ''}${eff.toFixed(2)}`) + ro('짝 지은 분석 p', fmtP(pP), sigTag(pP) + ' 종속표본 t') +
+      ro('독립 분석 p (잘못된 방법)', fmtP(wI.p), sigTag(wI.p) + ' Welch t') + ro("Cohen's d_z", (md / sdd).toFixed(2), sel === 'low' ? '선발: 사전 하위 12명' : '선발: 무작위 12명');
     const v = $('#pr-v');
-    if (pP < 0.05 && wI.p >= 0.05) { v.className = 'verdict sig'; v.innerHTML = `<b>짝 지은 분석만 효과를 잡아냈습니다.</b> 개인차(사람마다 다른 출발점)가 독립 분석에서는 소음이 되어 교육 효과를 가렸습니다. 같은 사람을 두 번 측정했다면 반드시 종속표본 t-검정을 씁니다.`; }
+    if (sel === 'low' && Math.abs(eff) < 0.05 && md > 0.1) { v.className = 'verdict warn'; v.innerHTML = `<b>교육 효과가 0인데도 점수가 평균 ${md.toFixed(2)}점 올랐습니다${pP < 0.05 ? '(p &lt; .05로 유의)' : ''}.</b> 사전 점수가 우연히 낮게 나온 사람이 많이 뽑혔다가 다시 측정하자 평균 쪽으로 돌아온 것입니다. 이것이 평균으로의 회귀입니다. 측정 오차를 키울수록 더 커집니다.`; }
+    else if (sel === 'low') { v.className = 'verdict warn'; v.innerHTML = `<b>하위 점수자만 고른 경우, 관찰된 변화(${md.toFixed(2)})에는 실제 교육 효과(${eff.toFixed(2)})에 평균으로의 회귀가 더해져 있습니다.</b> 효과를 과대평가하지 않으려면 같은 기준으로 고른 비교집단이 필요합니다(2.6절).`; }
+    else if (pP < 0.05 && wI.p >= 0.05) { v.className = 'verdict sig'; v.innerHTML = `<b>짝 지은 분석만 효과를 잡아냈습니다.</b> 개인차(사람마다 다른 출발점)가 독립 분석에서는 소음이 되어 교육 효과를 가렸습니다. 같은 사람을 두 번 측정했다면 반드시 종속표본 t-검정을 씁니다.`; }
     else if (pP < 0.05) { v.className = 'verdict sig'; v.innerHTML = `<b>두 방식 모두 유의합니다.</b> 개인차를 키워 보면 독립 분석의 p가 먼저 무너지는 것을 볼 수 있습니다.`; }
-    else { v.className = 'verdict ns'; v.innerHTML = `<b>유의한 변화가 없습니다.</b> 평균 효과가 작거나 사람마다 변화가 들쭉날쭉하면 짝 지은 분석으로도 효과를 확신할 수 없습니다.`; }
+    else { v.className = 'verdict ns'; v.innerHTML = `<b>유의한 변화가 없습니다.</b> 평균 효과가 작거나 측정 오차가 크면 짝 지은 분석으로도 효과를 확신할 수 없습니다.`; }
   };
   bindRanges(root, draw); draw();
 };
@@ -2676,16 +3015,30 @@ SIMINIT['sim-chisq'] = (root) => {
     { n: '부서별 이직 (차이 있음)', rows: ['영업부', '연구부', '관리부'], t: [[70, 30], [95, 5], [90, 10]] },
     { n: '차이 거의 없음', rows: ['영업부', '연구부', '관리부'], t: [[90, 10], [88, 12], [91, 9]] },
     { n: '채용경로 2×2', rows: ['공채', '경력'], t: [[150, 20], [80, 30]] },
-    { n: '소규모 부서 (기대빈도 부족)', rows: ['A팀', 'B팀', 'C팀'], t: [[12, 3], [9, 1], [14, 0]] }];
+    { n: '소규모 부서 (기대빈도 부족)', rows: ['A팀', 'B팀', 'C팀'], t: [[12, 3], [9, 1], [14, 0]] },
+    { n: '부서별 이직 (직급 교란, 가상)', rows: ['영업부', '연구부'], t: [[416, 84], [458, 42]], strata: { '사원': [[320, 80], [78, 22]], '관리자': [[96, 4], [380, 20]] } }];
   root.innerHTML = labHead('실험 8 · 교차표 계산기', '칸의 인원수를 직접 고쳐 보세요') +
     `<div class="presets">${PRE.map((p, i) => `<button class="btn${i ? '' : ' on'}" data-c="${i}">${p.n}</button>`).join('')}</div>
-    <div class="tbl ctable" id="cq-t"></div><div class="viz" id="cq-viz"></div><div class="readout" id="cq-ro"></div><div class="verdict" id="cq-v"></div>`;
-  let cur = JSON.parse(JSON.stringify(PRE[0]));
+    <div class="tbl ctable" id="cq-t"></div><div class="viz" id="cq-viz"></div><div class="readout" id="cq-ro"></div><div class="verdict" id="cq-v"></div><div id="cq-sw" style="display:grid;gap:10px"></div>`;
+  let cur = JSON.parse(JSON.stringify(PRE[0])), showSt = false;
+  const renderStrata = () => {
+    const box = $('#cq-sw'); if (!cur.strata) { box.innerHTML = ''; return; }
+    let h = `<div><button class="btn${showSt ? ' on' : ''}" id="cq-stbtn">${showSt ? '직급별 보기 닫기' : '직급별로 나눠 보기'}</button></div>`;
+    if (showSt) {
+      const rate = (r) => r[1] / (r[0] + r[1]);
+      h += `<div class="tbl"><table><thead><tr><th>직급</th>${cur.rows.map(r => `<th>${r} 이직률</th>`).join('')}<th>χ² p</th><th>더 높은 쪽</th></tr></thead><tbody>` +
+        Object.entries(cur.strata).map(([k, tb]) => { const c = S.chisq(tb), hiI = rate(tb[0]) > rate(tb[1]) ? 0 : 1;
+          return `<tr><td><b>${k}</b></td>${tb.map(r => `<td class="num">${(rate(r) * 100).toFixed(1)}% <span style="color:var(--ink-3)">(${r[1]}/${r[0] + r[1]})</span></td>`).join('')}<td class="num">${fmtP(c.p)}</td><td>${cur.rows[hiI]}</td></tr>`; }).join('') +
+        `<tr><td><b>전체</b></td>${cur.t.map(r => `<td class="num">${(rate(r) * 100).toFixed(1)}%</td>`).join('')}<td class="num">${fmtP(S.chisq(cur.t).p)}</td><td>${cur.rows[rate(cur.t[0]) > rate(cur.t[1]) ? 0 : 1]}</td></tr></tbody></table></div>` +
+        `<div class="verdict warn"><b>심슨의 역설입니다.</b> 전체로는 ${cur.rows[0]}의 이직률이 높고 유의하지만, 직급별로 나누면 두 직급 모두 ${cur.rows[1]}가 약간 높고 차이도 유의하지 않습니다. ${cur.rows[0]}에 이직률이 높은 사원이 많기 때문입니다(직급 = 교란변수). 로지스틱 회귀로 직급을 통제하면 부서 효과만 따로 볼 수 있습니다.</div>`;
+    }
+    box.innerHTML = h; $('#cq-stbtn').addEventListener('click', () => { showSt = !showSt; renderStrata(); });
+  };
   const build = () => {
     $('#cq-t').innerHTML = `<table><thead><tr><th></th><th>재직 (관찰 / 기대)</th><th>이직 (관찰 / 기대)</th><th>이직률</th></tr></thead><tbody>${cur.rows.map((r, i) =>
       `<tr><td><b>${r}</b></td>${[0, 1].map(j => `<td id="cq-c${i}${j}"><input type="number" min="0" id="cq-in${i}${j}" value="${cur.t[i][j]}" aria-label="${r} ${j ? '이직' : '재직'} 인원"> <span class="mono" id="cq-e${i}${j}"></span></td>`).join('')}<td class="num" id="cq-r${i}"></td></tr>`).join('')}
       <tr><td><b>전체</b></td><td class="num" id="cq-s0"></td><td class="num" id="cq-s1"></td><td class="num" id="cq-sr"></td></tr></tbody></table>`;
-    $$('#cq-t input').forEach(inp => inp.addEventListener('input', () => { const i = +inp.id.slice(5, 6), j = +inp.id.slice(6); cur.t[i][j] = Math.max(0, Math.round(+inp.value || 0)); calc(); }));
+    $$('#cq-t input').forEach(inp => inp.addEventListener('input', () => { const i = +inp.id.slice(5, 6), j = +inp.id.slice(6); cur.t[i][j] = Math.max(0, Math.round(+inp.value || 0)); if (cur.strata) { cur.strata = null; showSt = false; } calc(); }));
     calc();
   };
   const calc = () => {
@@ -2706,8 +3059,9 @@ SIMINIT['sim-chisq'] = (root) => {
     if (small > 0.2) { v.className = 'verdict warn'; v.innerHTML = `<b>기대빈도 5 미만 칸이 ${Math.round(small * 100)}%입니다.</b> χ² 근사가 부정확할 수 있습니다. 2×2 표면 Fisher 정확검정, 그 외에는 범주 통합을 검토합니다.`; }
     else if (c.p < 0.05) { v.className = 'verdict sig'; v.innerHTML = `<b>집단과 이직 여부는 독립이 아닙니다 (p &lt; .05).</b> 주황으로 짙게 칠해진 칸이 기대보다 이직자가 많은 곳으로, 차이를 만드는 집단입니다.`; }
     else { v.className = 'verdict ns'; v.innerHTML = `<b>유의한 관련이 없습니다 (p ≥ .05).</b> 이직률 차이는 우연으로 설명 가능한 수준입니다.`; }
+    renderStrata();
   };
-  $$('[data-c]', root).forEach(b => b.addEventListener('click', () => { cur = JSON.parse(JSON.stringify(PRE[+b.dataset.c])); $$('[data-c]', root).forEach(x => x.classList.toggle('on', x === b)); build(); }));
+  $$('[data-c]', root).forEach(b => b.addEventListener('click', () => { cur = JSON.parse(JSON.stringify(PRE[+b.dataset.c])); showSt = false; $$('[data-c]', root).forEach(x => x.classList.toggle('on', x === b)); build(); }));
   build();
 };
 
@@ -2775,9 +3129,9 @@ SIMINIT['sim-kmeans'] = (root) => {
     if (phase === 'assign') { const nl = assignAll(C); if (lab && nl.every((v, i) => v === lab[i])) conv = true; lab = nl; phase = 'update'; iter++; }
     else { C = centers(lab, K, C); phase = 'assign'; } draw(); };
   const draw = () => {
-    const W = 340, H = 320, sx = lin(1, 5, 40, W - 12), sy = lin(1, 5, H - 40, 12);
-    let g = gridY(sy, [1, 2, 3, 4, 5], 40, W - 12) + axisX(sx, H - 40, [1, 2, 3, 4, 5], 40, W - 12);
-    g += `<text x="${(W + 28) / 2}" y="${H - 6}" text-anchor="middle" class="lbl">자율·도전 성향 →</text><text x="12" y="${H / 2 - 20}" transform="rotate(-90 12 ${H / 2 - 20})" text-anchor="middle" class="lbl">절차·규정 중시 →</text>`;
+    const W = 340, H = 320, sx = lin(1, 5, 56, W - 12), sy = lin(1, 5, H - 40, 12);
+    let g = gridY(sy, [1, 2, 3, 4, 5], 56, W - 12) + axisX(sx, H - 40, [1, 2, 3, 4, 5], 56, W - 12);
+    g += `<text x="${(W + 44) / 2}" y="${H - 6}" text-anchor="middle" class="lbl">자율·도전 성향 →</text><text x="12" y="${H / 2 - 20}" transform="rotate(-90 12 ${H / 2 - 20})" text-anchor="middle" class="lbl">절차·규정 중시 →</text>`;
     g += pts.map((p, i) => `<circle cx="${sx(p[0]).toFixed(1)}" cy="${sy(p[1]).toFixed(1)}" r="4" style="fill:${lab ? `var(--s${lab[i] + 1})` : 'var(--ns)'};fill-opacity:.8;stroke:var(--sheet);stroke-width:1"/>`).join('');
     g += C.map((c, k) => `<g data-tip="C${k + 1} 중심<br>자율 ${c[0].toFixed(2)}, 절차 ${c[1].toFixed(2)}"><rect x="${sx(c[0]) - 8}" y="${sy(c[1]) - 8}" width="16" height="16" transform="rotate(45 ${sx(c[0])} ${sy(c[1])})" style="fill:var(--s${k + 1});stroke:var(--ink);stroke-width:2"/><text x="${sx(c[0]) + 12}" y="${sy(c[1]) - 10}" class="lbl-strong">C${k + 1}</text></g>`).join('');
     $('#km-viz').innerHTML = svg(W, H, g, 'K-means 산점도');
@@ -3157,6 +3511,9 @@ const ROAD = {
     ['다층모형 (HLM)', 'Multilevel Modeling · Mixed Models',
       '직원은 팀에, 팀은 부서에 속합니다. 같은 팀원의 응답은 서로 닮기 때문에 독립성 가정이 깨집니다. 조직문화 진단처럼 "팀 리더십이 개인 몰입에 주는 영향"을 볼 때 사실상 필수입니다.',
       'ICC(급내상관), 무선절편·무선기울기, 개인 수준 vs 팀 수준 변수, 집단 평균 중심화, 수준 간 상호작용', '0.7 독립성 가정 · 10 K-means'],
+    ['잠재프로파일분석 (LPA)', 'Latent Profile Analysis · tidyLPA · Mplus',
+      '국내 HRD 논문에서 구성원 유형화에 K-means보다 많이 쓰는 방법입니다. 소속을 확률로 추정하고, 정보지수와 우도비 검정으로 프로파일 수를 통계적으로 정할 수 있어 심사에서 근거를 제시하기 쉽습니다.',
+      'AIC·BIC·SABIC, 엔트로피(≥ .80), LMR·BLRT 검정, 최소 집단 비율, 3단계 접근(BCH·R3STEP)으로 프로파일과 결과변수 연결', '10 K-means'],
     ['인과추론 기초', 'DID · Propensity Score Matching · RDD',
       '"교육이 정말 효과가 있었나"를 사전·사후 비교보다 강하게 입증하는 방법입니다. 교육 성과 측정과 제도 효과 보고의 신뢰도를 크게 높입니다.',
       '이중차분(DID)과 평행추세 가정, 성향점수매칭(PSM), 회귀불연속(RDD), 무작위 배정의 가치', '2 종속표본 · 1 독립표본'],
@@ -3188,7 +3545,11 @@ const ROAD = {
 function initRoad() {
   Object.entries(ROAD).forEach(([id, items]) => {
     const box = $('#' + id); if (!box) return;
-    box.innerHTML = items.map(([t, en, why, what, link]) => `<div class="card"><h4>${t} <span class="mono" style="font-size:12px;color:var(--ink-3);font-weight:400">${en}</span></h4><p><b>왜 필요한가</b> ${why}</p><p><b>핵심 개념</b> ${what}</p><p><b>연결 모듈</b> ${link}</p></div>`).join('');
+    const ROADID = { '잠재프로파일분석 (LPA)': 'road-lpa', '인과추론 기초': 'road-causal', '반복측정과 종단 분석': 'road-long', '예측 모형 평가': 'road-pred', '타당도 심화: 수렴·판별타당도': 'road-valid', '다층모형 (HLM)': 'road-hlm' };
+    const EXTRA = { '잠재프로파일분석 (LPA)': '<a data-goto="kmeans/lpa">10.7 잠재프로파일분석</a>', '인과추론 기초': '<a data-goto="paired/pre-post">2.6 비교집단이 있는 사전·사후 설계</a>', '반복측정과 종단 분석': '<a data-goto="paired/pre-post">2.6 혼합 ANOVA</a>',
+      '예측 모형 평가': '<a data-goto="logit/fit">5.7 로지스틱 모형 적합도·AUC</a>', '타당도 심화: 수렴·판별타당도': '<a data-goto="cfa/efa">13.3 EFA 절차</a>', '다층모형 (HLM)': '<a data-goto="alpha/irr">14.4 ICC</a>', '측정동일성과 다집단 분석': '<a data-goto="cfa/efa">13.3 EFA 절차</a>' };
+    const linkify = (s) => s.split(' · ').map(tok => { const m = tok.match(/^(\d+)/), mod = m && MODS.find(x => x.n === m[1]); return mod ? `<a href="#${mod.id}">${tok}</a>` : tok; }).join(' · ');
+    box.innerHTML = items.map(([t, en, why, what, link]) => `<div class="card"${ROADID[t] ? ` id="${ROADID[t]}" style="scroll-margin-top:72px"` : ''}><h4>${t} <span class="mono" style="font-size:12px;color:var(--ink-3);font-weight:400">${en}</span></h4><p><b>왜 필요한가</b> ${why}</p><p><b>핵심 개념</b> ${what}</p><p><b>연결 모듈</b> ${linkify(link)}${EXTRA[t] ? ' · ' + EXTRA[t] : ''}</p></div>`).join('');
   });
   const items = ['연구문제와 가설, 분석 계획을 자료 수집 전에 문서화했다', '표본 크기를 검정력 분석으로 정당화했다', '불성실 응답 제외 기준(주의 확인 문항, 응답 시간 등)을 명시했다', '결측치 규모와 처리 방법을 보고했다',
     '통제변수(성별·연령·직급 등)의 투입 여부와 근거를 밝혔다', 'CFA 적합도 지수와 요인적재량을 보고했다', 'AVE·CR로 수렴타당도를 보고했다', '판별타당도(Fornell-Larcker 또는 HTMT)를 보고했다',
@@ -3304,6 +3665,105 @@ function initCrit() {
       <p style="font-size:13px"><b>관련 학습</b> <a href="#${c.mod[0]}">${c.mod[1]}</a></p></div>`).join('');
   $('#crit-sum').addEventListener('click', e => { const a = e.target.closest('[data-jump]'); if (!a) return; e.preventDefault(); document.getElementById(a.dataset.jump).scrollIntoView({ behavior: 'smooth' }); });
 }
+
+/* =================== 보강 시뮬레이터 =================== */
+const normInv = (p) => { let lo = -8, hi = 8; for (let k = 0; k < 80; k++) { const m = (lo + hi) / 2; if (normCdf(m) < p) lo = m; else hi = m; } return (lo + hi) / 2; };
+const normPdf = (x) => Math.exp(-x * x / 2) / Math.sqrt(2 * Math.PI);
+
+/* 1.6 범위 제한 */
+SIMINIT['sim-rr'] = (root) => {
+  root.innerHTML = labHead('실험 1-B · 범위 제한', '설명용 가상 예시: 지원자 400명의 선발점수와 입사 후 성과') +
+    `<div class="ctrls">${ctrl('rr-r', '지원자 전체에서의 실제 타당도 r', 0.1, 0.7, 0.01, 0.5)}${ctrl('rr-sr', '선발률(%)', 5, 100, 1, 30, '%')}</div>
+    <div class="legend"><span><i class="swatch" style="background:var(--s1)"></i>합격자 (성과 관찰 가능)</span><span><i class="swatch" style="background:var(--rule-2)"></i>탈락자 (성과 데이터 없음)</span></div>
+    <div class="viz" id="rr-viz"></div><div class="readout" id="rr-ro"></div><div class="verdict" id="rr-v"></div>`;
+  const n = 400, z1 = S.sample(n, 0, 1, 501), z2r = S.sample(n, 0, 1, 502);
+  const dot = z1.reduce((s, v, i) => s + v * z2r[i], 0) / (n - 1), e = z2r.map((v, i) => v - dot * z1[i]), se = S.sdev(e), z2 = e.map(v => v / se);
+  const corr = (a, b) => { const ma = S.mean(a), mb = S.mean(b); let sab = 0, saa = 0, sbb = 0; a.forEach((v, i) => { sab += (v - ma) * (b[i] - mb); saa += (v - ma) ** 2; sbb += (b[i] - mb) ** 2; }); return sab / Math.sqrt(saa * sbb); };
+  const draw = () => {
+    const r = val('rr-r'), sr = val('rr-sr') / 100, y = z1.map((v, i) => r * v + Math.sqrt(1 - r * r) * z2[i]);
+    const cut = [...z1].sort((a, b) => b - a)[Math.max(0, Math.round(n * sr) - 1)];
+    const selI = z1.map((v, i) => v >= cut ? i : -1).filter(i => i >= 0), xs = selI.map(i => z1[i]), ys = selI.map(i => y[i]);
+    const rS = selI.length > 3 ? corr(xs, ys) : NaN, u = selI.length > 3 ? S.sdev(xs) / S.sdev(z1) : 1;
+    const R = (rS / u) / Math.sqrt(1 + rS * rS * (1 / (u * u) - 1));
+    const W = 640, H = 280, sx = lin(-3.3, 3.3, PAD.l + 40, W - PAD.r), sy = lin(-3.3, 3.3, H - PAD.b, PAD.t);
+    let g = gridY(sy, [-2, 0, 2], PAD.l + 40, W - PAD.r) + axisX(sx, H - PAD.b, [-3, -2, -1, 0, 1, 2, 3], PAD.l + 40, W - PAD.r);
+    if (sr < 1) g += `<line x1="${sx(cut)}" x2="${sx(cut)}" y1="${PAD.t}" y2="${sy(-3.3)}" style="stroke:var(--ink);stroke-dasharray:4 3"/><text x="${sx(cut) + 5}" y="${PAD.t + 10}" class="lbl-strong">합격선</text>`;
+    g += z1.map((v, i) => { const s = v >= cut; return `<circle cx="${sx(Math.max(-3.2, Math.min(3.2, v))).toFixed(1)}" cy="${sy(Math.max(-3.2, Math.min(3.2, y[i]))).toFixed(1)}" r="3.2" style="fill:${s ? 'var(--s1)' : 'var(--rule-2)'};fill-opacity:${s ? .8 : .7}"/>`; }).join('');
+    g += `<text x="${(W + PAD.l) / 2}" y="${H - 4}" text-anchor="middle" class="lbl">선발점수 (표준점수) →</text><text x="14" y="${H / 2}" transform="rotate(-90 14 ${H / 2})" text-anchor="middle" class="lbl">입사 후 성과 →</text>`;
+    $('#rr-viz').innerHTML = svg(W, H, g, '범위 제한 산점도');
+    $('#rr-ro').innerHTML = ro('지원자 전체 r', r.toFixed(3), '실제 예측력') + ro('합격자만의 r', isFinite(rS) ? rS.toFixed(3) : '—', `합격자 ${selI.length}명`) + ro('u (SD 비율)', u.toFixed(2), '합격자 SD ÷ 지원자 SD') + ro('교정한 R', isFinite(R) ? R.toFixed(3) : '—', 'Thorndike Case II');
+    const v = $('#rr-v'); v.className = 'verdict ' + (sr < 0.6 ? 'warn' : 'ns');
+    v.innerHTML = sr >= 0.99 ? `<b>전원 합격이면 범위 제한이 없습니다.</b> 선발률을 낮춰 보세요.` :
+      `<b>합격자 데이터만 보면 타당도가 ${r.toFixed(2)}에서 ${rS.toFixed(2)}로 ${Math.round((1 - rS / r) * 100)}% 낮아 보입니다.</b> 선발률이 낮을수록(합격선이 높을수록) 과소추정이 커집니다. 지원자 SD를 알면 교정 공식으로 실제 타당도를 ${R.toFixed(2)} 수준으로 되살릴 수 있습니다.`;
+  };
+  bindRanges(root, draw, { 'rr-sr': '%' }); draw();
+};
+
+/* 1.5 효용분석 계산기 */
+SIMINIT['sim-util'] = (root) => {
+  const f = (id, l, v, st) => `<div class="ctrl"><label for="${id}">${l}</label><input type="number" id="${id}" value="${v}" step="${st}" style="font:500 14px var(--f-mono);padding:6px 8px;border:1px solid var(--rule-2);border-radius:5px;background:var(--paper);color:var(--ink);width:100%"></div>`;
+  root.innerHTML = labHead('실험 1-C · 효용분석 계산기', '설명용 가상 예시 · 금액 단위: 만 원') +
+    `<div class="ctrls">${f('ut-n', '선발 인원 Ns (명)', 50, 1)}${f('ut-t', '평균 재직기간 T (년)', 3, 0.5)}${f('ut-r', '타당도 r', 0.30, 0.01)}${f('ut-sdy', 'SDy (만 원/년)', 1500, 50)}${f('ut-sr', '선발률 (%)', 20, 1)}${f('ut-c', '지원자 1인당 평가비용 (만 원)', 20, 1)}</div>
+    <div class="readout" id="ut-ro"></div><div class="verdict" id="ut-v"></div>`;
+  const draw = () => {
+    const Ns = val('ut-n'), T = val('ut-t'), r = val('ut-r'), SDy = val('ut-sdy'), sr = Math.min(99.9, Math.max(0.1, val('ut-sr'))) / 100, c1 = val('ut-c');
+    const z = normInv(1 - sr), Zx = normPdf(z) / sr, apps = Math.round(Ns / sr), C = apps * c1, gain = Ns * T * r * SDy * Zx, dU = gain - C;
+    const eok = (v) => (v / 10000).toFixed(2) + '억 원';
+    $('#ut-ro').innerHTML = ro('선발자 평균 표준점수 Z̄x', Zx.toFixed(2), `합격선 z = ${z.toFixed(2)}`) + ro('지원자 수 · 총비용', `${apps.toLocaleString()}명`, eok(C)) + ro('성과 향상 가치', eok(gain), 'Ns × T × r × SDy × Z̄x') + ro('순효용 ΔU', eok(dU), `1인당 연간 ${Math.round(dU / Ns / T).toLocaleString()}만 원`);
+    const v = $('#ut-v'); v.className = 'verdict ' + (dU > 0 ? 'sig' : 'warn');
+    v.innerHTML = dU > 0 ? `<b>순효용 약 ${eok(dU)}.</b> 기본값(50명, 3년, r = .30, SDy 1,500만 원 = 평균 연봉 3,750만 원의 40%, 선발률 20%)에서는 약 8.9억 원입니다. 타당도 r을 .30에서 .40으로 올리면(예: 성실성 가중치 강화) 효용이 얼마나 늘어나는지 바꿔 보세요.`
+      : `<b>비용이 효용보다 큽니다.</b> 타당도가 낮거나 선발률이 너무 낮아 평가 비용이 커진 경우입니다.`;
+  };
+  $$('input[type=number]', root).forEach(i => i.addEventListener('input', draw)); draw();
+};
+
+/* 14.4 κ 계산기 */
+SIMINIT['sim-kappa'] = (root) => {
+  const PRE = [{ n: '면접관 2인 (예시)', t: [[20, 5, 1], [4, 30, 6], [1, 5, 28]] }, { n: '우연 수준 일치', t: [[12, 11, 11], [11, 12, 11], [11, 11, 10]] }, { n: '한 등급에 몰린 경우', t: [[85, 5, 0], [5, 3, 0], [1, 1, 0]] }];
+  const L = ['상', '중', '하'];
+  root.innerHTML = labHead("실험 14 · Cohen's κ 계산기", '설명용 가상 예시: 면접관 A(행) × 면접관 B(열) 등급') +
+    `<div class="presets">${PRE.map((p, i) => `<button class="btn${i ? '' : ' on'}" data-kp="${i}">${p.n}</button>`).join('')}</div><div class="tbl ctable" id="kp-t"></div><div class="readout" id="kp-ro"></div><div class="verdict" id="kp-v"></div>`;
+  let t = JSON.parse(JSON.stringify(PRE[0].t));
+  const build = () => {
+    $('#kp-t').innerHTML = `<table><thead><tr><th>A \\ B</th>${L.map(l => `<th>B: ${l}</th>`).join('')}</tr></thead><tbody>${L.map((l, i) => `<tr><td><b>A: ${l}</b></td>${L.map((_, j) => `<td style="${i === j ? 'background:var(--sig-wash)' : ''}"><input type="number" min="0" id="kp${i}${j}" value="${t[i][j]}" aria-label="A ${l}, B ${L[j]}"></td>`).join('')}</tr>`).join('')}</tbody></table>`;
+    $$('#kp-t input').forEach(inp => inp.addEventListener('input', () => { t[+inp.id[2]][+inp.id[3]] = Math.max(0, Math.round(+inp.value || 0)); calc(); })); calc();
+  };
+  const calc = () => {
+    const N = t.flat().reduce((a, b) => a + b, 0); if (!N) return;
+    const rs = t.map(r => r.reduce((a, b) => a + b, 0)), cs = [0, 1, 2].map(j => t.reduce((a, r) => a + r[j], 0));
+    const po = (t[0][0] + t[1][1] + t[2][2]) / N, pe = rs.reduce((a, r, i) => a + r * cs[i], 0) / (N * N), k = (po - pe) / (1 - pe);
+    const w = (i, j) => 1 - ((i - j) ** 2) / 4; let pow = 0, pew = 0;
+    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) { pow += w(i, j) * t[i][j] / N; pew += w(i, j) * rs[i] * cs[j] / (N * N); }
+    const kw = (pow - pew) / (1 - pew), lab = (x) => x <= 0 ? '불일치' : x <= .2 ? '미미' : x <= .4 ? '약간' : x <= .6 ? '중간' : x <= .8 ? '상당' : '거의 완벽';
+    $('#kp-ro').innerHTML = ro('실제 일치율 pₒ', (po * 100).toFixed(1) + '%', `대각선 합 ÷ ${N}`) + ro('우연 일치율 pₑ', (pe * 100).toFixed(1) + '%', '행·열 합계로 계산') + ro("Cohen's κ", k.toFixed(3), lab(k) + ' (Landis & Koch)') + ro('가중 κ (제곱)', kw.toFixed(3), '한 칸 차이는 부분 인정');
+    const v = $('#kp-v'); v.className = 'verdict ' + (k > .6 ? 'sig' : k > .4 ? 'ns' : 'warn');
+    v.innerHTML = po > .8 && k < .4 ? `<b>일치율은 ${(po * 100).toFixed(0)}%로 높지만 κ는 ${k.toFixed(2)}로 낮습니다.</b> 대부분이 '상'에 몰려 우연히도 맞을 확률이 크기 때문입니다(κ의 역설). 일치율만 보고하면 평가 일관성을 과대평가하게 됩니다.`
+      : `<b>κ = ${k.toFixed(2)} (${lab(k)}).</b> 실제 일치율 ${(po * 100).toFixed(0)}% 중 우연으로 기대되는 ${(pe * 100).toFixed(0)}%를 뺀 나머지가 진짜 일치입니다. 등급처럼 순서가 있으면 가중 κ(${kw.toFixed(2)})도 함께 봅니다.`;
+  };
+  $$('[data-kp]', root).forEach(b => b.addEventListener('click', () => { t = JSON.parse(JSON.stringify(PRE[+b.dataset.kp].t)); $$('[data-kp]', root).forEach(x => x.classList.toggle('on', x === b)); build(); }));
+  build();
+};
+
+/* =================== 보강 퀴즈 (개념별 1문항) =================== */
+const QADD = {
+  basics: [{ q: '연속형 성과 점수를 "80점 이상 = 고성과"로 나눠 분석할 때의 문제가 아닌 것은?', o: ['79점과 81점이 다른 집단이 되는 등 정보가 사라진다', '검정력이 떨어져 실제 효과를 놓치기 쉽다', '경계값을 어디로 잡느냐에 따라 결론이 바뀔 수 있다', '표본 크기가 자동으로 늘어난다'], a: 3, e: '범주화는 표본 크기를 늘리지 않습니다. 오히려 중앙값 분할은 표본의 약 1/3을 버리는 것과 비슷한 검정력 손실을 낳습니다. 가능하면 연속 점수 그대로 분석합니다.' }],
+  ttest: [
+    { q: '입사자 919명만으로 적성검사와 성과의 관계를 분석했더니 유의하지 않았습니다. 가장 신중한 해석은?', o: ['적성검사는 쓸모없으니 폐지한다', '적성검사로 이미 선발된 사람들이라 범위가 좁아져 예측력이 과소추정됐을 수 있다', '표본이 커서 결과를 믿을 수 없다', '성과 측정이 완벽하다는 뜻이다'], a: 1, e: '선발에 쓰인 점수는 입사자 집단에서 범위가 좁아져 상관이 작게 나옵니다(범위 제한). 지원자 SD를 이용해 교정하거나, 탈락자 정보를 함께 검토해야 합니다.' },
+    { q: 'BCG 효용 공식에서 다른 조건이 같을 때 순효용 ΔU를 키우는 변화는?', o: ['선발도구의 타당도 r이 높아진다', '평가 비용이 늘어난다', 'SDy가 줄어든다', '선발 인원이 0이 된다'], a: 0, e: 'ΔU = Ns × T × r × SDy × Z̄x − C이므로 타당도, 성과의 금액 편차, 재직기간이 클수록 효용이 커지고 비용은 빼집니다.' }],
+  paired: [
+    { q: '역량 진단 하위 20%만 골라 교육했더니 교육 내용과 무관하게 사후 점수가 올랐습니다. 가장 유력한 설명은?', o: ['교육이 매우 효과적이었다', '평균으로의 회귀', '천장효과', '다중공선성'], a: 1, e: '사전 점수에는 우연 오차가 섞여 있어, 낮게 나온 사람을 골라 다시 재면 평균 쪽으로 돌아옵니다. 같은 기준으로 고른 비교집단이나 ANCOVA가 필요합니다.' },
+    { q: '교육반과 비교반의 사전·사후 점수가 있을 때 사전 점수를 통제하고 사후 점수의 집단 차이를 보는 방법은?', o: ['종속표본 t-검정', 'ANCOVA', '카이제곱 검정', 'K-means'], a: 1, e: 'ANCOVA(사후 ~ 집단 + 사전)는 사전 점수의 우연한 차이를 보정하고 오차 분산을 줄여 검정력이 높습니다. 혼합 ANOVA에서는 집단 × 시점 상호작용으로 같은 질문을 봅니다.' }],
+  logit: [
+    { q: '여성 선발률 43%, 남성 선발률 21%인 선발 모형의 4/5 규칙 판단은?', o: ['비율 0.49로 불리효과가 의심된다', '비율 2.0으로 문제없다', '4/5 규칙은 남성에게 적용되지 않는다', '정확도가 높으면 상관없다'], a: 0, e: '낮은 집단 선발률 ÷ 높은 집단 선발률 = 21 ÷ 43 ≈ 0.49로 0.8 미만입니다. 어느 집단이 불리하든 같은 기준으로 점검합니다.' },
+    { q: 'n = 700 로지스틱 모형의 Hosmer-Lemeshow 검정이 p = .039일 때 가장 적절한 해석은?', o: ['모형을 즉시 폐기한다', '대표본에서는 사소한 어긋남도 유의하게 나오므로 보정 그림으로 어긋나는 구간을 확인한다', 'Nagelkerke R²가 1이라는 뜻이다', 'EPV가 10 미만이라는 뜻이다'], a: 1, e: 'HL 검정은 표본 크기와 집단 수에 민감합니다. 유의하면 어디서 어긋나는지 calibration plot으로 확인하고, 다른 지표(AUC 등)와 함께 판단합니다.' },
+    { q: '조직적합도의 평균 한계효과(AME)가 0.072입니다. 경영진 보고 문장으로 맞는 것은?', o: ['조직적합도 1점당 고성과 오즈가 7.2% 증가', '조직적합도 1점당 고성과 확률이 평균 약 7%p 증가', '고성과자의 7.2%가 조직적합도가 높다', '조직적합도가 성과를 7.2배 높인다'], a: 1, e: 'AME는 확률의 변화량(%p)입니다. 오즈비보다 직관적이어서 의사결정자에게 전달하기 좋습니다.' }],
+  chisq: [{ q: '전체로는 A부서 이직률이 높은데 직급별로 나누면 모든 직급에서 B부서가 더 높습니다. 이 현상과 대응으로 맞는 것은?', o: ['기대빈도 부족, Fisher 검정', '심슨의 역설, 직급을 통제한 분석(층화·로지스틱 회귀)', '다중공선성, 변수 제거', '평균으로의 회귀, 비교집단'], a: 1, e: '두 부서의 직급 구성이 달라 생긴 심슨의 역설입니다. 층화 분석이나 Mantel-Haenszel 검정, 직급을 통제한 로지스틱 회귀로 부서의 순수한 효과를 봅니다.' }],
+  survival: [{ q: '자발적 이직만 분석하면서 권고사직자를 중도절단으로 처리하고 1−KM으로 "3년 내 자발적 이직률"을 보고했습니다. 문제는?', o: ['문제없다', '경쟁위험을 무시해 실제 누적 발생률을 과대추정한다', '과소추정한다', '로그순위 검정이 불가능하다'], a: 1, e: '권고사직자는 더 이상 자발적으로 떠날 수 없는데 중도절단은 그 가능성이 남아 있다고 가정합니다. 경쟁위험이 있으면 누적발생함수(CIF)나 Fine-Gray 모형을 씁니다.' }],
+  kmeans: [{ q: '잠재프로파일분석에서 프로파일 수를 고를 때의 기준으로 맞지 않는 것은?', o: ['BIC가 낮은 모형', '엔트로피 .80 이상', 'k개가 k−1개보다 나은지 LMR·BLRT 검정', '가장 작은 집단이 1% 이하인 모형'], a: 3, e: '최소 집단이 5% 미만이면 해석이 불안정해 피합니다. BIC, 엔트로피, LMR/BLRT, 해석 가능성을 종합해 결정합니다.' }],
+  cfa: [{ q: 'EFA로 찾은 3요인 구조를 같은 표본으로 CFA해 적합도가 좋게 나왔습니다. 문제는?', o: ['문제없다', '같은 데이터로 확인하면 순환 논리가 되어 우연한 패턴까지 확인한 것처럼 보인다', 'KMO가 반드시 낮아진다', '사교회전을 쓸 수 없다'], a: 1, e: '탐색과 확인은 다른 표본에서 해야 합니다. 표본을 무작위로 반씩 나누거나 새 표본으로 CFA를 실시합니다.' }],
+  alpha: [{ q: '두 면접관의 등급 일치율이 88%인데 κ = .31입니다. 가장 적절한 해석은?', o: ['일치도가 매우 높다', '대부분이 한 등급에 몰려 우연 일치 확률이 커서, 우연을 뺀 실제 일치는 약간 수준이다', 'κ 계산이 틀렸다', 'ICC를 써야 해서 의미가 없다'], a: 1, e: 'κ는 우연히 일치할 확률을 빼고 계산합니다. 분포가 한쪽으로 몰리면 일치율이 높아도 κ는 낮게 나옵니다(κ의 역설).' }]
+};
+Object.entries(QADD).forEach(([k, arr]) => { QUIZ[k] = (QUIZ[k] || []).concat(arr); });
 /* =================== 부팅 =================== */
 buildNav(); initTheme(); initTip(); initCopy(); initQuiz(); initGuide(); initSorter(); initRoad(); initCrit(); renderProgress();
 window.addEventListener('hashchange', route);
