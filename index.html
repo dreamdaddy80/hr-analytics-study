@@ -262,6 +262,82 @@ input[type=range]{width:100%;accent-color:var(--accent-2)}
 .srow .sb button.wrong{background:var(--warn-wash);border-color:var(--warn);color:var(--warn)}
 .srow small{display:block;color:var(--ink-3);font-size:12.5px}
 @media (max-width:560px){.srow{grid-template-columns:1fr}.srow .sb{justify-content:flex-start}}
+
+/* ---------- 학습 기능 확장 (실습·탭·AI·쓰기·용어·복습) ---------- */
+.rtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.rpanel.r{display:grid;gap:12px}
+.rpanel:not(.r){border:1px solid var(--rule-2);border-radius:var(--r);background:var(--sheet)}
+.rpanel .menu{padding:16px 18px;display:grid;gap:10px;font-size:14.5px}
+.rpanel .menu ol{margin:0;padding-left:1.3em;display:grid;gap:6px}
+.rpanel .menu .path{font-family:var(--f-mono);font-size:13px;background:var(--accent-wash);color:var(--accent);padding:1px 6px;border-radius:4px;white-space:normal}
+.rpanel .menu h4{font:600 14px var(--f-body);margin-top:4px}
+.rpanel .menu .caption{margin-top:0}
+.prac{display:grid;gap:12px}
+.prac .dsrow{display:grid;gap:4px;background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:14px 16px}
+.prac .dsrow b{font-size:15px}
+.prac .dsrow .caption{margin-top:0}
+.prac h4{font:600 14px var(--f-body);color:var(--ink-2);margin-top:4px}
+details.expect{border:1px solid var(--rule-2);border-radius:var(--r);background:var(--sheet)}
+details.expect>summary{cursor:pointer;padding:11px 16px;font:600 14px var(--f-body);color:var(--accent);list-style:none;display:flex;gap:8px;align-items:center}
+details.expect>summary::-webkit-details-marker{display:none}
+details.expect>summary::before{content:"▸";font-size:12px;transition:transform .15s}
+details.expect[open]>summary::before{transform:rotate(90deg)}
+details.expect .out{margin:0;padding:14px 16px;border-top:1px solid var(--rule);font:12.5px/1.6 var(--f-mono);overflow-x:auto;background:var(--paper);color:var(--ink);max-height:520px;overflow-y:auto;white-space:pre}
+details.expect .caption{padding:0 16px 12px}
+.csvprev{display:grid;gap:8px}
+.csvprev textarea{width:100%;min-height:120px;font:12px/1.5 var(--f-mono);border:1px solid var(--rule-2);border-radius:var(--r);background:var(--paper);color:var(--ink);padding:8px}
+.dlmsg{font-size:13px;color:var(--ink-3);align-self:center}
+.aibox{background:var(--sheet);border:1px solid var(--rule);border-left:4px solid var(--accent-2);border-radius:0 var(--r) var(--r) 0;padding:16px 18px;display:grid;gap:10px}
+.aibox .lab{font:600 12px var(--f-body);letter-spacing:.06em;color:var(--accent)}
+.aibox .prompt{font-size:14.5px;background:var(--paper);border:1px dashed var(--rule-2);border-radius:var(--r);padding:10px 14px;line-height:1.7}
+.aibox ol{margin:0;padding-left:1.3em;display:grid;gap:6px;font-size:14.5px}
+.aibox ol b{font-weight:600}
+.writebox{display:grid;gap:12px}
+.writebox textarea{width:100%;min-height:130px;font:15px/1.7 var(--f-body);border:1px solid var(--rule-2);border-radius:var(--r);background:var(--sheet);color:var(--ink);padding:12px 14px;resize:vertical}
+.writebox .model{background:var(--sig-wash);border-radius:var(--r);padding:14px 18px;display:grid;gap:8px;font-size:15px}
+.writebox .model .lab{font:600 12px var(--f-body);letter-spacing:.06em;color:var(--sig)}
+.checks{display:grid;gap:6px}
+.checks label{display:grid;grid-template-columns:22px 1fr;gap:6px;align-items:start;font-size:14.5px;background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:8px 12px;cursor:pointer}
+.checks input{margin-top:5px;accent-color:var(--sig)}
+.checks small{display:block;color:var(--ink-3);font-size:12.5px}
+.wscore{font:600 14px var(--f-body);color:var(--ink-2)}
+/* 용어 툴팁 */
+.gl{border-bottom:1px dotted var(--accent-2);cursor:help;text-decoration:none}
+.gl:hover,.gl:focus{background:var(--accent-wash);outline:none}
+.glpop{position:absolute;z-index:60;max-width:300px;background:var(--ink);color:var(--paper);border-radius:8px;padding:10px 13px;font-size:13.5px;line-height:1.6;box-shadow:0 6px 24px rgba(0,0,0,.18);display:grid;gap:4px}
+.glpop[hidden]{display:none}
+.glpop b{font-size:14px}
+.glpop .en{font:12px var(--f-mono);opacity:.75}
+.glpop a{color:var(--marker);font-size:12.5px}
+/* 복습 배지 */
+.revbadge{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:-8px 0 20px;padding:8px 10px;border:1px solid var(--rule-2);border-radius:var(--r);font-size:13px;color:var(--ink-2);text-decoration:none;background:var(--paper)}
+.revbadge b{font:600 13px var(--f-mono);min-width:22px;text-align:center;padding:2px 6px;border-radius:10px;background:var(--rule);color:var(--ink-2)}
+.revbadge.due{border-color:var(--warn);color:var(--warn)}
+.revbadge.due b{background:var(--warn);color:var(--sheet)}
+.toprev{font:600 12px var(--f-body);white-space:nowrap;text-decoration:none;padding:5px 9px;border-radius:14px;border:1px solid var(--rule-2);color:var(--ink-2)}
+.toprev.due{border-color:var(--warn);background:var(--warn);color:var(--sheet)}
+.navgrp a .nb{font:600 11px var(--f-mono);color:var(--sheet);background:var(--warn);border-radius:8px;padding:0 5px;justify-self:end}
+/* 종합 퀴즈·오답노트 */
+.qmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;font-size:12.5px}
+.qmeta a{text-decoration:none}
+.qsrc{font:600 11.5px var(--f-body);color:var(--ink-3);letter-spacing:.04em}
+.qnext{font-size:13px;color:var(--ink-3)}
+.scorebar{display:grid;grid-template-columns:minmax(0,9em) 1fr 4.5em;gap:10px;align-items:center;font-size:14px}
+.scorebar .bar{height:10px;background:var(--rule);border-radius:5px;overflow:hidden}
+.scorebar .bar i{display:block;height:100%;background:var(--accent-2)}
+.scorebar .bar i.lo{background:var(--warn)}
+.scorebar .bar i.hi{background:var(--sig)}
+.scorebar .pct{font:500 13px var(--f-mono);text-align:right}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.glsearch{width:100%;font:15px var(--f-body);padding:10px 14px;border:1px solid var(--rule-2);border-radius:var(--r);background:var(--sheet);color:var(--ink)}
+.gltbl td{white-space:normal}
+.gltbl td:first-child{font-weight:600;white-space:nowrap}
+.gltbl td.en{font:12.5px var(--f-mono);color:var(--ink-3)}
+.gltbl tr.hit{background:var(--accent-wash)}
+.capnav{display:flex;flex-wrap:wrap;gap:6px}
+.vartbl td:nth-child(2){white-space:normal}
+@media (max-width:640px){.scorebar{grid-template-columns:minmax(0,7em) 1fr 4em}}
+.prose>*,.prac>*,.writebox>*{min-width:0}
 </style>
 
 </head>
@@ -271,7 +347,7 @@ input[type=range]{width:100%;accent-color:var(--accent-2)}
 <div class="shell">
 <nav class="rail" aria-label="학습 목차">
   <a class="brand" href="#home"><b>HR 통계 분석 노트</b><span>HR 데이터애널리틱스와 활용 · 2026-2</span></a>
-  <div class="prog"><span id="progtxt">학습 완료 0 / 18</span><div class="bar"><i id="progbar"></i></div></div>
+  <div class="prog"><span id="progtxt">학습 완료 0 / 19</span><div class="bar"><i id="progbar"></i></div></div>
   <div id="navlist"></div>
   <button class="themebtn" id="themebtn" type="button">화면 테마 전환</button>
 </nav>
@@ -282,7 +358,7 @@ input[type=range]{width:100%;accent-color:var(--accent-2)}
   <div class="hero">
     <div class="eyebrow">HR 데이터애널리틱스와 활용 · 통계 분석 기법 학습 노트</div>
     <h1>숫자 앞에서 <em>무엇을 물어야 하는지</em>부터 익히는 HR 통계</h1>
-    <p class="lede">강의에서 다룬 11가지 분석 기법과 설문 논문에서 자주 쓰는 6가지 기법을 통계 기초부터 다시 쌓아 올립니다. 각 기법마다 비유로 감을 잡고, 원리를 이해하고, 시뮬레이터로 숫자를 직접 움직여 본 뒤, 강의 실습 결과표를 해석하고 퀴즈로 점검하는 순서로 구성했습니다.</p>
+    <p class="lede">강의에서 다룬 11가지 분석 기법과 설문 논문에서 자주 쓰는 6가지 기법을 통계 기초부터 다시 쌓아 올립니다. 각 기법마다 비유로 감을 잡고, 원리를 이해하고, 시뮬레이터로 숫자를 직접 움직여 본 뒤, 강의 실습 결과표를 해석하고 퀴즈로 점검하는 순서로 구성했습니다. 모듈마다 실습 데이터와 기대 출력이 있어 R·SPSS·jamovi로 직접 돌려 보며 확인할 수 있습니다.</p>
   </div>
 
   <div class="sec">
@@ -318,9 +394,12 @@ input[type=range]{width:100%;accent-color:var(--accent-2)}
         <li><b>Part 2~3 (5~7)</b>은 결과변수(Y)의 형태만 다른 같은 가족입니다. 회귀분석 7을 5보다 먼저 보면 이해가 더 쉽습니다.</li>
         <li><b>Part 4 (8~11)</b>는 강의 후반부(이직 관리, 조직문화) 주제입니다. 카이제곱과 생존분석은 짝으로 학습합니다.</li>
         <li><b>Part 5 (12~17)</b>는 논문 한 편의 분석 흐름(표집 → 측정도구 점검 → 상관 → 매개 → 부트스트랩)을 그대로 따라갑니다. 개관 페이지부터 시작하고, 마지막에 <b>사례 논문 보완 포인트</b>로 비평 관점을 정리합니다.</li>
-        <li>마지막으로 <b>해석 기준표</b>를 과제 작성 때 옆에 두고, <b>추가 학습 로드맵</b>으로 다음 학습 계획을 세웁니다.</li>
+        <li><b>Part 6 (18) 캡스톤</b>은 Part 1~4를 마친 뒤 도전합니다. 가상 이직 데이터 500명으로 기술통계 → 카이제곱 → 로지스틱 → 생존분석 → 경영진 보고서까지 한 번에 이어서 수행합니다.</li>
+        <li>모듈을 하나 마칠 때마다 모듈 끝의 <b>실습</b>(CSV 내려받기 → R 코드 실행 → 기대 출력과 비교)과 <b>해석 문장 쓰기 연습</b>으로 손에 익힙니다. SPSS·jamovi를 쓰는 경우 R 코드 옆 탭의 메뉴 경로를 따라 같은 숫자가 나오는지 확인합니다.</li>
+        <li>Part 하나를 마치면 <b>종합 시나리오 퀴즈</b>로 "어떤 상황에 어떤 기법인가"를 점검하고, 틀린 문항은 <b>오답노트</b>에서 1일·3일·7일 뒤에 다시 풉니다. 사이드바(모바일은 상단)의 "오늘 복습할 문항" 수를 매일 확인합니다.</li>
+        <li>낯선 용어는 본문의 점선 밑줄을 눌러 바로 확인하고, 전체 목록은 <b>용어집</b>에서 찾습니다. 과제 작성 때는 <b>해석 기준표</b>를 옆에 두고, <b>추가 학습 로드맵</b>으로 다음 학습 계획을 세웁니다.</li>
       </ol>
-      <p class="caption">학습 진행 표시는 각 모듈 하단의 "학습 완료" 버튼으로 기록되며, 이 브라우저에만 저장됩니다.</p>
+      <p class="caption">학습 완료 표시, 오답노트, 쓰기 연습 초안은 이 브라우저에만 저장됩니다. 다른 기기에서는 따로 기록됩니다.</p>
     </div>
   </div>
 </section>
@@ -2365,6 +2444,183 @@ parameterEstimates(fit2, boot.ci.type = "perc")</pre></div>
       </tbody></table></div>
   </div>
 </section>
+
+<!-- ================= 캡스톤 ================= -->
+<section class="module" id="m-capstone" data-id="capstone" hidden>
+  <header class="mhead">
+    <div class="eyebrow">MODULE 18 · 통합 실습 <span class="en">Capstone Project · Turnover Analytics</span></div>
+    <h1>이직 데이터 500명으로 처음부터 끝까지 분석하기</h1>
+    <p class="lede">하나의 가상 이직 데이터로 기술통계 → 카이제곱 → 로지스틱 회귀 → 생존분석 → 경영진 보고서까지 이어서 수행합니다. 단계마다 과제를 먼저 풀고, 힌트와 정답 코드, 기대 출력, 보고서 문장 예시로 스스로 점검합니다.</p>
+    <div class="chips"><span class="chip"><b>데이터</b> 가상 500명 · 9개 변수</span><span class="chip"><b>연결 모듈</b> 1 · 5 · 8 · 9</span><span class="chip"><b>산출물</b> 경영진용 1쪽 보고서</span></div>
+  </header>
+
+  <div class="analogy"><span class="lab">비유 · 건강검진에서 처방전까지</span><p class="big">기술통계는 체온과 혈압을 재는 일, 카이제곱은 "어느 부서에 환자가 많은가", 로지스틱은 "무엇이 위험을 높이는가", 생존분석은 "언제 위험한가"를 묻는 일입니다. 보고서는 이 모든 검사를 한 장의 처방전으로 바꾸는 일입니다.</p></div>
+
+  <div class="sec" id="cap-0">
+    <h2><span class="no">18.0</span>데이터와 진행 방법</h2>
+    <div class="prose">
+      <div data-capds="capstone"></div>
+      <div class="tbl vartbl"><table><thead><tr><th>변수</th><th>설명</th><th>형태</th></tr></thead><tbody>
+        <tr><td>ID</td><td>직원 번호</td><td>식별자</td></tr>
+        <tr><td>부서</td><td>영업 · 개발 · 생산 · 경영지원</td><td>명목형 (4)</td></tr>
+        <tr><td>직급</td><td>사원 · 대리 · 과장이상</td><td>순서형 (3)</td></tr>
+        <tr><td>성별</td><td>남 · 여</td><td>이분형</td></tr>
+        <tr><td>연봉</td><td>만 원 단위 (예: 4500 = 4,500만 원)</td><td>연속형</td></tr>
+        <tr><td>만족도</td><td>직무만족 5점 척도 평균</td><td>연속형</td></tr>
+        <tr><td>초과근무</td><td>월평균 초과근무 시간</td><td>연속형</td></tr>
+        <tr><td>근속개월</td><td>입사 후 퇴사 또는 관찰 종료까지의 개월 수 (6~60개월 관찰)</td><td>시간</td></tr>
+        <tr><td>퇴사</td><td>1 = 관찰 기간 중 퇴사, 0 = 관찰 종료 시점 재직 중(중도절단)</td><td>이분형 · 사건</td></tr>
+      </tbody></table></div>
+      <ol>
+        <li>CSV를 내려받아 R 작업 폴더에 둡니다(<code>setwd()</code> 또는 RStudio 프로젝트).</li>
+        <li>각 단계의 <b>과제</b>를 먼저 직접 코드로 풀어 봅니다. 막히면 <b>힌트</b>를 엽니다.</li>
+        <li><b>정답 코드와 기대 출력</b>으로 숫자를 맞춰 보고, <b>보고서 문장 예시</b>와 내 해석을 비교합니다.</li>
+        <li>마지막 18.5에서 네 단계의 결과를 경영진용 1쪽 보고서로 묶습니다.</li>
+      </ol>
+      <div class="capnav"><a class="chip" href="#cap-1" data-goto="capstone/cap-1">1 기술통계</a><a class="chip" href="#cap-2" data-goto="capstone/cap-2">2 카이제곱</a><a class="chip" href="#cap-3" data-goto="capstone/cap-3">3 로지스틱</a><a class="chip" href="#cap-4" data-goto="capstone/cap-4">4 생존분석</a><a class="chip" href="#cap-5" data-goto="capstone/cap-5">5 경영진 보고서</a></div>
+    </div>
+  </div>
+
+  <div class="sec" id="cap-1">
+    <h2><span class="no">18.1</span>1단계 · 기술통계: 데이터의 첫인상</h2>
+    <div class="prose">
+      <div class="card"><h4>과제</h4><ol><li>데이터 구조(행·열, 변수 형태)를 확인하세요.</li><li>전체 퇴사율(%)을 구하세요.</li><li>부서 × 직급 인원 분포를 표로 만드세요.</li><li>퇴사자와 재직자의 연봉·만족도·초과근무·근속개월 평균을 비교하고, 만족도 차이를 Welch's t-검정으로 확인하세요.</li></ol></div>
+      <details class="expect"><summary>힌트</summary><div class="prose" style="padding:12px 16px"><p><code>str()</code>, <code>mean(df$퇴사)</code>, <code>table(행, 열)</code>, <code>aggregate(cbind(...) ~ 퇴사, data, FUN)</code>, <code>t.test(만족도 ~ 퇴사)</code>를 씁니다. 퇴사가 0/1이므로 평균이 곧 퇴사율입니다.</p></div></details>
+      <h4>정답 코드와 기대 출력</h4>
+      <div data-capcode="cap1"></div>
+      <div class="note"><span class="lab">보고서 문장 예시</span><p>분석 대상 500명 중 178명(35.6%)이 관찰 기간 중 퇴사했다. 퇴사자는 재직자보다 직무만족이 낮았고(3.11 vs 3.41점, t = 4.43, p &lt; .001), 연봉은 평균 약 610만 원 낮았으며, 월 초과근무는 2시간 많았다.</p></div>
+      <div class="note warn"><span class="lab">함정 · 근속개월은 그대로 비교하면 안 된다</span><p>재직자의 근속개월(평균 29.8개월)은 "아직 끝나지 않은" 기간이라 퇴사자(16.7개월)와 단순 비교할 수 없습니다. 이 문제는 4단계 생존분석에서 중도절단으로 다룹니다(9번 모듈).</p></div>
+    </div>
+  </div>
+
+  <div class="sec" id="cap-2">
+    <h2><span class="no">18.2</span>2단계 · 카이제곱: 어느 부서에서 많이 나가나</h2>
+    <div class="prose">
+      <div class="card"><h4>과제</h4><ol><li>부서별 퇴사율(행 백분율)을 구하세요.</li><li>카이제곱 검정과 Cramér's V로 차이가 유의한지, 얼마나 강한지 판정하세요.</li><li>표준화 잔차로 기대보다 퇴사가 많은 부서와 적은 부서를 찾으세요.</li><li>직급별 퇴사율 차이도 확인하고, 부서 차이를 그대로 결론 내려도 되는지 생각해 보세요.</li></ol></div>
+      <details class="expect"><summary>힌트</summary><div class="prose" style="padding:12px 16px"><p><code>prop.table(tab, margin = 1)</code>, <code>chisq.test(tab)$stdres</code>, <code>effectsize::cramers_v()</code>. 표준화 잔차 |값| &gt; 1.96이면 그 칸이 차이를 만듭니다. 8.6절 심슨의 역설을 떠올려 보세요.</p></div></details>
+      <h4>정답 코드와 기대 출력</h4>
+      <div data-capcode="cap2"></div>
+      <div class="note"><span class="lab">보고서 문장 예시</span><p>부서별 퇴사율은 영업 47.9%, 생산 35.0%, 개발 34.7%, 경영지원 18.9%로 유의한 차이가 있었다(χ²(3) = 20.21, p &lt; .001, Cramér's V = .20). 표준화 잔차로 보면 영업은 기대보다 퇴사가 많았고(+3.57), 경영지원은 적었다(−3.66). 직급별 퇴사율도 유의하게 달랐으므로(χ²(2) = 48.06, p &lt; .001), 부서 차이가 직급 구성 때문인지 3단계에서 직급을 함께 통제해 확인한다.</p></div>
+    </div>
+  </div>
+
+  <div class="sec" id="cap-3">
+    <h2><span class="no">18.3</span>3단계 · 로지스틱 회귀: 무엇이 퇴사 가능성을 높이나</h2>
+    <div class="prose">
+      <div class="card"><h4>과제</h4><ol><li>퇴사(1/0)를 만족도, 연봉(1,000만 원 단위), 초과근무, 부서(기준: 경영지원), 직급(기준: 사원)으로 예측하세요.</li><li>OR과 95% CI를 구하고 GVIF로 다중공선성을 점검하세요.</li><li>정확도를 기저율과 비교하고, 만족도의 평균 한계효과(AME)를 구하세요.</li><li>연봉이 유의하지 않게 나온 이유를 GVIF와 연결해 설명해 보세요.</li></ol></div>
+      <details class="expect"><summary>힌트</summary><div class="prose" style="padding:12px 16px"><p><code>relevel(factor(df$부서), ref = "경영지원")</code>로 기준 범주를 정하고, 연봉은 <code>df$연봉 / 1000</code>으로 1,000만 원 단위로 바꿉니다. <code>exp(cbind(coef(m), confint.default(m)))</code>, <code>car::vif()</code>, <code>marginaleffects::avg_slopes()</code>를 씁니다(5.4·5.7·5.8절).</p></div></details>
+      <h4>정답 코드와 기대 출력</h4>
+      <div data-capcode="cap3"></div>
+      <div class="note"><span class="lab">보고서 문장 예시</span><p>부서·직급·연봉·초과근무를 통제했을 때 만족도가 1점 높을수록 퇴사 오즈는 47% 낮았고(OR = 0.53, 95% CI [0.40, 0.70], p &lt; .001), 평균적으로 퇴사 확률이 약 11.9%p 낮았다(AME). 경영지원 대비 영업의 퇴사 오즈는 3.87배(p &lt; .001)였고, 과장 이상은 사원보다 퇴사 오즈가 79% 낮았다(OR = 0.21, p = .008). 연봉은 직급과 정보가 크게 겹쳐(GVIF 3.8) 독립적인 효과가 유의하지 않았다. 모형의 정확도는 72.8%로 기저율(64.4%)보다 8.4%p 높았다(Nagelkerke R² = .25).</p></div>
+      <div class="note warn"><span class="lab">한계 · 로지스틱은 "언제"를 모른다</span><p>입사 6개월 된 재직자와 5년 된 재직자가 똑같이 "퇴사 = 0"으로 들어갑니다. 관찰 기간이 짧은 사람은 아직 퇴사할 시간이 없었을 뿐일 수 있습니다. 그래서 4단계에서 시간을 반영합니다.</p></div>
+    </div>
+  </div>
+
+  <div class="sec" id="cap-4">
+    <h2><span class="no">18.4</span>4단계 · 생존분석: 언제 위험한가</h2>
+    <div class="prose">
+      <div class="card"><h4>과제</h4><ol><li>부서별 카플란-마이어 곡선을 그리고 중앙 근속기간과 12·24개월 재직률을 구하세요.</li><li>로그순위 검정으로 부서 간 곡선 차이를 검정하세요.</li><li>3단계와 같은 변수로 Cox 회귀를 적합해 위험비(HR)와 95% CI를 구하세요.</li><li><code>cox.zph()</code>로 비례위험 가정을 점검하고, 로지스틱 결과와 무엇이 같고 다른지 비교하세요.</li></ol></div>
+      <details class="expect"><summary>힌트</summary><div class="prose" style="padding:12px 16px"><p><code>Surv(근속개월, 퇴사)</code>에서 퇴사 1이 사건, 0이 중도절단입니다. <code>survfit()</code>, <code>summary(fit, times = c(12, 24))</code>, <code>survdiff()</code>, <code>coxph()</code>, <code>cox.zph()</code>를 씁니다(9번 모듈). 중앙 근속기간이 NA이면 관찰 기간 안에 재직률이 50% 아래로 내려가지 않았다는 뜻입니다.</p></div></details>
+      <h4>정답 코드와 기대 출력</h4>
+      <div data-capcode="cap4"></div>
+      <div class="note"><span class="lab">보고서 문장 예시</span><p>영업의 중앙 근속기간은 28개월로 네 부서 중 가장 짧았고, 24개월 재직률도 58.0%로 경영지원(83.2%)보다 25%p 낮았다(로그순위 χ²(3) = 21.4, p &lt; .001). 만족도·연봉·초과근무·직급을 통제한 Cox 회귀에서 영업의 퇴사 위험은 경영지원의 2.71배였고(95% CI [1.57, 4.66], p &lt; .001), 만족도가 1점 높을수록 퇴사 위험은 44% 낮았으며(HR = 0.56, p &lt; .001), 초과근무가 월 10시간 늘면 위험이 약 22% 높았다(HR = 1.02<sup>10</sup>, p = .020). 비례위험 가정은 충족되었다(전체 p = .77). 로지스틱 결과와 방향은 같지만, 생존분석은 영업의 위험이 입사 첫 2년에 집중된다는 시점 정보를 더해 준다.</p></div>
+    </div>
+  </div>
+
+  <div class="sec" id="cap-5">
+    <h2><span class="no">18.5</span>5단계 · 경영진 보고서: 한 장으로 말하기</h2>
+    <div class="prose">
+      <div class="card"><h4>과제</h4><ol><li>1~4단계 결과로 경영진용 1쪽 보고서를 쓰세요. 결론을 맨 앞에 둡니다(피라미드 구조).</li><li>숫자는 핵심 3개만 고르고, 통계 용어는 "위험 2.7배", "확률 12%p"처럼 바꿔 씁니다.</li><li>제언은 "누구에게 · 언제 · 무엇을"이 드러나게 쓰고, 한계와 다음 단계를 한 줄씩 붙입니다.</li></ol></div>
+      <div class="tbl"><table><thead><tr><th>구성</th><th class="wrap">쓰는 법</th></tr></thead><tbody>
+        <tr><td>① 결론 (1문장)</td><td class="wrap">"무엇이 퇴사를 가장 크게 좌우하고, 어디를 먼저 관리해야 하는가"를 한 문장으로</td></tr>
+        <tr><td>② 근거 (3개)</td><td class="wrap">결론을 받치는 숫자 3개. 각 근거에 출처 분석(로지스틱·생존분석)을 괄호로</td></tr>
+        <tr><td>③ 제언 (2~3개)</td><td class="wrap">대상 · 시점 · 행동 · 기대효과. 비용이 드는 제언은 파일럿부터</td></tr>
+        <tr><td>④ 한계와 다음 단계</td><td class="wrap">인과가 아님, 측정 시점, 퇴사 사유 미구분 등. 효과 검증 계획(비교집단)</td></tr>
+      </tbody></table></div>
+      <details class="expect"><summary>보고서 예시 보기 (가상 데이터 기준)</summary><div class="prose" style="padding:14px 16px">
+        <h4 style="font-family:var(--f-display);font-size:17px">이직 위험 진단 결과와 리텐션 우선순위</h4>
+        <p><b>① 결론</b> 퇴사 위험을 가장 크게 좌우하는 것은 직무만족이며, <mark>영업 부서의 사원급, 입사 후 첫 2년</mark>이 집중 관리 구간입니다.</p>
+        <p><b>② 근거</b></p>
+        <ul>
+          <li>직무만족이 1점 높으면 퇴사 위험이 44% 낮고, 퇴사 확률은 약 12%p 낮습니다(생존분석·로지스틱, 다른 조건 통제).</li>
+          <li>영업의 퇴사 위험은 경영지원의 2.7배이며, 입사 24개월 재직률이 58%로 가장 낮습니다(생존분석).</li>
+          <li>과장 이상은 사원보다 퇴사 위험이 78% 낮습니다. 연봉 자체의 효과는 직급을 고려하면 뚜렷하지 않아, 일괄 보상 인상보다 성장 경로가 더 효과적일 가능성이 있습니다.</li>
+        </ul>
+        <p><b>③ 제언</b></p>
+        <ul>
+          <li>영업 사원 대상 입사 6·12·18개월 체크인 면담과 분기별 만족도 펄스 서베이를 도입합니다.</li>
+          <li>초과근무가 월 10시간 늘 때 위험이 약 22% 높아지므로, 영업·개발의 초과근무 상한을 팀 KPI로 관리합니다.</li>
+          <li>사원 → 대리 승진 기준과 경력 경로를 입사 1년 차에 공유합니다.</li>
+        </ul>
+        <p><b>④ 한계와 다음 단계</b> 관찰 자료이므로 인과관계로 단정할 수 없고, 만족도는 한 시점 측정이며, 자발적·비자발적 퇴사를 구분하지 않았습니다. 체크인 프로그램은 2개 영업팀에서 먼저 시행하고, 비교팀과 12개월 재직률을 비교해 효과를 검증합니다.</p>
+      </div></details>
+      <div class="card"><h4>보고서 자가 점검</h4><ul>
+        <li>첫 문장만 읽어도 무엇을 해야 하는지 알 수 있는가</li>
+        <li>숫자가 3개 이내이고, p값 대신 "몇 배", "몇 %p"로 썼는가</li>
+        <li>제언마다 대상·시점·행동이 있는가</li>
+        <li>"원인", "때문에" 같은 인과 표현을 피했는가</li>
+        <li>한계와 효과 검증 계획이 있는가</li>
+      </ul></div>
+      <p>경영진 보고 문장의 구조는 홈 화면의 "해석 3단계"와 같습니다. 신호등(유의한가) → 방향과 크기(얼마나) → 줄자(실무적으로 의미 있나) 순서를 숫자 대신 행동 언어로 바꾸는 것이 마지막 단계입니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 종합 시나리오 퀴즈 ================= -->
+<section class="module" id="m-scenario" data-id="scenario" hidden>
+  <header class="mhead">
+    <div class="eyebrow">정리 · 종합 점검 <span class="en">Scenario Quiz</span></div>
+    <h1>종합 시나리오 퀴즈</h1>
+    <p class="lede">모듈을 섞은 HR 상황 문제 <span id="sc-total"></span>개 중 10문항을 무작위로 냅니다. "이 상황에는 어떤 기법을 써야 하나", "이 결과를 어떻게 읽어야 하나"를 묻습니다. 문항마다 해설과 관련 모듈 링크가 있고, 결과 화면에서 모듈별 정답률을 보여 줍니다.</p>
+  </header>
+  <div class="sec">
+    <div class="presets" style="align-items:center"><button type="button" class="btn pri" data-scnew>새 10문항 풀기</button><span class="caption" id="sc-prog" style="margin:0"></span></div>
+    <p class="caption">이미 푼 문항은 전체 문항을 한 바퀴 돌 때까지 다시 나오지 않습니다. 틀린 문항은 오답노트에 자동 저장됩니다.</p>
+    <div class="quiz" id="sc-list" style="margin-top:14px"></div>
+    <div class="prose" id="sc-res" hidden style="margin-top:24px"></div>
+  </div>
+</section>
+
+<!-- ================= 오답노트 ================= -->
+<section class="module" id="m-review" data-id="review" hidden>
+  <header class="mhead">
+    <div class="eyebrow">정리 · 간격 복습 <span class="en">Review Notes · Spaced Repetition</span></div>
+    <h1>오답노트</h1>
+    <p class="lede">모듈 확인 퀴즈와 종합 시나리오 퀴즈에서 틀린 문항이 모입니다. 틀린 날로부터 1일, 3일, 7일 뒤에 "오늘 복습할 문항"으로 다시 올라오고, 세 번 모두 맞히면 복습 완료로 옮겨집니다.</p>
+  </header>
+  <div class="sec">
+    <div class="readout" id="rv-stats"></div>
+    <div class="seg" id="rv-seg" style="margin-top:14px"><button type="button" class="btn" data-rv="due">오늘 복습</button><button type="button" class="btn" data-rv="open">복습 중인 오답 전체</button><button type="button" class="btn" data-rv="done">복습 완료</button></div>
+    <div class="quiz" id="rv-list" style="margin-top:14px"></div>
+  </div>
+  <div class="sec">
+    <h2><span class="no">i</span>복습 규칙</h2>
+    <div class="prose">
+      <ul>
+        <li>틀린 날을 기준으로 <b>1일 → 3일 → 7일</b> 뒤에 복습 대상이 됩니다. 늦게 복습해도 이미 지난 단계는 건너뜁니다.</li>
+        <li>복습 때 다시 틀리면 틀린 날이 오늘로 바뀌고 1일 뒤부터 다시 시작합니다.</li>
+        <li>예정일 전에 미리 풀어 맞히면 일정은 바뀌지 않습니다(간격을 두는 것이 기억에 효과적입니다).</li>
+        <li>기록은 이 브라우저에만 저장됩니다. 학습 완료 표시와 체크리스트 기록은 별도로 보관되어 아래 버튼으로 지워지지 않습니다.</li>
+      </ul>
+      <div><button type="button" class="btn" id="rv-clear">오답 기록 모두 지우기</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 용어집 ================= -->
+<section class="module" id="m-glossary" data-id="glossary" hidden>
+  <header class="mhead">
+    <div class="eyebrow">정리 · 참고 <span class="en">Glossary</span></div>
+    <h1>용어집</h1>
+    <p class="lede">본문에 나오는 핵심 용어의 한글·영문 이름과 한 줄 정의입니다. 본문에서 점선 밑줄이 있는 용어는 마우스를 올리거나 탭하면 이 정의가 바로 뜹니다.</p>
+  </header>
+  <div class="sec">
+    <label for="gl-q" class="caption" style="display:block;margin:0 0 6px">용어 찾기 (한글·영문·정의 검색)</label>
+    <input type="search" id="gl-q" class="glsearch" placeholder="예: 오즈비, censoring, 효과크기" autocomplete="off">
+    <p class="caption" id="gl-n"></p>
+    <div class="tbl gltbl" style="margin-top:10px"><table><thead><tr><th>용어</th><th>영문</th><th class="wrap">한 줄 정의</th><th>관련 모듈</th></tr></thead><tbody id="gl-rows"></tbody></table></div>
+  </div>
+</section>
 </div></main>
 </div>
 
@@ -2533,8 +2789,12 @@ const MODS = [
   { id: 'mediation', n: '16', t: '매개효과 · PROCESS', g: 'Part 5 · 논문 통계', q: 'X가 M을 거쳐 Y에 영향을 주나?', y: '연속형', k: 'a · b · c′ · a×b' },
   { id: 'boot', n: '17', t: '부트스트랩 · 신뢰구간', g: 'Part 5 · 논문 통계', q: '간접효과가 우연이 아닌가?', y: '간접효과', k: 'Boot.SE · 95% CI' },
   { id: 'critique', n: '', t: '사례 논문 보완 포인트', g: 'Part 5 · 논문 통계', q: '심사에서 지적받을 지점과 보완법' },
-  { id: 'cheat', n: '', t: '해석 기준표', g: '정리' },
-  { id: 'next', n: '', t: '추가 학습 로드맵', g: '정리' }
+  { id: 'capstone', n: '18', t: '캡스톤 · 이직 데이터 통합 실습', g: 'Part 6 · 통합 실습', q: '기술통계 → 카이제곱 → 로지스틱 → 생존분석 → 경영진 보고서' },
+  { id: 'scenario', n: '', t: '종합 시나리오 퀴즈', g: '정리', q: '이 HR 상황에는 어떤 기법을? 무작위 10문항' },
+  { id: 'review', n: '', t: '오답노트', g: '정리', q: '틀린 문항을 1·3·7일 간격으로 다시 풀기' },
+  { id: 'cheat', n: '', t: '해석 기준표', g: '정리', q: '기법별 핵심 지표와 판단 기준 한눈에' },
+  { id: 'glossary', n: '', t: '용어집', g: '정리', q: '한글·영문 용어와 한 줄 정의' },
+  { id: 'next', n: '', t: '추가 학습 로드맵', g: '정리', q: '다음에 공부할 주제와 순서' }
 ];
 const LEARN = MODS.filter(m => m.n !== '').map(m => m.id);
 
@@ -2547,7 +2807,7 @@ function buildNav() {
   $('#navsel').addEventListener('change', e => { location.hash = e.target.value; });
   // 홈 지도
   const parts = groups.filter(g => g.startsWith('Part'));
-  $('#homemap').innerHTML = [['시작하기', '기초 개념', ['basics']]].concat(parts.map(p => [p.split(' · ')[0], p.split(' · ')[1], MODS.filter(m => m.g === p).map(m => m.id)]))
+  $('#homemap').innerHTML = [['시작하기', '기초 개념', ['basics']]].concat(parts.map(p => [p.split(' · ')[0], p.split(' · ')[1], MODS.filter(m => m.g === p).map(m => m.id)])).concat([['정리', '점검 · 복습 · 참고', MODS.filter(m => m.g === '정리').map(m => m.id)]])
     .map(([pn, pt, ids]) => `<div class="part"><div><div class="pn">${pn}</div><div class="pt">${pt}</div></div><ul>${ids.map(id => { const m = MODS.find(x => x.id === id);
       return `<li><a href="#${id}"><span class="n">${m.n}</span><span>${m.t}<small>${m.q}</small></span></a></li>`; }).join('')}</ul></div>`).join('');
   // 기준표 행
@@ -2584,6 +2844,7 @@ function route() {
   $$('#m-' + id + ' .simbox[id]').forEach(l => { if (!simDone.has(l.id) && SIMINIT[l.id]) { SIMINIT[l.id](l); simDone.add(l.id); } });
   window.scrollTo(0, 0);
   store.set('last', id);
+  if (typeof onRoute === 'function') onRoute(id);
 }
 
 /* ---------- 모듈 안 특정 위치로 이동 (data-goto="모듈/요소id") ---------- */
@@ -2636,6 +2897,7 @@ function initQuizFor(box) {
     const q = qs[+it.dataset.i], j = +b.dataset.j;
     $$('.qopt', it).forEach((x, k) => { x.disabled = true; if (k === q.a) x.classList.add('right'); });
     if (j !== q.a) b.classList.add('wrong'); it.dataset.ans = j === q.a ? 'r' : 'w';
+    if (typeof WN !== 'undefined') WN.record('q', key, +it.dataset.i, j === q.a);
     const ex = $('.qex', it); ex.innerHTML = `<b>${j === q.a ? '정답입니다.' : '다시 확인해 보세요.'}</b> ${q.e}`; ex.hidden = false;
     const items = $$('.qitem', box), answered = items.filter(x => x.dataset.ans != null), right = answered.filter(x => x.dataset.ans === 'r').length;
     $('.qscore', box).textContent = `${answered.length}문항 중 ${right}문항 정답`;
@@ -3764,8 +4026,777 @@ const QADD = {
   alpha: [{ q: '두 면접관의 등급 일치율이 88%인데 κ = .31입니다. 가장 적절한 해석은?', o: ['일치도가 매우 높다', '대부분이 한 등급에 몰려 우연 일치 확률이 커서, 우연을 뺀 실제 일치는 약간 수준이다', 'κ 계산이 틀렸다', 'ICC를 써야 해서 의미가 없다'], a: 1, e: 'κ는 우연히 일치할 확률을 빼고 계산합니다. 분포가 한쪽으로 몰리면 일치율이 높아도 κ는 낮게 나옵니다(κ의 역설).' }]
 };
 Object.entries(QADD).forEach(([k, arr]) => { QUIZ[k] = (QUIZ[k] || []).concat(arr); });
+
+/* =================== 실습 데이터 생성기 (seed 고정 · 브라우저에서 생성) ===================
+   강의 원자료 파일은 올리지 않습니다. 원자료·논문의 평균, 표준편차, 상관, 범주 비율을
+   재현하도록 설계한 가상 데이터를 같은 seed로 매번 똑같이 만들어 냅니다. */
+const DG = (() => {
+  const center = (a) => { let m = 0; for (const v of a) m += v; m /= a.length; return a.map(v => v - m); };
+  const dot = (a, b) => { let s = 0; for (let i = 0; i < a.length; i++) s += a[i] * b[i]; return s; };
+  // 평균 0, 분산 1, 서로 상관 0인 열 k개 (정확히)
+  const ortho = (n, k, seed) => {
+    const Q = [];
+    for (let j = 0; j < k; j++) {
+      let v = center(S.normals(n, seed + j * 7919));
+      for (const q of Q) { const p = dot(v, q); v = v.map((x, i) => x - p * q[i]); }
+      const nn = Math.sqrt(dot(v, v)); Q.push(v.map(x => x / nn));
+    }
+    const sc = Math.sqrt(n - 1); return Q.map(q => q.map(x => x * sc));
+  };
+  const chol = (R) => { const k = R.length, L = R.map(() => new Array(k).fill(0));
+    for (let i = 0; i < k; i++) for (let j = 0; j <= i; j++) { let s = R[i][j]; for (let t = 0; t < j; t++) s -= L[i][t] * L[j][t];
+      L[i][j] = i === j ? Math.sqrt(Math.max(s, 1e-9)) : s / L[j][j]; } return L; };
+  // Z(서로 독립인 열들)에 상관행렬 R을 입힘
+  const mix = (Z, R) => { const L = chol(R), n = Z[0].length;
+    return R.map((_, i) => { const out = new Array(n).fill(0); for (let j = 0; j <= i; j++) { const l = L[i][j]; if (l) for (let t = 0; t < n; t++) out[t] += l * Z[j][t]; } return out; }); };
+  const erf = (x) => { const s = x < 0 ? -1 : 1; x = Math.abs(x); const t = 1 / (1 + 0.3275911 * x);
+    const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return s * y; };
+  const Phi = (x) => 0.5 * (1 + erf(x / Math.SQRT2));
+  // 비율 → 정수 인원 (최대잉여법)
+  const toCounts = (p, n) => { const s = p.reduce((a, b) => a + b, 0), raw = p.map(v => v / s * n), c = raw.map(Math.floor);
+    let left = n - c.reduce((a, b) => a + b, 0); raw.map((v, i) => [v - c[i], i]).sort((a, b) => b[0] - a[0] || a[1] - b[1]).forEach(([, i]) => { if (left > 0) { c[i]++; left--; } }); return c; };
+  // 잠재 연속값의 순위대로 범주 값을 배정 → 범주 비율이 정확히 counts와 같아짐
+  const rankCut = (x, counts, vals) => { const idx = x.map((v, i) => i).sort((a, b) => x[a] - x[b] || a - b), out = new Array(x.length);
+    let k = 0; counts.forEach((c, j) => { for (let t = 0; t < c; t++) out[idx[k++]] = vals[j]; }); return out; };
+  // 1~K 척도: 평균 mu, SD sd인 정규분포를 이산화한 범주 비율
+  const likertP = (K, mu, sd) => Array.from({ length: K }, (_, i) => { const k = i + 1;
+    const lo = k === 1 ? 0 : Phi((k - 0.5 - mu) / sd), hi = k === K ? 1 : Phi((k + 0.5 - mu) / sd); return hi - lo; });
+  const shuffle = (arr, seed) => { const r = S.rng(seed), a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const rep = (labels, counts) => labels.flatMap((l, i) => Array(counts[i]).fill(l));
+  const rnd = (v, d) => { const f = 10 ** d; return Math.round(v * f) / f; };
+  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+  const mean = (a) => a.reduce((s, v) => s + v, 0) / a.length;
+  return { ortho, chol, mix, Phi, toCounts, rankCut, likertP, shuffle, rep, rnd, clamp, mean };
+})();
+
+const DATASETS = {};
+
+/* ---- 1. t-검정: L사 신입사원 919명 (강의 결과표의 집단 평균과 Cohen's d에서 역산한 SD) ---- */
+DATASETS.ttest = { file: 'hr_ttest_919.csv', title: 'L사 신입사원 919명 인적성 점수 (재현)', basis: '강의 결과표의 집단별 평균과 Cohen\'s d로 역산한 표준편차를 정확히 맞춤', gen() {
+  const V = [['성실성', 4.313, 2.497, 0.490], ['정서적안정성', 4.155, 3.062, 0.769], ['외향성', 2.776, 2.567, 1.106], ['수리적성', 3.657, 3.652, 0.95], ['문제해결역량', 3.624, 3.717, 0.93]];
+  const n1 = 560, n2 = 359, cols = V.map((v, k) => [...S.sample(n1, v[1], v[3], 101 + k * 13), ...S.sample(n2, v[2], v[3], 701 + k * 13)]);
+  const rows = []; for (let i = 0; i < n1 + n2; i++) rows.push([i + 1, i < n1 ? '고성과' : '저성과', ...cols.map(c => DG.rnd(c[i], 3))]);
+  return { cols: ['ID', '성과집단', ...V.map(v => v[0])], rows };
+} };
+
+/* ---- 2. 종속표본: 교육집단·비교집단 사전·사후 (설명용 가상) ---- */
+DATASETS.paired = { file: 'hr_training_prepost.csv', title: '리더십 교육 사전·사후 역량 점수 (가상)', basis: '설명용 가상 데이터 · 교육집단 +0.45점, 비교집단 +0.10점, 사전–사후 상관 .65로 설계', gen() {
+  const G = [['교육', 40, 3.10, 3.55], ['비교', 40, 3.15, 3.25]], rows = []; let id = 1;
+  G.forEach(([g, n, m0, m1], k) => { const Z = DG.ortho(n, 2, 300 + k * 50), r = 0.65;
+    for (let i = 0; i < n; i++) rows.push([id++, g, DG.rnd(DG.clamp(m0 + 0.6 * Z[0][i], 1, 5), 2), DG.rnd(DG.clamp(m1 + 0.6 * (r * Z[0][i] + Math.sqrt(1 - r * r) * Z[1][i]), 1, 5), 2)]); });
+  return { cols: ['ID', '집단', '사전', '사후'], rows };
+} };
+
+/* ---- 3·4·6·13: AI 불안 315명 (원자료의 문항 응답 분포·연령대 평균·상관 재현) ---- */
+DATASETS.anxiety = { file: 'hr_ai_anxiety_315.csv', title: 'AI 불안 설문 315명 (재현)', basis: '원자료(sample data_AI Anxiety)의 9개 문항 응답 비율, 연령대별 평균, 하위요인 상관, AI 사용 분포를 재현', P: {
+  mu: [[-0.01, 0.147, -0.502, 0.58], [0.031, -0.365, -0.263, -0.057], [-0.191, 0.092, 0.547, -0.074], [-0.071, 0.135, 0.133, -0.252], [0.228, 0, 0.129, -0.235]],
+  R: [[1, 0.47, 0.292, -0.01], [0.47, 1, 0.675, 0.15], [0.292, 0.675, 1, 0.06], [-0.01, 0.15, 0.06, 1]] }, gen(P = this.P) {
+  const n = 315, gN = [67, 64, 60, 62, 62], age = DG.shuffle(DG.rep([20, 30, 40, 50, 60], gN), 11);
+  const lam = [[0.86, 0.95, 0.82], [0.96, 0.79, 0.70], [0.82, 0.93, 0.84]];
+  const Z = DG.ortho(n, 13, 2026), F = DG.mix(Z.slice(0, 4), P.R);
+  const gi = age.map(a => a / 10 - 2);
+  for (let f = 0; f < 4; f++) for (let i = 0; i < n; i++) F[f][i] += P.mu[gi[i]][f];
+  const cnt = [[21, 61, 51, 70, 69, 40, 3], [17, 48, 59, 77, 80, 26, 8], [12, 39, 44, 77, 83, 48, 12], [4, 27, 27, 57, 77, 74, 49], [9, 39, 24, 66, 85, 66, 26], [2, 11, 19, 53, 85, 84, 61],
+    [11, 11, 26, 52, 103, 80, 32], [6, 11, 20, 42, 97, 88, 51], [5, 11, 23, 50, 100, 80, 46]];
+  const items = [];
+  for (let f = 0; f < 3; f++) for (let j = 0; j < 3; j++) { const l = lam[f][j], e = Z[4 + f * 3 + j];
+    items.push(DG.rankCut(F[f].map((v, i) => l * v + Math.sqrt(1 - l * l) * e[i]), cnt[f * 3 + j], [1, 2, 3, 4, 5, 6, 7])); }
+  const use = DG.rankCut(F[3], [2, 15, 23, 66, 78, 99, 32], [1, 2, 3, 4, 5, 6, 7]);
+  const sex = DG.shuffle(DG.rep([1, 2], [155, 160]), 12), ur = S.rng(13);
+  // 교육 선택(다항 로지스틱 실습용, 가상): 나이가 많을수록 A(디지털 기초) 선택이 늘도록 설계
+  const ch = S.rng(14), rows = [];
+  for (let i = 0; i < n; i++) {
+    const a = age[i] + Math.floor(ur() * 10), comp = [0, 1, 2].map(f => DG.rnd((items[f * 3][i] + items[f * 3 + 1][i] + items[f * 3 + 2][i]) / 3, 3));
+    const uA = -1.6 + 0.04 * a, uB = -0.3 + 0.004 * a, eA = Math.exp(uA), eB = Math.exp(uB), u = ch(), pA = eA / (1 + eA + eB), pB = eB / (1 + eA + eB);
+    rows.push([i + 1, sex[i], a, age[i] + '대', ...items.map(c => c[i]), ...comp, use[i], u < pA ? 'A' : u < pA + pB ? 'B' : 'C']);
+  }
+  return { cols: ['ID', '성별', '연령', '연령대', '학습불안1', '학습불안2', '학습불안3', '직무대체불안1', '직무대체불안2', '직무대체불안3', '프라이버시불안1', '프라이버시불안2', '프라이버시불안3', '학습불안', '직무대체불안', '프라이버시불안', 'AI사용', '교육선택'], rows };
+} };
+
+/* ---- 5. 로지스틱: 신입사원 700명 고성과 예측 (원자료 분포·상관 + 원자료 로지스틱 계수로 결과 생성) ---- */
+DATASETS.perf = { file: 'hr_performance_700.csv', title: '신입사원 700명 고성과 예측 데이터 (재현)', basis: '원자료(ch3_performance)의 변수별 분포와 순위상관을 재현하고, 고성과 여부는 원자료 로지스틱 계수로 생성(고성과 278명 = 39.7%)', seed: 10, gen() {
+  const n = 700, R = [[1, 0.019, 0.028, -0.003, -0.05, -0.019, -0.028, -0.193, -0.037, -0.007, -0.054], [0.019, 1, 0.022, -0.024, -0.039, 0.006, -0.007, -0.127, 0.009, -0.01, -0.059], [0.028, 0.022, 1, -0.033, 0.009, 0.086, -0.064, -0.029, -0.039, -0.027, -0.022], [-0.003, -0.024, -0.033, 1, 0, -0.002, 0.105, -0.055, 0.12, -0.033, 0.054], [-0.05, -0.039, 0.009, 0, 1, 0.009, 0.053, 0.084, -0.032, -0.052, -0.012], [-0.019, 0.006, 0.086, -0.002, 0.009, 1, -0.049, -0.049, -0.037, -0.042, -0.044], [-0.028, -0.007, -0.064, 0.105, 0.053, -0.049, 1, 0.048, 0.014, -0.01, 0.036], [-0.193, -0.127, -0.029, -0.055, 0.084, -0.049, 0.048, 1, 0.057, 0.051, 0], [-0.037, 0.009, -0.039, 0.12, -0.032, -0.037, 0.014, 0.057, 1, 0.02, -0.026], [-0.007, -0.01, -0.027, -0.033, -0.052, -0.042, -0.01, 0.051, 0.02, 1, 0.044], [-0.054, -0.059, -0.022, 0.054, -0.012, -0.044, 0.036, 0, -0.026, 0.044, 1]];
+  const seed = this.seed, X = DG.mix(DG.ortho(n, 11, seed * 1000), R);
+  const vc = (pairs) => [pairs.map(p => p[1]), pairs.map(p => p[0])];
+  const ageP = [[23, 10], [24, 7], [25, 7], [26, 6], [27, 6], [28, 8], [29, 12], [30, 23], [31, 23], [32, 9], [33, 25], [34, 26], [35, 34], [36, 47], [37, 31], [38, 40], [39, 39], [40, 23], [41, 41], [42, 42], [43, 28], [44, 28], [45, 28], [46, 20], [47, 21], [48, 20], [49, 25], [50, 14], [51, 11], [52, 10], [53, 10], [54, 9], [55, 6], [56, 2], [57, 2], [58, 2], [59, 1], [60, 1], [62, 1], [63, 1], [68, 1]];
+  const yrP = [[1, 11], [2, 54], [3, 72], [4, 48], [5, 58], [6, 81], [7, 24], [8, 27], [9, 36], [10, 35], [11, 32], [12, 28], [13, 27], [14, 22], [15, 25], [16, 20], [17, 11], [18, 10], [19, 9], [20, 8], [21, 3], [22, 6], [23, 5], [24, 6], [25, 8], [26, 5], [27, 5], [28, 2], [29, 1], [30, 7], [31, 2], [32, 1], [33, 1], [35, 2], [36, 2], [38, 2], [40, 1], [45, 2], [48, 1]];
+  const hrP = [[20, 6], [21, 2], [24, 4], [25, 1], [27, 2], [27.5, 1], [28, 2], [30, 6], [32, 2], [34, 1], [35, 342], [37.5, 19], [40, 312]];
+  const acP = [[0, 26], [1, 12], [2, 16], [3, 18], [4, 48], [5, 57], [6, 58], [7, 68], [8, 87], [9, 71], [10, 58], [11, 62], [12, 42], [13, 26], [14, 19], [15, 16], [16, 8], [17, 3], [18, 1], [19, 2], [22, 1], [27, 1]];
+  const salQ = [21600, 21600, 22610, 26795, 31568, 34935, 39140, 41862, 45006, 48077, 51250, 55041, 58512, 61948, 65562, 71512, 77274, 84003, 97321, 113965, 184000];
+  const cut = (x, P) => { const [c, v] = vc(P); return DG.rankCut(x, c, v); };
+  const marry = DG.rankCut(X[0], [376, 324], ['M', 'S']), hours = cut(X[1], hrP), acc = cut(X[2], acP).map(k => k / 235), age = cut(X[3], ageP);
+  const lead = DG.rankCut(X[4], [5, 60, 317, 289, 29], [1, 2, 3, 4, 5]), sex = DG.rankCut(X[5], [332, 368], ['F', 'M']);
+  const sal = X[6].map(z => { const u = DG.Phi(z) * 20, k = Math.min(19, Math.floor(u)), f = u - k; return Math.round((salQ[k] + f * (salQ[k + 1] - salQ[k])) / 10) * 10; });
+  const yr = cut(X[7], yrP), fit = DG.rankCut(X[8], [25, 80, 201, 235, 159], [1, 2, 3, 4, 5]), sat = DG.rankCut(X[9], [5, 39, 262, 330, 64], [1, 2, 3, 4, 5]), edu = DG.rankCut(X[10], [79, 433, 188], [1, 2, 3]);
+  const r = S.rng(seed * 7 + 3), lp = [];
+  for (let i = 0; i < n; i++) { const u = Math.min(1 - 1e-12, Math.max(1e-12, r()));
+    lp.push(-0.2516992 * (marry[i] === 'S') - 0.0011427 * hours[i] - 11.6464412 * acc[i] + 0.0397966 * age[i] + 0.0051537 * lead[i] - 0.52461 * (sex[i] === 'M') + 3.08e-05 * sal[i] - 0.0017443 * yr[i] +
+      0.3913847 * fit[i] + 0.2788272 * sat[i] + (edu[i] === 2 ? 0.8294223 : edu[i] === 3 ? 1.0667789 : 0) + Math.log(u / (1 - u))); }
+  const y = DG.rankCut(lp, [422, 278], [0, 1]), rows = [];
+  for (let i = 0; i < n; i++) rows.push([i + 1, marry[i], hours[i], DG.rnd(acc[i], 6), age[i], lead[i], sex[i], sal[i], yr[i], fit[i], sat[i], edu[i], y[i]]);
+  return { cols: ['ID', '결혼여부', '근무시간', '근태사고율', '나이', '리더역량', '성별', '연봉', '연차', '조직적합도', '직무만족도', '학력', '고성과'], rows };
+} };
+
+/* ---- 7. 다중회귀: 성과 점수 200명 (설명용 가상, 상관행렬을 정확히 맞춤) ---- */
+DATASETS.reg = { file: 'hr_regression_200.csv', title: '교육시간·근속·성실성과 성과 점수 200명 (가상)', basis: '설명용 가상 데이터 · 변수 간 상관을 정확히 맞춰 R² ≈ .45가 되도록 설계', gen() {
+  const n = 200, R = [[1, 0.20, 0.25, 0.52], [0.20, 1, 0.10, 0.30], [0.25, 0.10, 1, 0.48], [0.52, 0.30, 0.48, 1]], X = DG.mix(DG.ortho(n, 4, 707), R);
+  const rows = []; for (let i = 0; i < n; i++) rows.push([i + 1, DG.rnd(40 + 12 * X[0][i], 1), DG.rnd(DG.clamp(8 + 3.5 * X[1][i], 0.5, 30), 1), DG.rnd(3.6 + 0.6 * X[2][i], 2), DG.rnd(70 + 10 * X[3][i], 1)]);
+  return { cols: ['ID', '교육시간', '근속연수', '성실성', '성과'], rows };
+} };
+
+/* ---- 8. 카이제곱: 부서·직급별 이직 1,000명 (8.6 심슨의 역설 시뮬레이터와 같은 인원) ---- */
+DATASETS.chisq = { file: 'hr_turnover_dept_1000.csv', title: '부서·직급별 이직 1,000명 (가상)', basis: '8번 모듈 시뮬레이터의 "부서별 이직 (직급 교란)" 교차표와 인원이 정확히 같음', gen() {
+  const cells = [['영업부', '사원', 320, 80], ['영업부', '관리자', 96, 4], ['연구부', '사원', 78, 22], ['연구부', '관리자', 380, 20]], base = [];
+  cells.forEach(([d, g, stay, quit]) => { for (let i = 0; i < stay; i++) base.push([d, g, '재직']); for (let i = 0; i < quit; i++) base.push([d, g, '이직']); });
+  const rows = DG.shuffle(base, 808).map((r, i) => [i + 1, ...r]);
+  return { cols: ['ID', '부서', '직급', '이직여부'], rows };
+} };
+
+/* ---- 9. 생존분석: 300명 근속·퇴사 (설명용 가상, 와이블 분포 + 관측 종료 중도절단) ---- */
+DATASETS.surv = { file: 'hr_survival_300.csv', title: '직군별 근속개월·퇴사 300명 (가상)', basis: '설명용 가상 데이터 · IT개발직 위험 약 1.8배, 직무만족 1점당 위험 약 48% 감소, 관측기간 3~48개월로 설계', gen() {
+  const n = 300, r = S.rng(909), Z = DG.ortho(n, 2, 910), rows = [];
+  for (let i = 0; i < n; i++) {
+    const job = i < 150 ? 'IT개발' : '경영지원', sat = DG.rnd(DG.clamp(3.4 + 0.7 * Z[0][i], 1, 5), 1), raise = DG.rnd(DG.clamp(3.5 + 1.2 * Z[1][i], 0, 9), 1);
+    const lp = (job === 'IT개발' ? 0.6 : 0) - 0.65 * (sat - 3.4) - 0.2 * (raise - 3.5), k = 1.15, lam = 0.02;
+    const T = Math.pow(-Math.log(1 - r()) / (lam ** k * Math.exp(lp)), 1 / k), C = 3 + 45 * r(), t = Math.min(T, C), ev = T <= C ? 1 : 0;
+    const vol = r() < (job === 'IT개발' ? 0.8 : 0.65);
+    rows.push([i + 1, job, raise, sat, Math.max(1, Math.ceil(t)), ev, ev ? (vol ? '자발적' : '비자발적') : '재직']);
+  }
+  return { cols: ['ID', '직군', '연봉인상률', '직무만족', '근속개월', '퇴사', '상태'], rows };
+} };
+
+/* ---- 10. 군집: 조직문화 인식 200명 (10.5 사례표의 군집 평균·비율) ---- */
+DATASETS.kmeans = { file: 'hr_culture_200.csv', title: '조직문화 인식 4개 특성 200명 (가상)', basis: '10.5 사례표의 군집별 평균(35% · 40% · 25%)을 중심으로 생성 · 정답 군집은 넣지 않음', gen() {
+  const C = [[4.6, 4.5, 2.2, 3.1, 70, ['개발', '개발', '기획', '기획', '영업']], [2.1, 2.0, 4.7, 3.0, 80, ['재무', '감사', '재무', '인사', '영업']], [3.2, 2.8, 3.5, 4.6, 50, ['인사', '영업', '영업', '기획', '개발']]];
+  const r = S.rng(1010), base = []; let k = 0;
+  C.forEach((c, ci) => { const Z = DG.ortho(c[4], 4, 1011 + ci * 9); for (let i = 0; i < c[4]; i++) base.push([c[5][Math.floor(r() * 5)], ...[0, 1, 2, 3].map(j => DG.rnd(DG.clamp(c[j] + 0.45 * Z[j][i], 1, 5), 1))]); });
+  const rows = DG.shuffle(base, 1012).map((r, i) => [i + 1, ...r]);
+  return { cols: ['ID', '부서', '자율성', '도전성', '절차준수', '관계협력'], rows };
+} };
+
+/* ---- 11. SNA: 11.4 시뮬레이터와 같은 협업 관계망 ---- */
+DATASETS.sna = { file: 'hr_network_edges.csv', title: '협업 관계망 16개 연결 (가상)', basis: '11번 모듈 관계망 시뮬레이터와 같은 12명·16개 연결', gen() {
+  const nm = { r1: 'R&D1', r2: 'R&D2', r3: 'R&D3', r4: 'R&D4', r5: 'R&D5', A: '직원A', H: '인사담당', m1: '마케팅1', m2: '마케팅2', m3: '마케팅3', m4: '마케팅4', m5: '마케팅5' };
+  const E = [['r2', 'r1'], ['r2', 'r3'], ['r2', 'r4'], ['r2', 'r5'], ['r1', 'r3'], ['r4', 'r5'], ['A', 'r3'], ['A', 'm1'], ['A', 'H'], ['H', 'm2'], ['m2', 'm1'], ['m2', 'm3'], ['m2', 'm4'], ['m2', 'm5'], ['m3', 'm4'], ['m1', 'm3']];
+  return { cols: ['from', 'to'], rows: E.map(e => [nm[e[0]], nm[e[1]]]) };
+} };
+
+/* ---- 12~17: 사례 논문 345명 (평균·SD·상관을 재현한 문항 수준 데이터) ---- */
+DATASETS.paper = { file: 'hr_paper_345.csv', title: '사례 논문 재현 설문 345명 (가상)', basis: '사례 논문의 세 변수 평균·표준편차와 상관(.488 · .426 · .571)을 재현하도록 문항 응답(5점)을 생성 · 인구통계는 논문 비율에 맞춘 가상값', P: {
+  R: [[1, 0.772, 0.66], [0.772, 1, 0.828], [0.66, 0.828, 1]], mu: [3.51, 2.794, 3.434], sd: [0.861, 0.857, 0.654], w: 0.45, lam: [0.88, 0.87, 0.86] }, gen(P = this.P) {
+  const n = 345, nSub = [2, 3, 4], nItem = [4, 3, 3], pre = ['TA', 'EN', 'AL'];
+  const Z = DG.ortho(n, 3 + 9 + 29 + 1, 3450), sh = Z[41], C = DG.mix(Z.slice(0, 3), P.R); let zc = 3;
+  const items = [], names = [];
+  for (let c = 0; c < 3; c++) { const cnt = DG.toCounts(DG.likertP(5, P.mu[c], P.sd[c]), n); let no = 1;
+    for (let s = 0; s < nSub[c]; s++) { const u = Z[zc++], sub = C[c].map((v, i) => Math.sqrt(P.w) * v + Math.sqrt(1 - P.w) * u[i]);
+      for (let j = 0; j < nItem[c]; j++) { const e0 = Z[3 + 9 + items.length], l = P.lam[c], e = items.length < 2 ? e0.map((v, i) => Math.sqrt(0.2) * v + Math.sqrt(0.8) * sh[i]) : e0; // TA1·TA2: 내용이 비슷한 두 문항의 오차가 서로 상관
+        items.push(DG.rankCut(sub.map((v, i) => l * v + Math.sqrt(1 - l * l) * e[i]), cnt, [1, 2, 3, 4, 5])); names.push(pre[c] + no++); } } }
+  const age = S.sample(n, 50.4, 5.8, 3451).map(v => Math.round(DG.clamp(v, 30, 64)));
+  const rank = DG.shuffle(DG.rep(['대리이하', '과장', '차장', '부장', '임원'], DG.toCounts([8, 15, 25, 40, 12], n)), 3452);
+  const edu = DG.shuffle(DG.rep(['고졸', '전문대졸', '4년제졸', '대학원졸'], DG.toCounts([4, 9, 71.3, 15.7], n)), 3453);
+  const sex = DG.shuffle(DG.rep(['남', '여'], DG.toCounts([68, 32], n)), 3454);
+  const rows = [], rng = [[0, 8], [8, 17], [17, 29]];
+  for (let i = 0; i < n; i++) { const it = items.map(c => c[i]); rows.push([i + 1, sex[i], age[i], edu[i], rank[i], ...it, ...rng.map(([a, b]) => DG.rnd(DG.mean(it.slice(a, b)), 3))]); }
+  return { cols: ['ID', '성별', '연령', '학력', '직급', ...names, '기술수용성', '직무몰입', 'AI리터러시'], rows };
+} };
+
+/* ---- 14. 평가자 간 신뢰도: 면접 평정 40명 × 평가자 3명 (가상) ---- */
+DATASETS.ratings = { file: 'hr_interview_ratings.csv', title: '면접 평정 40명 × 면접관 3명 (가상)', basis: '설명용 가상 데이터 · 면접관 C는 평균적으로 0.5점 엄격하게 채점하도록 설계', gen() {
+  const n = 40, Z = DG.ortho(n, 4, 1414), rows = [];
+  for (let i = 0; i < n; i++) { const t = 3 + 0.95 * Z[0][i], sc = (b, z) => DG.clamp(Math.round(t + b + 0.55 * z), 1, 5);
+    rows.push(['C' + String(i + 1).padStart(2, '0'), sc(0, Z[1][i]), sc(0.05, Z[2][i]), sc(-0.5, Z[3][i])]); }
+  return { cols: ['지원자', '면접관A', '면접관B', '면접관C'], rows };
+} };
+
+/* ---- 캡스톤: 이직 데이터 500명 (설명용 가상) ---- */
+DATASETS.capstone = { file: 'hr_capstone_turnover_500.csv', title: '캡스톤 · 이직 분석 데이터 500명 (가상)', basis: '설명용 가상 데이터 · 만족도·연봉·부서·직급·초과근무가 퇴사 위험에 영향을 주도록 설계(와이블 모형, 관측 6~60개월)', gen() {
+  const n = 500, r = S.rng(5000), Z = DG.ortho(n, 4, 5001), rows = [];
+  const dept = DG.shuffle(DG.rep(['영업', '개발', '생산', '경영지원'], [140, 150, 120, 90]), 5002);
+  const rank = DG.shuffle(DG.rep(['사원', '대리', '과장이상'], [230, 150, 120]), 5003);
+  const sex = DG.shuffle(DG.rep(['남', '여'], [290, 210]), 5004);
+  const dEff = { 영업: 0.55, 개발: 0.25, 생산: 0, 경영지원: -0.2 }, rEff = { 사원: 0.3, 대리: 0, 과장이상: -0.45 }, base = { 사원: 3600, 대리: 4500, 과장이상: 5800 };
+  for (let i = 0; i < n; i++) {
+    const sat = DG.rnd(DG.clamp(3.3 + 0.75 * Z[0][i], 1, 5), 1), ot = Math.round(DG.clamp(18 + 9 * Z[1][i] + (dept[i] === '개발' ? 5 : dept[i] === '영업' ? 3 : 0), 0, 60));
+    const sal = Math.round((base[rank[i]] + 450 * Z[2][i] + (dept[i] === '개발' ? 300 : 0)) / 10) * 10;
+    const lp = dEff[dept[i]] + rEff[rank[i]] - 0.6 * (sat - 3.3) - 0.35 * (sal - 4500) / 1000 + 0.02 * (ot - 18), k = 1.2, lam = 0.012;
+    const T = Math.pow(-Math.log(1 - r()) / (lam ** k * Math.exp(lp)), 1 / k), C = 6 + 54 * r(), t = Math.min(T, C);
+    rows.push([i + 1, dept[i], rank[i], sex[i], sal, sat, ot, Math.max(1, Math.ceil(t)), T <= C ? 1 : 0]);
+  }
+  return { cols: ['ID', '부서', '직급', '성별', '연봉', '만족도', '초과근무', '근속개월', '퇴사'], rows };
+} };
+
+const toCSV = (d) => [d.cols, ...d.rows].map(r => r.map(v => typeof v === 'string' && /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v).join(',')).join('\r\n') + '\r\n';
+
+
+/* =================== 실습 코드와 R 기대 출력 (R 4.3.3 실행 결과) =================== */
+const PRACTICE_CODE = {"alpha": "library(psych)\ndf <- read.csv(\"hr_paper_345.csv\", fileEncoding = \"UTF-8-BOM\")\nround(alpha(df[, paste0(\"TA\", 1:4)])$total[, 1:2], 3)    # 유용성 4문항\nround(alpha(df[, paste0(\"TA\", 5:8)])$total[, 1:2], 3)    # 용이성 4문항\nround(alpha(df[, paste0(\"TA\", 1:8)])$total[, 1:2], 3)    # 기술수용성 전체\nround(alpha(df[, paste0(\"AL\", 1:12)])$total[, 1:2], 3)   # AI 리터러시 전체\n# 평가자 간 신뢰도 (면접 평정)\nr <- read.csv(\"hr_interview_ratings.csv\", fileEncoding = \"UTF-8-BOM\")\ncohen.kappa(r[, c(\"면접관A\", \"면접관B\")])                # κ와 가중 κ\nICC(r[, c(\"면접관A\", \"면접관B\", \"면접관C\")], lmer = FALSE)\n", "anova": "df <- read.csv(\"hr_ai_anxiety_315.csv\", fileEncoding = \"UTF-8-BOM\")\naggregate(프라이버시불안 ~ 연령대, data = df,\n          FUN = function(x) round(c(n = length(x), M = mean(x), SD = sd(x)), 3))\noneway.test(학습불안 ~ 연령대, data = df, var.equal = FALSE)        # Welch's ANOVA\noneway.test(직무대체불안 ~ 연령대, data = df, var.equal = FALSE)\noneway.test(프라이버시불안 ~ 연령대, data = df, var.equal = FALSE)\nsummary(aov(프라이버시불안 ~ 연령대, data = df))                   # 전통적 ANOVA\n", "boot": "df <- read.csv(\"hr_paper_345.csv\", fileEncoding = \"UTF-8-BOM\")\nset.seed(2026)\nB <- 5000; ind <- numeric(B)\nfor (k in 1:B) {\n  s <- df[sample(nrow(df), replace = TRUE), ]\n  a <- coef(lm(AI리터러시 ~ 기술수용성, data = s))[2]\n  b <- coef(lm(직무몰입 ~ 기술수용성 + AI리터러시, data = s))[3]\n  ind[k] <- a * b\n}\na0 <- coef(lm(AI리터러시 ~ 기술수용성, data = df))[2]\nb0 <- coef(lm(직무몰입 ~ 기술수용성 + AI리터러시, data = df))[3]\nround(unname(a0 * b0), 3)                     # 간접효과 점추정\nround(sd(ind), 3)                             # Boot.SE\nround(quantile(ind, c(.025, .975)), 3)        # Boot.LLCI, Boot.ULCI\n", "cap1": "df <- read.csv(\"hr_capstone_turnover_500.csv\", fileEncoding = \"UTF-8-BOM\")\nstr(df)\nround(mean(df$퇴사) * 100, 1)                    # 전체 퇴사율(%)\ntable(df$부서, df$직급)\naggregate(cbind(연봉, 만족도, 초과근무, 근속개월) ~ 퇴사, data = df,\n          FUN = function(x) round(mean(x), 1))\nt.test(만족도 ~ 퇴사, data = df)\n", "cap2": "df <- read.csv(\"hr_capstone_turnover_500.csv\", fileEncoding = \"UTF-8-BOM\")\ntab <- table(df$부서, df$퇴사)\nround(prop.table(tab, margin = 1) * 100, 1)      # 부서별 퇴사율(%)\nres <- chisq.test(tab)\nres\nround(res$stdres, 2)                             # |값| > 1.96 인 칸 찾기\neffectsize::cramers_v(tab, adjust = FALSE)\nchisq.test(table(df$직급, df$퇴사))\n", "cap3": "df <- read.csv(\"hr_capstone_turnover_500.csv\", fileEncoding = \"UTF-8-BOM\")\ndf$부서 <- relevel(factor(df$부서), ref = \"경영지원\")\ndf$직급 <- factor(df$직급, levels = c(\"사원\", \"대리\", \"과장이상\"))\ndf$연봉_천만 <- df$연봉 / 1000                   # 만원 → 1,000만 원 단위\nm <- glm(퇴사 ~ 만족도 + 연봉_천만 + 초과근무 + 부서 + 직급, data = df, family = binomial)\nround(summary(m)$coefficients, 4)\nround(exp(cbind(OR = coef(m), confint.default(m))), 3)\ncar::vif(m)\nperformance::r2_nagelkerke(m)\ntable(예측 = fitted(m) >= .5, 실제 = df$퇴사)\nround(c(정확도 = mean((fitted(m) >= .5) == df$퇴사), 기저율 = 1 - mean(df$퇴사)), 3)\nmarginaleffects::avg_slopes(m, variables = \"만족도\")   # 만족도 1점당 퇴사 확률 변화\n", "cap4": "library(survival)\ndf <- read.csv(\"hr_capstone_turnover_500.csv\", fileEncoding = \"UTF-8-BOM\")\ndf$부서 <- relevel(factor(df$부서), ref = \"경영지원\")\ndf$직급 <- factor(df$직급, levels = c(\"사원\", \"대리\", \"과장이상\"))\ndf$연봉_천만 <- df$연봉 / 1000\nfit <- survfit(Surv(근속개월, 퇴사) ~ 부서, data = df)\nfit\nsummary(fit, times = c(12, 24))                  # 12·24개월 재직 확률\nsurvdiff(Surv(근속개월, 퇴사) ~ 부서, data = df)\ncox <- coxph(Surv(근속개월, 퇴사) ~ 만족도 + 연봉_천만 + 초과근무 + 부서 + 직급, data = df)\nround(summary(cox)$conf.int[, c(1, 3, 4)], 3)   # HR과 95% CI\nround(summary(cox)$coefficients[, 5], 4)        # p\ncox.zph(cox)\n", "cfa": "library(psych)\nax <- read.csv(\"hr_ai_anxiety_315.csv\", fileEncoding = \"UTF-8-BOM\")\nitems <- ax[, 5:13]                              # AI 불안 9문항\nround(KMO(items)$MSA, 3)\ncortest.bartlett(cor(items), n = nrow(items))\nset.seed(2026)\nfa.parallel(items, fm = \"minres\", fa = \"both\", plot = FALSE)\nefa <- fa(items, nfactors = 3, rotate = \"oblimin\", fm = \"minres\")\nprint(efa$loadings, cutoff = .3)\nlibrary(lavaan)\ndf <- read.csv(\"hr_paper_345.csv\", fileEncoding = \"UTF-8-BOM\")\nm1 <- \"유용성 =~ TA1 + TA2 + TA3 + TA4\n       용이성 =~ TA5 + TA6 + TA7 + TA8\"\nfit1 <- cfa(m1, data = df)\nidx <- c(\"chisq\", \"df\", \"pvalue\", \"cfi\", \"tli\", \"rmsea\", \"srmr\")\nround(fitMeasures(fit1, idx), 3)\nhead(modindices(fit1, sort. = TRUE)[, c(\"lhs\", \"op\", \"rhs\", \"mi\")], 3)\nfit2 <- cfa(paste(m1, \"\\n TA1 ~~ TA2\"), data = df)  # 내용 근거가 있을 때만\nround(fitMeasures(fit2, idx), 3)\nstd <- standardizedSolution(fit2)\nstd[std$op == \"=~\", c(\"lhs\", \"rhs\", \"est.std\")]\n", "chisq": "df <- read.csv(\"hr_turnover_dept_1000.csv\", fileEncoding = \"UTF-8-BOM\")\ntab <- table(df$부서, df$이직여부)\ntab\nround(prop.table(tab, margin = 1) * 100, 1)      # 부서별 이직률(%)\nres <- chisq.test(tab)                           # 2×2 표: Yates 보정 적용\nres\nround(res$stdres, 2)                             # 표준화 잔차\nchisq.test(tab, correct = FALSE)\neffectsize::phi(tab, adjust = FALSE)\n# 직급별로 나눠 보기 (심슨의 역설)\nst <- xtabs(~ 부서 + 이직여부 + 직급, data = df)\nround(prop.table(st, margin = c(1, 3))[, \"이직\", ] * 100, 1)\nmantelhaen.test(st)\n", "corr": "df <- read.csv(\"hr_paper_345.csv\", fileEncoding = \"UTF-8-BOM\")\ncor.test(df$기술수용성, df$직무몰입)\nround(cor(df[, c(\"기술수용성\", \"직무몰입\", \"AI리터러시\")]), 3)\nround(cor(df$기술수용성, df$직무몰입, method = \"spearman\"), 3)\n", "descr": "df <- read.csv(\"hr_paper_345.csv\", fileEncoding = \"UTF-8-BOM\")\ntable(df$직급); round(prop.table(table(df$직급)) * 100, 1)\nround(c(M = mean(df$연령), SD = sd(df$연령)), 1)\nd <- psych::describe(df[, c(\"기술수용성\", \"직무몰입\", \"AI리터러시\")])\nround(d[, c(\"n\", \"mean\", \"sd\", \"skew\", \"kurtosis\")], 3)\n", "kmeans": "df <- read.csv(\"hr_culture_200.csv\", fileEncoding = \"UTF-8-BOM\")\nvars <- c(\"자율성\", \"도전성\", \"절차준수\", \"관계협력\")\nX <- scale(df[, vars])\nset.seed(2026)\nkm <- kmeans(X, centers = 3, nstart = 25)\nkm$size\naggregate(df[, vars], list(군집 = km$cluster), function(x) round(mean(x), 2))\ntable(군집 = km$cluster, 부서 = df$부서)\nwss <- sapply(1:6, function(k) { set.seed(2026); kmeans(X, k, nstart = 25)$tot.withinss })\nround(wss, 1)                                    # 엘보우: K = 1~6\nlibrary(cluster)\nsil <- sapply(2:6, function(k) { set.seed(2026)\n  mean(silhouette(kmeans(X, k, nstart = 25)$cluster, dist(X))[, 3]) })\nround(sil, 3)                                    # 평균 실루엣: K = 2~6\n", "logit": "df <- read.csv(\"hr_performance_700.csv\", fileEncoding = \"UTF-8-BOM\")\ndf$학력 <- factor(df$학력)              # 1 = 고졸 이하(기준), 2 = 학사, 3 = 석사 이상\ndf$연봉_천만 <- df$연봉 / 10000          # 천원 단위로 가정 → 1,000만 원 단위\nm <- glm(고성과 ~ 조직적합도 + 직무만족도 + 나이 + 학력 + 성별 + 연봉_천만 +\n           근태사고율 + 결혼여부 + 근무시간 + 리더역량 + 연차,\n         data = df, family = binomial)\nround(summary(m)$coefficients, 4)\nround(exp(cbind(OR = coef(m), confint.default(m))), 3)\ncar::vif(m)\nm0 <- glm(고성과 ~ 1, data = df, family = binomial)\nanova(m0, m, test = \"Chisq\")                      # 우도비 χ²\nperformance::r2_nagelkerke(m)\nperformance::performance_hosmer(m, n_bins = 10)  # Hosmer-Lemeshow\ntable(예측 = fitted(m) >= .5, 실제 = df$고성과)\npROC::auc(df$고성과, fitted(m), quiet = TRUE)\n", "mediation": "df <- read.csv(\"hr_paper_345.csv\", fileEncoding = \"UTF-8-BOM\")\nround(summary(lm(직무몰입 ~ 기술수용성, data = df))$coefficients, 4)               # c\nround(summary(lm(AI리터러시 ~ 기술수용성, data = df))$coefficients, 4)             # a\nround(summary(lm(직무몰입 ~ 기술수용성 + AI리터러시, data = df))$coefficients, 4)  # c', b\nlibrary(lavaan)\nm <- \"AI리터러시 ~ a * 기술수용성\n      직무몰입   ~ cp * 기술수용성 + b * AI리터러시\n      indirect := a * b\n      total    := cp + a * b\"\nset.seed(2026)\nfit <- sem(m, data = df, se = \"bootstrap\", bootstrap = 5000)\npe <- parameterEstimates(fit, boot.ci.type = \"perc\")\npe[pe$label != \"\", c(\"label\", \"est\", \"se\", \"ci.lower\", \"ci.upper\")]\n", "ordinal": "df <- read.csv(\"hr_ai_anxiety_315.csv\", fileEncoding = \"UTF-8-BOM\")\ndf$AI사용수준 <- cut(df$AI사용, breaks = c(0, 3, 4, 7),\n                    labels = c(\"낮음\", \"보통\", \"높음\"), ordered_result = TRUE)\ntable(df$AI사용수준)\nm <- MASS::polr(AI사용수준 ~ 학습불안 + 직무대체불안 + 프라이버시불안, data = df, Hess = TRUE)\nct <- coef(summary(m))\nround(cbind(ct, p = 2 * pnorm(-abs(ct[, \"t value\"]))), 4)\nround(exp(coef(m)), 3)                              # 누적 오즈비\n# brant::brant(m)  # 비례오즈 가정 검정(brant 패키지 설치 후). 출력은 생략\ndf$교육선택 <- relevel(factor(df$교육선택), ref = \"C\")  # 다항: 기준 범주 C\nm2 <- nnet::multinom(교육선택 ~ 연령, data = df, trace = FALSE)\nround(exp(coef(m2)), 3)\n", "paired": "df <- read.csv(\"hr_training_prepost.csv\", fileEncoding = \"UTF-8-BOM\")\nedu <- subset(df, 집단 == \"교육\")                 # 교육집단 40명만\nt.test(edu$사후, edu$사전, paired = TRUE)\ndiff <- edu$사후 - edu$사전\nround(mean(diff) / sd(diff), 3)                  # Cohen's d_z\n# 비교집단까지 포함한 ANCOVA: 사전 점수를 통제한 사후 점수 차이\nm <- lm(사후 ~ 집단 + 사전, data = df)\ncar::Anova(m, type = 3)\nemmeans::emmeans(m, ~ 집단)\n", "posthoc": "df <- read.csv(\"hr_ai_anxiety_315.csv\", fileEncoding = \"UTF-8-BOM\")\nlibrary(rstatix)\ngames_howell_test(df, 프라이버시불안 ~ 연령대)\ncohens_d(df, 프라이버시불안 ~ 연령대)                 # 쌍별 효과크기\n", "regression": "df <- read.csv(\"hr_regression_200.csv\", fileEncoding = \"UTF-8-BOM\")\nm <- lm(성과 ~ 교육시간 + 근속연수 + 성실성, data = df)\nsummary(m)\ncar::vif(m)\nm_std <- lm(scale(성과) ~ scale(교육시간) + scale(근속연수) + scale(성실성), data = df)\nround(coef(m_std), 3)                            # 표준화 계수 β\n", "survival": "library(survival)\ndf <- read.csv(\"hr_survival_300.csv\", fileEncoding = \"UTF-8-BOM\")\nfit <- survfit(Surv(근속개월, 퇴사) ~ 직군, data = df)\nfit                                              # 사건 수와 중앙 생존기간\nsummary(fit, times = c(12, 24, 36))\nsurvdiff(Surv(근속개월, 퇴사) ~ 직군, data = df)   # 로그순위 검정\ncox <- coxph(Surv(근속개월, 퇴사) ~ 직군 + 연봉인상률 + 직무만족, data = df)\nsummary(cox)\ncox.zph(cox)                                     # 비례위험 가정 (p ≥ .05면 충족)\n", "text": "library(igraph)\nedges <- read.csv(\"hr_network_edges.csv\", fileEncoding = \"UTF-8-BOM\")\ng <- graph_from_data_frame(edges, directed = FALSE)\nsort(degree(g), decreasing = TRUE)               # 연결 중심성\nround(sort(betweenness(g), decreasing = TRUE), 1) # 매개 중심성\nround(edge_density(g), 3)\ncomponents(delete_vertices(g, \"직원A\"))$no       # 직원A가 빠지면 몇 덩어리?\n", "ttest": "df <- read.csv(\"hr_ttest_919.csv\", fileEncoding = \"UTF-8-BOM\")\ntable(df$성과집단)\naggregate(성실성 ~ 성과집단, data = df, FUN = function(x) round(c(M = mean(x), SD = sd(x)), 3))\nt.test(성실성 ~ 성과집단, data = df, var.equal = FALSE)   # Welch's t-test\nlibrary(effectsize)\ncohens_d(성실성 ~ 성과집단, data = df)\nt.test(외향성 ~ 성과집단, data = df)                      # 유의하지만 효과는 작은 변수\ncohens_d(외향성 ~ 성과집단, data = df)\n"};
+const PRACTICE_OUT = {"alpha": "> library(psych)\n> df <- read.csv(\"hr_paper_345.csv\", fileEncoding = \"UTF-8-BOM\")\n> round(alpha(df[, paste0(\"TA\", 1:4)])$total[, 1:2], 3)    # 유용성 4문항\n raw_alpha std.alpha\n     0.913     0.913\n> round(alpha(df[, paste0(\"TA\", 5:8)])$total[, 1:2], 3)    # 용이성 4문항\n raw_alpha std.alpha\n     0.894     0.894\n> round(alpha(df[, paste0(\"TA\", 1:8)])$total[, 1:2], 3)    # 기술수용성 전체\n raw_alpha std.alpha\n     0.878     0.878\n> round(alpha(df[, paste0(\"AL\", 1:12)])$total[, 1:2], 3)   # AI 리터러시 전체\n raw_alpha std.alpha\n     0.858     0.858\n> # 평가자 간 신뢰도 (면접 평정)\n> r <- read.csv(\"hr_interview_ratings.csv\", fileEncoding = \"UTF-8-BOM\")\n> cohen.kappa(r[, c(\"면접관A\", \"면접관B\")])                # κ와 가중 κ\nCall: cohen.kappa1(x = x, w = w, n.obs = n.obs, alpha = alpha, levels = levels)\n\nCohen Kappa and Weighted Kappa correlation coefficients and confidence boundaries\n                 lower estimate upper\nunweighted kappa   0.3     0.49  0.69\nweighted kappa     0.6     0.74  0.89\n\n Number of subjects = 40\n> ICC(r[, c(\"면접관A\", \"면접관B\", \"면접관C\")], lmer = FALSE)\nCall: ICC(x = r[, c(\"면접관A\", \"면접관B\", \"면접관C\")], lmer = FALSE)\n\nIntraclass correlation coefficients\n                         type  ICC   F df1 df2       p lower bound upper bound\nSingle_raters_absolute   ICC1 0.65 6.5  39  80 8.4e-13        0.49        0.78\nSingle_random_raters     ICC2 0.65 7.6  39  78 2.2e-14        0.48        0.79\nSingle_fixed_raters      ICC3 0.69 7.6  39  78 2.2e-14        0.54        0.81\nAverage_raters_absolute ICC1k 0.85 6.5  39  80 8.4e-13        0.74        0.91\nAverage_random_raters   ICC2k 0.85 7.6  39  78 2.2e-14        0.74        0.92\nAverage_fixed_raters    ICC3k 0.87 7.6  39  78 2.2e-14        0.78        0.93\n\n Number of subjects = 40     Number of Judges =  3\nSee the help file for a discussion of the other 4 McGraw and Wong estimates,", "anova": "> df <- read.csv(\"hr_ai_anxiety_315.csv\", fileEncoding = \"UTF-8-BOM\")\n> aggregate(프라이버시불안 ~ 연령대, data = df,\n+           FUN = function(x) round(c(n = length(x), M = mean(x), SD = sd(x)), 3))\n  연령대 프라이버시불안.n 프라이버시불안.M 프라이버시불안.SD\n1   20대           67.000            4.448             1.374\n2   30대           64.000            5.010             1.348\n3   40대           60.000            5.333             1.105\n4   50대           62.000            5.194             1.141\n5   60대           62.000            5.269             1.020\n> oneway.test(학습불안 ~ 연령대, data = df, var.equal = FALSE)        # Welch's ANOVA\n\n\tOne-way analysis of means (not assuming equal variances)\n\ndata:  학습불안 and 연령대\nF = 1.659, num df = 4.00, denom df = 154.24, p-value = 0.1623\n\n> oneway.test(직무대체불안 ~ 연령대, data = df, var.equal = FALSE)\n\n\tOne-way analysis of means (not assuming equal variances)\n\ndata:  직무대체불안 and 연령대\nF = 0.5967, num df = 4.00, denom df = 154.48, p-value = 0.6656\n\n> oneway.test(프라이버시불안 ~ 연령대, data = df, var.equal = FALSE)\n\n\tOne-way analysis of means (not assuming equal variances)\n\ndata:  프라이버시불안 and 연령대\nF = 4.9791, num df = 4.0, denom df = 154.8, p-value = 0.0008392\n\n> summary(aov(프라이버시불안 ~ 연령대, data = df))                   # 전통적 ANOVA\n             Df Sum Sq Mean Sq F value   Pr(>F)\n연령대        4   33.4   8.357   5.706 0.000192 ***\nResiduals   310  454.0   1.464\n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1", "boot": "> df <- read.csv(\"hr_paper_345.csv\", fileEncoding = \"UTF-8-BOM\")\n> set.seed(2026)\n> B <- 5000; ind <- numeric(B)\n> for (k in 1:B) {\n+   s <- df[sample(nrow(df), replace = TRUE), ]\n+   a <- coef(lm(AI리터러시 ~ 기술수용성, data = s))[2]\n+   b <- coef(lm(직무몰입 ~ 기술수용성 + AI리터러시, data = s))[3]\n+   ind[k] <- a * b\n+ }\n> a0 <- coef(lm(AI리터러시 ~ 기술수용성, data = df))[2]\n> b0 <- coef(lm(직무몰입 ~ 기술수용성 + AI리터러시, data = df))[3]\n> round(unname(a0 * b0), 3)                     # 간접효과 점추정\n[1] 0.175\n> round(sd(ind), 3)                             # Boot.SE\n[1] 0.028\n> round(quantile(ind, c(.025, .975)), 3)        # Boot.LLCI, Boot.ULCI\n 2.5% 97.5%\n0.123 0.233", "cap1": "> df <- read.csv(\"hr_capstone_turnover_500.csv\", fileEncoding = \"UTF-8-BOM\")\n> str(df)\n'data.frame':\t500 obs. of  9 variables:\n $ ID      : int  1 2 3 4 5 6 7 8 9 10 ...\n $ 부서    : chr  \"영업\" \"생산\" \"생산\" \"경영지원\" ...\n $ 직급    : chr  \"사원\" \"과장이상\" \"과장이상\" \"사원\" ...\n $ 성별    : chr  \"여\" \"여\" \"남\" \"여\" ...\n $ 연봉    : int  3730 5720 6040 3290 4160 3470 4380 3890 3620 4170 ...\n $ 만족도  : num  3.5 3.6 3.9 2.5 3.8 3.9 3.4 4.4 3.8 2.6 ...\n $ 초과근무: int  16 12 10 14 17 37 20 20 29 26 ...\n $ 근속개월: int  2 21 22 45 19 11 7 16 20 17 ...\n $ 퇴사    : int  1 0 1 0 0 0 0 1 1 1 ...\n> round(mean(df$퇴사) * 100, 1)                    # 전체 퇴사율(%)\n[1] 35.6\n> table(df$부서, df$직급)\n\n           과장이상 대리 사원\n  개발           32   46   72\n  경영지원       24   30   36\n  생산           33   31   56\n  영업           31   43   66\n> aggregate(cbind(연봉, 만족도, 초과근무, 근속개월) ~ 퇴사, data = df,\n+           FUN = function(x) round(mean(x), 1))\n  퇴사   연봉 만족도 초과근무 근속개월\n1    0 4705.8    3.4     19.7     29.8\n2    1 4094.1    3.1     21.7     16.7\n> t.test(만족도 ~ 퇴사, data = df)\n\n\tWelch Two Sample t-test\n\ndata:  만족도 by 퇴사\nt = 4.4262, df = 368.16, p-value = 1.265e-05\nalternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0\n95 percent confidence interval:\n 0.1680524 0.4367420\nsample estimates:\nmean in group 0 mean in group 1\n       3.407453        3.105056", "cap2": "> df <- read.csv(\"hr_capstone_turnover_500.csv\", fileEncoding = \"UTF-8-BOM\")\n> tab <- table(df$부서, df$퇴사)\n> round(prop.table(tab, margin = 1) * 100, 1)      # 부서별 퇴사율(%)\n\n              0    1\n  개발     65.3 34.7\n  경영지원 81.1 18.9\n  생산     65.0 35.0\n  영업     52.1 47.9\n> res <- chisq.test(tab)\n> res\n\n\tPearson's Chi-squared test\n\ndata:  tab\nX-squared = 20.213, df = 3, p-value = 0.0001533\n\n> round(res$stdres, 2)                             # |값| > 1.96 인 칸 찾기\n\n               0     1\n  개발      0.29 -0.29\n  경영지원  3.66 -3.66\n  생산      0.16 -0.16\n  영업     -3.57  3.57\n> effectsize::cramers_v(tab, adjust = FALSE)\nCramer's V |       95% CI\n-------------------------\n0.20       | [0.11, 1.00]\n\n- One-sided CIs: upper bound fixed at [1.00].\n> chisq.test(table(df$직급, df$퇴사))\n\n\tPearson's Chi-squared test\n\ndata:  table(df$직급, df$퇴사)\nX-squared = 48.058, df = 2, p-value = 3.667e-11", "cap3": "> df <- read.csv(\"hr_capstone_turnover_500.csv\", fileEncoding = \"UTF-8-BOM\")\n> df$부서 <- relevel(factor(df$부서), ref = \"경영지원\")\n> df$직급 <- factor(df$직급, levels = c(\"사원\", \"대리\", \"과장이상\"))\n> df$연봉_천만 <- df$연봉 / 1000                   # 만원 → 1,000만 원 단위\n> m <- glm(퇴사 ~ 만족도 + 연봉_천만 + 초과근무 + 부서 + 직급, data = df, family = binomial)\n> round(summary(m)$coefficients, 4)\n             Estimate Std. Error z value Pr(>|z|)\n(Intercept)    1.5556     1.0345  1.5038   0.1326\n만족도        -0.6340     0.1439 -4.4068   0.0000\n연봉_천만     -0.2272     0.2311 -0.9830   0.3256\n초과근무       0.0246     0.0117  2.0983   0.0359\n부서개발       0.7671     0.3487  2.2000   0.0278\n부서생산       0.9121     0.3540  2.5767   0.0100\n부서영업       1.3543     0.3461  3.9135   0.0001\n직급대리      -0.5451     0.3191 -1.7081   0.0876\n직급과장이상  -1.5600     0.5898 -2.6449   0.0082\n> round(exp(cbind(OR = coef(m), confint.default(m))), 3)\n                OR 2.5 % 97.5 %\n(Intercept)  4.738 0.624 35.988\n만족도       0.530 0.400  0.703\n연봉_천만    0.797 0.507  1.253\n초과근무     1.025 1.002  1.049\n부서개발     2.154 1.087  4.265\n부서생산     2.489 1.244  4.982\n부서영업     3.874 1.966  7.634\n직급대리     0.580 0.310  1.084\n직급과장이상 0.210 0.066  0.668\n> car::vif(m)\n              GVIF Df GVIF^(1/(2*Df))\n만족도    1.019735  1        1.009819\n연봉_천만 3.797325  1        1.948673\n초과근무  1.043327  1        1.021434\n부서      1.130760  3        1.020693\n직급      3.799012  2        1.396104\n> performance::r2_nagelkerke(m)\nNagelkerke's R2\n      0.2464012\n> table(예측 = fitted(m) >= .5, 실제 = df$퇴사)\n       실제\n예측    0   1\n  FALSE 280  94\n  TRUE   42  84\n> round(c(정확도 = mean((fitted(m) >= .5) == df$퇴사), 기저율 = 1 - mean(df$퇴사)), 3)\n정확도 기저율\n 0.728  0.644\n> marginaleffects::avg_slopes(m, variables = \"만족도\")   # 만족도 1점당 퇴사 확률 변화\n\n   Term Estimate Std. Error     z Pr(>|z|)    S  2.5 %  97.5 %\n 만족도   -0.119      0.025 -4.75   <0.001 18.9 -0.168 -0.0697\n\nColumns: term, estimate, std.error, statistic, p.value, s.value, conf.low, conf.high\nType:  response", "cap4": "> library(survival)\n> df <- read.csv(\"hr_capstone_turnover_500.csv\", fileEncoding = \"UTF-8-BOM\")\n> df$부서 <- relevel(factor(df$부서), ref = \"경영지원\")\n> df$직급 <- factor(df$직급, levels = c(\"사원\", \"대리\", \"과장이상\"))\n> df$연봉_천만 <- df$연봉 / 1000\n> fit <- survfit(Surv(근속개월, 퇴사) ~ 부서, data = df)\n> fit\nCall: survfit(formula = Surv(근속개월, 퇴사) ~ 부서, data = df)\n\n                n events median 0.95LCL 0.95UCL\n부서=경영지원  90     17     NA      NA      NA\n부서=개발     150     52     NA      38      NA\n부서=생산     120     42     46      38      NA\n부서=영업     140     67     28      24      NA\n> summary(fit, times = c(12, 24))                  # 12·24개월 재직 확률\nCall: survfit(formula = Surv(근속개월, 퇴사) ~ 부서, data = df)\n\n                부서=경영지원\n time n.risk n.event survival std.err lower 95% CI upper 95% CI\n   12     75       6    0.933  0.0265        0.882        0.986\n   24     46       7    0.832  0.0431        0.752        0.921\n\n                부서=개발\n time n.risk n.event survival std.err lower 95% CI upper 95% CI\n   12    111      27    0.813  0.0326        0.751        0.879\n   24     72      13    0.702  0.0402        0.628        0.786\n\n                부서=생산\n time n.risk n.event survival std.err lower 95% CI upper 95% CI\n   12    100      15    0.875  0.0302        0.818        0.936\n   24     61       9    0.781  0.0402        0.706        0.864\n\n                부서=영업\n time n.risk n.event survival std.err lower 95% CI upper 95% CI\n   12     97      33    0.758  0.0368        0.689        0.834\n   24     60      20    0.580  0.0450        0.498        0.676\n\n> survdiff(Surv(근속개월, 퇴사) ~ 부서, data = df)\nCall:\nsurvdiff(formula = Surv(근속개월, 퇴사) ~ 부서, data = df)\n\n                N Observed Expected (O-E)^2/E (O-E)^2/V\n부서=경영지원  90       17     35.2    9.3880   11.8882\n부서=개발     150       52     52.9    0.0156    0.0225\n부서=생산     120       42     45.4    0.2515    0.3428\n부서=영업     140       67     44.5   11.3232   15.3700\n\n Chisq= 21.4  on 3 degrees of freedom, p= 9e-05\n> cox <- coxph(Surv(근속개월, 퇴사) ~ 만족도 + 연봉_천만 + 초과근무 + 부서 + 직급, data = df)\n> round(summary(cox)$conf.int[, c(1, 3, 4)], 3)   # HR과 95% CI\n             exp(coef) lower .95 upper .95\n만족도           0.563     0.459     0.692\n연봉_천만        0.869     0.619     1.218\n초과근무         1.020     1.003     1.038\n부서개발         1.711     0.973     3.008\n부서생산         1.843     1.044     3.251\n부서영업         2.708     1.574     4.660\n직급대리         0.569     0.360     0.899\n직급과장이상     0.218     0.087     0.546\n> round(summary(cox)$coefficients[, 5], 4)        # p\n      만족도    연봉_천만     초과근무     부서개발     부서생산     부서영업\n      0.0000       0.4145       0.0195       0.0624       0.0348       0.0003\n    직급대리 직급과장이상\n      0.0157       0.0011\n> cox.zph(cox)\n          chisq df    p\n만족도    1.016  1 0.31\n연봉_천만 0.214  1 0.64\n초과근무  1.470  1 0.23\n부서      1.742  3 0.63\n직급      0.665  2 0.72\nGLOBAL    4.841  8 0.77", "cfa": "> library(psych)\n> ax <- read.csv(\"hr_ai_anxiety_315.csv\", fileEncoding = \"UTF-8-BOM\")\n> items <- ax[, 5:13]                              # AI 불안 9문항\n> round(KMO(items)$MSA, 3)\n[1] 0.83\n> cortest.bartlett(cor(items), n = nrow(items))\n$chisq\n[1] 1637.765\n\n$p.value\n[1] 2.223295e-321\n\n$df\n[1] 36\n\n> set.seed(2026)\n> fa.parallel(items, fm = \"minres\", fa = \"both\", plot = FALSE)\nParallel analysis suggests that the number of factors =  3  and the number of components =  2\n> efa <- fa(items, nfactors = 3, rotate = \"oblimin\", fm = \"minres\")\n> print(efa$loadings, cutoff = .3)\n\nLoadings:\n                MR2    MR1    MR3\n학습불안1        0.819\n학습불안2        0.951\n학습불안3        0.802\n직무대체불안1                  0.917\n직무대체불안2                  0.769\n직무대체불안3                  0.675\n프라이버시불안1         0.793\n프라이버시불안2         0.872\n프라이버시불안3         0.856\n\n                 MR2   MR1   MR3\nSS loadings    2.220 2.125 1.892\nProportion Var 0.247 0.236 0.210\nCumulative Var 0.247 0.483 0.693\n> library(lavaan)\n> df <- read.csv(\"hr_paper_345.csv\", fileEncoding = \"UTF-8-BOM\")\n> m1 <- \"유용성 =~ TA1 + TA2 + TA3 + TA4\n+        용이성 =~ TA5 + TA6 + TA7 + TA8\"\n> fit1 <- cfa(m1, data = df)\n> idx <- c(\"chisq\", \"df\", \"pvalue\", \"cfi\", \"tli\", \"rmsea\", \"srmr\")\n> round(fitMeasures(fit1, idx), 3)\n chisq     df pvalue    cfi    tli  rmsea   srmr\n44.797 19.000  0.001  0.986  0.980  0.063  0.033\n> head(modindices(fit1, sort. = TRUE)[, c(\"lhs\", \"op\", \"rhs\", \"mi\")], 3)\n   lhs op rhs     mi\n28 TA1 ~~ TA2 35.239\n41 TA3 ~~ TA4 24.511\n29 TA1 ~~ TA3  9.411\n> fit2 <- cfa(paste(m1, \"\\n TA1 ~~ TA2\"), data = df)  # 내용 근거가 있을 때만\n> round(fitMeasures(fit2, idx), 3)\n chisq     df pvalue    cfi    tli  rmsea   srmr\n12.507 18.000  0.820  1.000  1.005  0.000  0.014\n> std <- standardizedSolution(fit2)\n> std[std$op == \"=~\", c(\"lhs\", \"rhs\", \"est.std\")]\n     lhs rhs est.std\n1 유용성 TA1   0.834\n2 유용성 TA2   0.836\n3 유용성 TA3   0.844\n4 유용성 TA4   0.827\n5 용이성 TA5   0.814\n6 용이성 TA6   0.834\n7 용이성 TA7   0.806\n8 용이성 TA8   0.839", "chisq": "> df <- read.csv(\"hr_turnover_dept_1000.csv\", fileEncoding = \"UTF-8-BOM\")\n> tab <- table(df$부서, df$이직여부)\n> tab\n\n         이직 재직\n  연구부   42  458\n  영업부   84  416\n> round(prop.table(tab, margin = 1) * 100, 1)      # 부서별 이직률(%)\n\n         이직 재직\n  연구부  8.4 91.6\n  영업부 16.8 83.2\n> res <- chisq.test(tab)                           # 2×2 표: Yates 보정 적용\n> res\n\n\tPearson's Chi-squared test with Yates' continuity correction\n\ndata:  tab\nX-squared = 15.265, df = 1, p-value = 9.345e-05\n\n> round(res$stdres, 2)                             # 표준화 잔차\n\n         이직 재직\n  연구부   -4    4\n  영업부    4   -4\n> chisq.test(tab, correct = FALSE)\n\n\tPearson's Chi-squared test\n\ndata:  tab\nX-squared = 16.018, df = 1, p-value = 6.273e-05\n\n> effectsize::phi(tab, adjust = FALSE)\nPhi  |       95% CI\n-------------------\n0.13 | [0.07, 1.00]\n\n- One-sided CIs: upper bound fixed at [1.00].\n> # 직급별로 나눠 보기 (심슨의 역설)\n> st <- xtabs(~ 부서 + 이직여부 + 직급, data = df)\n> round(prop.table(st, margin = c(1, 3))[, \"이직\", ] * 100, 1)\n        직급\n부서   관리자 사원\n  연구부      5   22\n  영업부      4   20\n> mantelhaen.test(st)\n\n\tMantel-Haenszel chi-squared test with continuity correction\n\ndata:  st\nMantel-Haenszel X-squared = 0.21643, df = 1, p-value = 0.6418\nalternative hypothesis: true common odds ratio is not equal to 1\n95 percent confidence interval:\n 0.7163282 1.8611463\nsample estimates:\ncommon odds ratio\n         1.154639", "corr": "> df <- read.csv(\"hr_paper_345.csv\", fileEncoding = \"UTF-8-BOM\")\n> cor.test(df$기술수용성, df$직무몰입)\n\n\tPearson's product-moment correlation\n\ndata:  df$기술수용성 and df$직무몰입\nt = 10.31, df = 343, p-value < 2.2e-16\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n 0.4014357 0.5630752\nsample estimates:\n      cor\n0.4864062\n\n> round(cor(df[, c(\"기술수용성\", \"직무몰입\", \"AI리터러시\")]), 3)\n           기술수용성 직무몰입 AI리터러시\n기술수용성      1.000    0.486      0.424\n직무몰입        0.486    1.000      0.570\nAI리터러시      0.424    0.570      1.000\n> round(cor(df$기술수용성, df$직무몰입, method = \"spearman\"), 3)\n[1] 0.44", "descr": "> df <- read.csv(\"hr_paper_345.csv\", fileEncoding = \"UTF-8-BOM\")\n> table(df$직급); round(prop.table(table(df$직급)) * 100, 1)\n\n    과장 대리이하     부장     임원     차장\n      52       28      138       41       86\n\n    과장 대리이하     부장     임원     차장\n    15.1      8.1     40.0     11.9     24.9\n> round(c(M = mean(df$연령), SD = sd(df$연령)), 1)\n   M   SD\n50.4  5.7\n> d <- psych::describe(df[, c(\"기술수용성\", \"직무몰입\", \"AI리터러시\")])\n> round(d[, c(\"n\", \"mean\", \"sd\", \"skew\", \"kurtosis\")], 3)\n             n mean   sd  skew kurtosis\n기술수용성 345 3.50 0.65 -0.24     0.05\n직무몰입   345 2.80 0.61  0.20    -0.17\nAI리터러시 345 3.44 0.44  0.15    -0.05", "kmeans": "> df <- read.csv(\"hr_culture_200.csv\", fileEncoding = \"UTF-8-BOM\")\n> vars <- c(\"자율성\", \"도전성\", \"절차준수\", \"관계협력\")\n> X <- scale(df[, vars])\n> set.seed(2026)\n> km <- kmeans(X, centers = 3, nstart = 25)\n> km$size\n[1] 50 70 80\n> aggregate(df[, vars], list(군집 = km$cluster), function(x) round(mean(x), 2))\n  군집 자율성 도전성 절차준수 관계협력\n1    1   3.20   2.80     3.50     4.56\n2    2   4.56   4.48     2.20     3.10\n3    3   2.10   2.01     4.64     3.00\n> table(군집 = km$cluster, 부서 = df$부서)\n    부서\n군집 감사 개발 기획 영업 인사 재무\n   1    0   10   10   14   16    0\n   2    0   29   22   19    0    0\n   3   13    0    0   14   16   37\n> wss <- sapply(1:6, function(k) { set.seed(2026); kmeans(X, k, nstart = 25)$tot.withinss })\n> round(wss, 1)                                    # 엘보우: K = 1~6\n[1] 796.0 334.0 141.9 124.4 108.3 101.0\n> library(cluster)\n> sil <- sapply(2:6, function(k) { set.seed(2026)\n+   mean(silhouette(kmeans(X, k, nstart = 25)$cluster, dist(X))[, 3]) })\n> round(sil, 3)                                    # 평균 실루엣: K = 2~6\n[1] 0.531 0.586 0.448 0.321 0.304", "logit": "> df <- read.csv(\"hr_performance_700.csv\", fileEncoding = \"UTF-8-BOM\")\n> df$학력 <- factor(df$학력)              # 1 = 고졸 이하(기준), 2 = 학사, 3 = 석사 이상\n> df$연봉_천만 <- df$연봉 / 10000          # 천원 단위로 가정 → 1,000만 원 단위\n> m <- glm(고성과 ~ 조직적합도 + 직무만족도 + 나이 + 학력 + 성별 + 연봉_천만 +\n+            근태사고율 + 결혼여부 + 근무시간 + 리더역량 + 연차,\n+          data = df, family = binomial)\n> round(summary(m)$coefficients, 4)\n            Estimate Std. Error z value Pr(>|z|)\n(Intercept)  -6.7758     1.4194 -4.7736   0.0000\n조직적합도    0.5166     0.0900  5.7431   0.0000\n직무만족도    0.3385     0.1207  2.8042   0.0050\n나이          0.0354     0.0121  2.9275   0.0034\n학력2         1.0113     0.3378  2.9935   0.0028\n학력3         1.2213     0.3599  3.3936   0.0007\n성별M        -0.6565     0.1804 -3.6396   0.0003\n연봉_천만     0.3082     0.0358  8.6110   0.0000\n근태사고율  -17.1039     5.6271 -3.0396   0.0024\n결혼여부S    -0.2580     0.1820 -1.4177   0.1563\n근무시간      0.0063     0.0273  0.2312   0.8172\n리더역량     -0.0503     0.1242 -0.4051   0.6854\n연차          0.0036     0.0120  0.2975   0.7661\n> round(exp(cbind(OR = coef(m), confint.default(m))), 3)\n               OR 2.5 % 97.5 %\n(Intercept) 0.001 0.000  0.018\n조직적합도  1.676 1.405  2.000\n직무만족도  1.403 1.107  1.777\n나이        1.036 1.012  1.061\n학력2       2.749 1.418  5.331\n학력3       3.392 1.675  6.867\n성별M       0.519 0.364  0.739\n연봉_천만   1.361 1.269  1.460\n근태사고율  0.000 0.000  0.002\n결혼여부S   0.773 0.541  1.104\n근무시간    1.006 0.954  1.062\n리더역량    0.951 0.745  1.213\n연차        1.004 0.980  1.028\n> car::vif(m)\n               GVIF Df GVIF^(1/(2*Df))\n조직적합도 1.037796  1        1.018723\n직무만족도 1.019091  1        1.009501\n나이       1.013073  1        1.006515\n학력       1.027040  2        1.006693\n성별       1.013674  1        1.006814\n연봉_천만  1.061152  1        1.030122\n근태사고율 1.009197  1        1.004588\n결혼여부   1.026659  1        1.013242\n근무시간   1.021297  1        1.010592\n리더역량   1.020163  1        1.010031\n연차       1.033134  1        1.016432\n> m0 <- glm(고성과 ~ 1, data = df, family = binomial)\n> anova(m0, m, test = \"Chisq\")                      # 우도비 χ²\nAnalysis of Deviance Table\n\nModel 1: 고성과 ~ 1\nModel 2: 고성과 ~ 조직적합도 + 직무만족도 + 나이 + 학력 +\n    성별 + 연봉_천만 + 근태사고율 + 결혼여부 +\n    근무시간 + 리더역량 + 연차\n  Resid. Df Resid. Dev Df Deviance  Pr(>Chi)\n1       699     940.57\n2       687     744.26 12   196.31 < 2.2e-16 ***\n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n> performance::r2_nagelkerke(m)\nNagelkerke's R2\n      0.3308721\n> performance::performance_hosmer(m, n_bins = 10)  # Hosmer-Lemeshow\n# Hosmer-Lemeshow Goodness-of-Fit Test\n\n  Chi-squared: 13.778\n           df:  8\n      p-value:  0.088\n\n> table(예측 = fitted(m) >= .5, 실제 = df$고성과)\n       실제\n예측    0   1\n  FALSE 353 124\n  TRUE   69 154\n> pROC::auc(df$고성과, fitted(m), quiet = TRUE)\nArea under the curve: 0.7961", "mediation": "> df <- read.csv(\"hr_paper_345.csv\", fileEncoding = \"UTF-8-BOM\")\n> round(summary(lm(직무몰입 ~ 기술수용성, data = df))$coefficients, 4)               # c\n            Estimate Std. Error t value Pr(>|t|)\n(Intercept)   1.2178     0.1558  7.8151        0\n기술수용성    0.4518     0.0438 10.3102        0\n> round(summary(lm(AI리터러시 ~ 기술수용성, data = df))$coefficients, 4)             # a\n            Estimate Std. Error t value Pr(>|t|)\n(Intercept)   2.4318     0.1179 20.6196        0\n기술수용성    0.2878     0.0332  8.6768        0\n> round(summary(lm(직무몰입 ~ 기술수용성 + AI리터러시, data = df))$coefficients, 4)  # c', b\n            Estimate Std. Error t value Pr(>|t|)\n(Intercept)  -0.2596     0.2074 -1.2518   0.2115\n기술수용성    0.2770     0.0430  6.4359   0.0000\nAI리터러시    0.6075     0.0634  9.5757   0.0000\n> library(lavaan)\n> m <- \"AI리터러시 ~ a * 기술수용성\n+       직무몰입   ~ cp * 기술수용성 + b * AI리터러시\n+       indirect := a * b\n+       total    := cp + a * b\"\n> set.seed(2026)\n> fit <- sem(m, data = df, se = \"bootstrap\", bootstrap = 5000)\n> pe <- parameterEstimates(fit, boot.ci.type = \"perc\")\n> pe[pe$label != \"\", c(\"label\", \"est\", \"se\", \"ci.lower\", \"ci.upper\")]\n     label   est    se ci.lower ci.upper\n1        a 0.288 0.033    0.226    0.353\n2       cp 0.277 0.043    0.190    0.359\n3        b 0.608 0.065    0.484    0.738\n7 indirect 0.175 0.028    0.124    0.235\n8    total 0.452 0.042    0.368    0.532", "ordinal": "> df <- read.csv(\"hr_ai_anxiety_315.csv\", fileEncoding = \"UTF-8-BOM\")\n> df$AI사용수준 <- cut(df$AI사용, breaks = c(0, 3, 4, 7),\n+                     labels = c(\"낮음\", \"보통\", \"높음\"), ordered_result = TRUE)\n> table(df$AI사용수준)\n\n낮음 보통 높음\n  40   66  209\n> m <- MASS::polr(AI사용수준 ~ 학습불안 + 직무대체불안 + 프라이버시불안, data = df, Hess = TRUE)\n> ct <- coef(summary(m))\n> round(cbind(ct, p = 2 * pnorm(-abs(ct[, \"t value\"]))), 4)\n                 Value Std. Error t value      p\n학습불안       -0.1226     0.0977 -1.2549 0.2095\n직무대체불안    0.2316     0.1171  1.9777 0.0480\n프라이버시불안 -0.1513     0.1154 -1.3108 0.1899\n낮음|보통      -2.0587     0.5798 -3.5505 0.0004\n보통|높음      -0.7968     0.5665 -1.4067 0.1595\n> round(exp(coef(m)), 3)                              # 누적 오즈비\n      학습불안   직무대체불안 프라이버시불안\n         0.885          1.261          0.860\n> # brant::brant(m)  # 비례오즈 가정 검정(brant 패키지 설치 후). 출력은 생략\n> df$교육선택 <- relevel(factor(df$교육선택), ref = \"C\")  # 다항: 기준 범주 C\n> m2 <- nnet::multinom(교육선택 ~ 연령, data = df, trace = FALSE)\n> round(exp(coef(m2)), 3)\n  (Intercept)  연령\nA       0.068 1.065\nB       0.663 1.009", "paired": "> df <- read.csv(\"hr_training_prepost.csv\", fileEncoding = \"UTF-8-BOM\")\n> edu <- subset(df, 집단 == \"교육\")                 # 교육집단 40명만\n> t.test(edu$사후, edu$사전, paired = TRUE)\n\n\tPaired t-test\n\ndata:  edu$사후 and edu$사전\nt = 5.7049, df = 39, p-value = 1.331e-06\nalternative hypothesis: true mean difference is not equal to 0\n95 percent confidence interval:\n 0.2849645 0.5980355\nsample estimates:\nmean difference\n         0.4415\n\n> diff <- edu$사후 - edu$사전\n> round(mean(diff) / sd(diff), 3)                  # Cohen's d_z\n[1] 0.902\n> # 비교집단까지 포함한 ANCOVA: 사전 점수를 통제한 사후 점수 차이\n> m <- lm(사후 ~ 집단 + 사전, data = df)\n> car::Anova(m, type = 3)\nAnova Table (Type III tests)\n\nResponse: 사후\n             Sum Sq Df F value    Pr(>F)\n(Intercept)  6.4942  1  32.117 2.408e-07 ***\n집단         2.0977  1  10.374  0.001873 **\n사전        11.6105  1  57.419 6.592e-11 ***\nResiduals   15.5699 77\n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n> emmeans::emmeans(m, ~ 집단)\n 집단 emmean     SE df lower.CL upper.CL\n 교육   3.56 0.0711 77     3.42     3.70\n 비교   3.23 0.0711 77     3.09     3.38\n\nConfidence level used: 0.95", "posthoc": "> df <- read.csv(\"hr_ai_anxiety_315.csv\", fileEncoding = \"UTF-8-BOM\")\n> library(rstatix)\n> games_howell_test(df, 프라이버시불안 ~ 연령대)\n# A tibble: 10 × 8\n   .y.            group1 group2 estimate conf.low conf.high    p.adj p.adj.signif\n * <chr>          <chr>  <chr>     <dbl>    <dbl>     <dbl>    <dbl> <chr>\n 1 프라이버시불안 20대   30대     0.563   -0.0953     1.22  0.131    ns\n 2 프라이버시불안 20대   40대     0.886    0.276      1.50  0.000937 ***\n 3 프라이버시불안 20대   50대     0.746    0.132      1.36  0.009    **\n 4 프라이버시불안 20대   60대     0.821    0.234      1.41  0.002    **\n 5 프라이버시불안 30대   40대     0.323   -0.288      0.934 0.588    ns\n 6 프라이버시불안 30대   50대     0.183   -0.432      0.799 0.923    ns\n 7 프라이버시불안 30대   60대     0.258   -0.330      0.847 0.742    ns\n 8 프라이버시불안 40대   50대    -0.140   -0.703      0.423 0.959    ns\n 9 프라이버시불안 40대   60대    -0.0646  -0.598      0.469 0.997    ns\n10 프라이버시불안 50대   60대     0.0753  -0.463      0.614 0.995    ns\n> cohens_d(df, 프라이버시불안 ~ 연령대)                 # 쌍별 효과크기\n# A tibble: 10 × 7\n   .y.            group1 group2 effsize    n1    n2 magnitude\n * <chr>          <chr>  <chr>    <dbl> <int> <int> <ord>\n 1 프라이버시불안 20대   30대   -0.413     67    64 small\n 2 프라이버시불안 20대   40대   -0.710     67    60 moderate\n 3 프라이버시불안 20대   50대   -0.591     67    62 moderate\n 4 프라이버시불안 20대   60대   -0.678     67    62 moderate\n 5 프라이버시불안 30대   40대   -0.262     64    60 small\n 6 프라이버시불안 30대   50대   -0.147     64    62 negligible\n 7 프라이버시불안 30대   60대   -0.216     64    62 small\n 8 프라이버시불안 40대   50대    0.125     60    62 negligible\n 9 프라이버시불안 40대   60대    0.0607    60    62 negligible\n10 프라이버시불안 50대   60대   -0.0695    62    62 negligible", "regression": "> df <- read.csv(\"hr_regression_200.csv\", fileEncoding = \"UTF-8-BOM\")\n> m <- lm(성과 ~ 교육시간 + 근속연수 + 성실성, data = df)\n> summary(m)\n\nCall:\nlm(formula = 성과 ~ 교육시간 + 근속연수 + 성실성,\n    data = df)\n\nResiduals:\n    Min      1Q  Median      3Q     Max\n-23.279  -4.597   0.283   4.857  20.086\n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)\n(Intercept) 30.80002    3.50570   8.786 7.80e-16 ***\n교육시간     0.32595    0.04704   6.929 5.97e-11 ***\n근속연수     0.53489    0.15801   3.385 0.000859 ***\n성실성       6.07640    0.92666   6.557 4.75e-10 ***\n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\nResidual standard error: 7.58 on 196 degrees of freedom\nMultiple R-squared:  0.4343,\tAdjusted R-squared:  0.4256\nF-statistic: 50.15 on 3 and 196 DF,  p-value: < 2.2e-16\n\n> car::vif(m)\n교육시간 근속연수   성실성\n1.104005 1.044852 1.069650\n> m_std <- lm(scale(성과) ~ scale(교육시간) + scale(근속연수) + scale(성실성), data = df)\n> round(coef(m_std), 3)                            # 표준화 계수 β\n    (Intercept) scale(교육시간) scale(근속연수)   scale(성실성)\n          0.000           0.391           0.186           0.364", "survival": "> library(survival)\n> df <- read.csv(\"hr_survival_300.csv\", fileEncoding = \"UTF-8-BOM\")\n> fit <- survfit(Surv(근속개월, 퇴사) ~ 직군, data = df)\n> fit                                              # 사건 수와 중앙 생존기간\nCall: survfit(formula = Surv(근속개월, 퇴사) ~ 직군, data = df)\n\n                n events median 0.95LCL 0.95UCL\n직군=IT개발   150     70     23      19      38\n직군=경영지원 150     54     38      31      NA\n> summary(fit, times = c(12, 24, 36))\nCall: survfit(formula = Surv(근속개월, 퇴사) ~ 직군, data = df)\n\n                직군=IT개발\n time n.risk n.event survival std.err lower 95% CI upper 95% CI\n   12     92      42    0.697  0.0394        0.624        0.779\n   24     38      20    0.496  0.0479        0.411        0.599\n   36     15       6    0.379  0.0561        0.283        0.506\n\n                직군=경영지원\n time n.risk n.event survival std.err lower 95% CI upper 95% CI\n   12    112      21    0.851  0.0301        0.794        0.912\n   24     60      22    0.643  0.0453        0.560        0.738\n   36     25       8    0.524  0.0535        0.429        0.640\n\n> survdiff(Surv(근속개월, 퇴사) ~ 직군, data = df)   # 로그순위 검정\nCall:\nsurvdiff(formula = Surv(근속개월, 퇴사) ~ 직군, data = df)\n\n                N Observed Expected (O-E)^2/E (O-E)^2/V\n직군=IT개발   150       70     55.5      3.82      7.12\n직군=경영지원 150       54     68.5      3.09      7.12\n\n Chisq= 7.1  on 1 degrees of freedom, p= 0.008\n> cox <- coxph(Surv(근속개월, 퇴사) ~ 직군 + 연봉인상률 + 직무만족, data = df)\n> summary(cox)\nCall:\ncoxph(formula = Surv(근속개월, 퇴사) ~ 직군 + 연봉인상률 +\n    직무만족, data = df)\n\n  n= 300, number of events= 124\n\n                 coef exp(coef) se(coef)      z Pr(>|z|)\n직군경영지원 -0.47884   0.61950  0.18191 -2.632  0.00848 **\n연봉인상률   -0.15662   0.85503  0.07752 -2.020  0.04336 *\n직무만족     -0.40403   0.66763  0.13263 -3.046  0.00232 **\n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\n             exp(coef) exp(-coef) lower .95 upper .95\n직군경영지원    0.6195      1.614    0.4337    0.8849\n연봉인상률      0.8550      1.170    0.7345    0.9953\n직무만족        0.6676      1.498    0.5148    0.8658\n\nConcordance= 0.63  (se = 0.028 )\nLikelihood ratio test= 20.34  on 3 df,   p=1e-04\nWald test            = 19.98  on 3 df,   p=2e-04\nScore (logrank) test = 20.33  on 3 df,   p=1e-04\n\n> cox.zph(cox)                                     # 비례위험 가정 (p ≥ .05면 충족)\n           chisq df    p\n직군       1.758  1 0.18\n연봉인상률 0.988  1 0.32\n직무만족   0.422  1 0.52\nGLOBAL     2.956  3 0.40", "text": "> library(igraph)\n> edges <- read.csv(\"hr_network_edges.csv\", fileEncoding = \"UTF-8-BOM\")\n> g <- graph_from_data_frame(edges, directed = FALSE)\n> sort(degree(g), decreasing = TRUE)               # 연결 중심성\n 마케팅2     R&D2    직원A  마케팅3  마케팅1     R&D3     R&D1     R&D4 인사담당     R&D5\n       5        4        3        3        3        3        2        2        2        2\n 마케팅4  마케팅5\n       2        1\n> round(sort(betweenness(g), decreasing = TRUE), 1) # 매개 중심성\n   직원A     R&D3     R&D2  마케팅2  마케팅1 인사담당  마케팅3     R&D1     R&D4     R&D5\n    30.5     28.0     18.0     17.0     16.0      8.0      2.5      0.0      0.0      0.0\n 마케팅4  마케팅5\n     0.0      0.0\n> round(edge_density(g), 3)\n[1] 0.242\n> components(delete_vertices(g, \"직원A\"))$no       # 직원A가 빠지면 몇 덩어리?\n[1] 2", "ttest": "> df <- read.csv(\"hr_ttest_919.csv\", fileEncoding = \"UTF-8-BOM\")\n> table(df$성과집단)\n\n고성과 저성과\n   560    359\n> aggregate(성실성 ~ 성과집단, data = df, FUN = function(x) round(c(M = mean(x), SD = sd(x)), 3))\n  성과집단 성실성.M 성실성.SD\n1   고성과    4.313     0.490\n2   저성과    2.497     0.490\n> t.test(성실성 ~ 성과집단, data = df, var.equal = FALSE)   # Welch's t-test\n\n\tWelch Two Sample t-test\n\ndata:  성실성 by 성과집단\nt = 54.815, df = 763.27, p-value < 2.2e-16\nalternative hypothesis: true difference in means between group 고성과 and group 저성과 is not equal to 0\n95 percent confidence interval:\n 1.750954 1.881024\nsample estimates:\nmean in group 고성과 mean in group 저성과\n            4.312995             2.497006\n\n> library(effectsize)\n> cohens_d(성실성 ~ 성과집단, data = df)\nCohen's d |       95% CI\n------------------------\n3.71      | [3.49, 3.92]\n\n- Estimated using pooled SD.\n> t.test(외향성 ~ 성과집단, data = df)                      # 유의하지만 효과는 작은 변수\n\n\tWelch Two Sample t-test\n\ndata:  외향성 by 성과집단\nt = 2.7953, df = 763.25, p-value = 0.005316\nalternative hypothesis: true difference in means between group 고성과 and group 저성과 is not equal to 0\n95 percent confidence interval:\n 0.06223063 0.35582023\nsample estimates:\nmean in group 고성과 mean in group 저성과\n            2.776014             2.566989\n\n> cohens_d(외향성 ~ 성과집단, data = df)\nCohen's d |       95% CI\n------------------------\n0.19      | [0.06, 0.32]\n\n- Estimated using pooled SD."};
+
+/* =================== 모듈별 실습 · SPSS/jamovi 경로 · AI 프롬프트 =================== */
+const P_ = (s) => `<span class="path">${s}</span>`;
+const PRAC = {
+  basics: { ai: { p: 'HR 담당자가 이해할 수 있게 p-value와 효과크기의 차이를 "리더십 교육 전후 역량 점수" 예시로 설명해줘. 표본이 클 때 p < .05인데 효과는 작은 경우가 왜 생기는지, "p < .05면 효과가 크다"는 오해가 왜 틀렸는지도 포함해줘.',
+    c: ['<b>p값의 정의</b>: "가설이 참일 확률"이나 "효과의 크기"로 설명하지 않았는지 확인합니다. p는 "귀무가설이 맞다고 할 때 이만큼 극단적인 결과가 나올 확률"입니다.',
+      '<b>예시 숫자</b>: AI가 든 평균·SD·d 값이 서로 맞는지 직접 계산해 봅니다(d = 평균 차이 ÷ SD). 그럴듯한 숫자를 지어내는 경우가 많습니다.',
+      '<b>변수 유형</b>: 연속형·범주형 구분에 맞는 기법을 권했는지 0.1절 척도 분류로 다시 확인합니다.'] } },
+
+  ttest: { ds: ['ttest'], r: 'ttest', rep: '강의 결과표와 비교: 성실성 평균 4.313 vs 2.497, Cohen\'s d = 3.71 (강의 3.707) · 외향성 d = 0.19, p = .005 (강의 0.189, p = .004)',
+    spss: [`${P_('분석 → 평균 비교 → 독립표본 T 검정')}을 엽니다.`, '검정 변수에 <b>성실성</b>, 집단 변수에 <b>성과집단</b>을 넣고 [집단 정의]에 두 값(고성과, 저성과)을 입력합니다.', 'SPSS 27 이상은 <b>효과크기 추정</b>을 체크하면 Cohen\'s d가 함께 나옵니다.', '결과표의 두 행 중 <b>"등분산을 가정하지 않음"</b> 행이 Welch\'s t-test입니다.'],
+    jam: [`${P_('Analyses → T-Tests → Independent Samples T-Test')}`, 'Dependent Variables: 성실성, Grouping Variable: 성과집단', 'Tests에서 <b>Welch\'s</b>를 체크(Student\'s 해제), Additional Statistics에서 <b>Effect size</b>, <b>Descriptives</b> 체크'],
+    ai: { p: 'R에서 hr_ttest_919.csv(UTF-8 BOM)를 읽어 고성과·저성과 두 집단의 성실성 점수를 Welch\'s t-test로 비교하는 코드를 작성해줘. 집단별 평균·SD, t, df, p, Cohen\'s d와 95% CI를 한 표로 정리하고, 5개 변수 모두 반복해줘.',
+      c: ['<b>등분산 옵션</b>: <code>var.equal = FALSE</code>(Welch)인지 확인합니다. R은 기본이 FALSE지만 AI가 TRUE로 바꿔 넣는 경우가 있습니다.', '<b>차이의 방향</b>: 평균 차이가 "고성과 − 저성과"인지 반대인지, factor 수준 순서를 확인합니다. 부호가 뒤집히면 해석이 반대가 됩니다.', '<b>효과크기 공식</b>: Cohen\'s d가 pooled SD 기준인지, Welch에 맞춘 다른 공식(예: 두 분산 평균)인지 확인하고 보고서에 어느 d인지 밝힙니다.'] } },
+
+  paired: { ds: ['paired'], r: 'paired', rep: '설명용 가상 데이터 · 교육집단 사전→사후 +0.44점(d<sub>z</sub> = 0.90), 비교집단 +0.10점으로 설계. ANCOVA 조정 평균 차이 약 0.33점',
+    spss: [`대응표본 t: ${P_('데이터 → 케이스 선택')}에서 <b>집단 = "교육"</b>만 고른 뒤 ${P_('분석 → 평균 비교 → 대응표본 T 검정')}, 대응 변수에 사후–사전`, 'SPSS 27 이상은 대응표본 효과크기 표의 Cohen\'s d가 함께 나옵니다(표준화 기준이 "차이의 표준편차"이면 d<sub>z</sub>).', `ANCOVA: ${P_('분석 → 일반선형모형 → 일변량')}, 종속변수 사후, 고정요인 집단, 공변량 사전 → [EM 평균]에서 집단의 조정 평균 출력`],
+    jam: [`${P_('T-Tests → Paired Samples T-Test')}: 사후, 사전을 짝으로 넣고 Effect size 체크 (교육집단만 보려면 ${P_('Data → Filters')}에서 집단 == "교육")`, `ANCOVA: ${P_('ANOVA → ANCOVA')}, Dependent 사후, Fixed Factors 집단, Covariates 사전, Estimated Marginal Means에 집단`],
+    ai: { p: '교육집단과 비교집단의 사전·사후 점수가 있는 hr_training_prepost.csv로, ① 교육집단의 대응표본 t-검정과 d_z, ② 사전 점수를 공변량으로 둔 ANCOVA와 조정 평균을 계산하는 R 코드를 작성해줘. 두 결과를 어떻게 다르게 해석해야 하는지도 설명해줘.',
+      c: ['<b>짝 맞춤</b>: <code>paired = TRUE</code>이고 두 열의 같은 행이 같은 사람인지(정렬·결측 처리) 확인합니다. long 형식이면 ID로 짝을 맞춰야 합니다.', '<b>d의 종류</b>: d<sub>z</sub>(변화량 SD 기준)인지 d<sub>av</sub>(두 시점 SD 평균 기준)인지 확인합니다. 같은 데이터도 값이 크게 달라집니다.', '<b>설계에 맞는 분석</b>: 비교집단이 있는데 교육집단의 전후 t-검정만 보고 "교육 효과"라고 결론 내리지 않았는지 확인합니다(2.6절).'] } },
+
+  anova: { ds: ['anxiety'], r: 'anova', rep: '원자료와 비교: 프라이버시불안 연령대 평균 4.448 · 5.010 · 5.333 · 5.194 · 5.269 (원자료 4.458 · 5.010 · 5.344 · 5.177 · 5.263), Welch F = 4.98, p < .001 (강의 F = 4.687, p = .0013) · 학습불안·직무대체불안은 원자료처럼 ns',
+    spss: [`${P_('분석 → 평균 비교 → 일원배치 분산분석')}: 종속변수 프라이버시불안, 요인 연령대 (요인이 문자형이면 ${P_('변환 → 자동 코딩변경')}으로 숫자형 변환)`, '[옵션]에서 <b>Welch</b>, 기술통계, 분산 동질성 검정 체크', '"평균 동질성에 대한 강건 검정" 표의 Welch 행을 읽습니다.'],
+    jam: [`${P_('ANOVA → One-Way ANOVA')}: Dependent Variables 3개, Grouping Variable 연령대`, 'Variances: <b>Don\'t assume equal (Welch\'s)</b>, Additional Statistics: Descriptives table'],
+    ai: { p: 'hr_ai_anxiety_315.csv에서 연령대(20대~60대)별 학습불안·직무대체불안·프라이버시불안 평균을 Welch\'s ANOVA로 비교하는 R 코드를 작성해줘. 하위요인별 F, df, p와 η²를 한 표로 정리해줘.',
+      c: ['<b>Welch 여부</b>: <code>oneway.test(..., var.equal = FALSE)</code>인지 확인합니다. <code>aov()</code>는 등분산을 가정한 전통적 ANOVA입니다.', '<b>집단 변수 형식</b>: 연령대가 숫자(20, 30, …)로 들어가면 <code>aov()</code>·<code>lm()</code>이 집단 비교가 아니라 직선 회귀로 처리합니다. <code>factor()</code> 변환 여부를 꼭 확인합니다.', '<b>효과크기</b>: η² 공식(집단 간 제곱합 ÷ 전체 제곱합)과 기준(.01 / .06 / .14)이 맞는지, Welch ANOVA에 η²를 그대로 붙여도 되는지(근사값임) 확인합니다.'] } },
+
+  posthoc: { ds: ['anxiety'], r: 'posthoc', rep: '강의 결과표와 비교: 20대 vs 40대·50대·60대만 유의(p = .001 · .009 · .002), d = −0.71 · −0.59 · −0.68 (강의 −0.701 · −0.551 · −0.638) · 30대 이상끼리는 모두 ns',
+    spss: [`${P_('분석 → 평균 비교 → 일원배치 분산분석')} → [사후분석] → 등분산을 가정하지 않음: <b>Games-Howell</b>`, '쌍별 Cohen\'s d는 메뉴에 없으므로 두 연령대만 골라 독립표본 T 검정의 효과크기로 구합니다.'],
+    jam: [`${P_('ANOVA → One-Way ANOVA')} → Post-Hoc Tests: <b>Games-Howell (unequal variances)</b>`, '쌍별 d는 T-Tests에서 두 집단만 필터링해 Effect size로 확인'],
+    ai: { p: 'rstatix로 연령대별 프라이버시불안의 Games-Howell 사후검정과 쌍별 Cohen\'s d를 계산하고, 유의한 쌍만 골라 "20대는 40대보다 … 낮았다(p = …, d = …)" 형식의 보고 문장을 만들어줘.',
+      c: ['<b>보정된 p</b>: 판단에 쓰는 p가 다중비교 보정이 된 <code>p.adj</code>인지 확인합니다.', '<b>부호 방향</b>: rstatix의 <code>games_howell_test</code> estimate는 <b>group2 − group1</b>, <code>cohens_d</code>는 <b>group1 − group2</b>라 부호가 반대로 나옵니다(기대 출력 참고). 문장에 쓴 방향이 맞는지 확인합니다.', '<b>유의하지 않은 쌍</b>: p ≥ .05인 쌍의 d를 "작은 차이가 있다"로 해석하지 않았는지 확인합니다.'] } },
+
+  logit: { ds: ['perf'], r: 'logit', rep: '원자료와 비교: 고성과 278명(39.7%) 동일, 연봉 OR(1,000만 원당) 1.361 (원자료 1.360), 정확도 72.4% (원자료 72.4%), 유의한 변수 구성 동일 · 조직적합도 OR 1.68 (원자료 1.48), Nagelkerke .331 (.298), AUC .796 (.769)',
+    spss: [`${P_('분석 → 회귀분석 → 이분형 로지스틱')}: 종속변수 고성과, 공변량에 11개 변수`, '[범주형]에서 학력·성별·결혼여부를 범주형으로 지정하고 참조 범주를 <b>처음</b>으로 설정(R의 기준 범주와 맞춤)', '[옵션]에서 <b>Hosmer-Lemeshow 적합도</b>, <b>Exp(B)에 대한 신뢰구간</b> 체크, [저장]에서 예측 확률', '모형 요약 표에 Nagelkerke R², 분류표에 정확도(분류점 .5)가 나옵니다. GVIF는 SPSS 메뉴에 없어 선형회귀의 공선성 진단으로 대신 점검합니다.'],
+    jam: [`${P_('Regression → 2 Outcomes (Binomial)')}: Dependent 고성과, Covariates 연속형, Factors 범주형`, 'Model Fit: Nagelkerke R² 등, Model Coefficients: <b>Odds ratio</b>와 Confidence interval', 'Prediction: Classification table, AUC, Sensitivity·Specificity / Assumption Checks: Collinearity statistics'],
+    ai: { p: 'hr_performance_700.csv로 고성과(0/1)를 예측하는 이항 로지스틱 회귀 R 코드를 작성해줘. 연봉은 1,000만 원 단위로 바꾸고, OR와 95% CI, GVIF, 우도비 χ², Nagelkerke R², Hosmer-Lemeshow, 혼동행렬, AUC를 출력해줘. 정확도는 기저율과 비교해서 해석해줘.',
+      c: ['<b>코딩과 기준 범주</b>: 결과변수의 1이 "고성과"인지, 범주형 변수의 기준(학력 1, 성별 F 등)이 무엇인지 확인합니다. 기준이 바뀌면 OR이 역수가 됩니다.', '<b>OR의 단위</b>: 연봉 1원, 비율 변수 0~1처럼 1단위가 비현실적이면 OR이 1.00003이나 0.0000087처럼 나옵니다. 단위를 바꿔 해석했는지 확인합니다.', '<b>성능 해석</b>: 정확도를 기저율(60.3%)과 비교했는지, 오즈 변화(OR)를 확률 변화(%p)로 잘못 바꿔 말하지 않았는지 확인합니다.'] } },
+
+  ordinal: { ds: ['anxiety'], r: 'ordinal', rep: '강의 결과와 비교: 직무대체불안만 유의(누적 OR 1.26, p = .048 / 강의 1.322, p = .018), 학습불안 0.89·프라이버시불안 0.86은 ns (강의 0.919 · 0.928) · 교육선택은 다항 실습용 가상 변수',
+    spss: [`먼저 ${P_('변환 → 다른 변수로 코딩변경')}으로 AI사용 1~3 → 1, 4 → 2, 5~7 → 3인 새 변수를 만듭니다.`, `${P_('분석 → 회귀분석 → 순서형')}: 종속변수 새 변수, 공변량 3개 → [출력]에서 <b>평행선 검정</b>(비례오즈 가정) 체크`, `다항: ${P_('분석 → 회귀분석 → 다항 로지스틱')}, [참조 범주]에서 기준 범주 지정`],
+    jam: [`${P_('Regression → Ordinal Outcomes')}: Dependent에 순서형 변수(측정 수준을 Ordinal로), Covariates 3개, Model Coefficients에서 Odds ratio`, `다항: ${P_('Regression → N Outcomes (Multinomial)')}, Reference Levels에서 기준 범주 지정`],
+    ai: { p: 'AI사용(1~7점)을 낮음(1~3)·보통(4)·높음(5~7)으로 나눠 학습불안·직무대체불안·프라이버시불안으로 예측하는 순서형 로지스틱 회귀 R 코드를 작성해줘. 누적 OR, p, 비례오즈 가정 검정(Brant)을 포함해줘.',
+      c: ['<b>순서 지정</b>: 종속변수가 <code>ordered = TRUE</code>이고 수준이 낮음 &lt; 보통 &lt; 높음 순서인지 확인합니다. 알파벳·가나다순이면 순서가 엉킵니다.', '<b>부호 규칙</b>: <code>MASS::polr</code>는 양(+)의 계수가 "더 높은 범주 쪽"입니다. 프로그램마다 절편(임계값) 부호 규칙이 달라 AI가 반대로 설명하는 경우가 있습니다.', '<b>가정 검정 방향</b>: Brant 검정은 p ≥ .05여야 가정 충족입니다. 일반 검정처럼 "p가 크니 문제"라고 읽지 않았는지 확인합니다.'] } },
+
+  regression: { ds: ['reg'], r: 'regression', rep: '설명용 가상 데이터 · R² = .434, 세 변수 모두 유의, β는 교육시간 .39 > 성실성 .36 > 근속연수 .19, VIF ≤ 1.10',
+    spss: [`${P_('분석 → 회귀분석 → 선형')}: 종속변수 성과, 독립변수 3개, 방법 <b>입력</b>`, '[통계량]에서 추정값, 모형 적합, <b>공선성 진단</b> 체크', '계수 표의 "비표준화 계수 B"와 "표준화 계수 베타(β)" 열을 구분해 읽습니다.'],
+    jam: [`${P_('Regression → Linear Regression')}: Dependent 성과, Covariates 3개`, 'Model Fit: R², Adjusted R², F test / Model Coefficients: <b>Standardized estimate</b> / Assumption Checks: Collinearity statistics'],
+    ai: { p: 'hr_regression_200.csv로 성과를 교육시간·근속연수·성실성으로 예측하는 다중회귀 R 코드를 작성해줘. B, SE, β, p, VIF를 한 표로 만들고 잔차 진단 그래프도 그려줘.',
+      c: ['<b>B와 β 구분</b>: 상대적 영향력 비교에 β를, "1단위 증가 시 변화"에 B를 썼는지 확인합니다.', '<b>다중공선성·더미</b>: VIF를 확인했는지, 범주형 X를 숫자 그대로 넣지 않았는지 확인합니다.', '<b>인과 표현</b>: 횡단 자료인데 "교육시간이 성과를 높인다"고 단정하지 않았는지, 잔차 진단(<code>plot(m)</code>)을 생략하지 않았는지 확인합니다.'] } },
+
+  chisq: { ds: ['chisq'], r: 'chisq', rep: '8.3 교차표 계산기의 "부서별 이직 (직급 교란)" 예시와 같은 인원 · 전체 이직률 영업부 16.8% vs 연구부 8.4%(유의), 직급별로는 차이 없음(Mantel-Haenszel p = .642)',
+    spss: [`${P_('분석 → 기술통계량 → 교차분석')}: 행 부서, 열 이직여부`, '[통계량]에서 카이제곱, <b>파이 및 Cramer의 V</b> / [셀]에서 행 백분율, <b>조정된 표준화 잔차</b>', '심슨의 역설 점검: [계층]에 직급을 넣고 [통계량]에서 <b>Cochran 및 Mantel-Haenszel 통계량</b> 체크'],
+    jam: [`${P_('Frequencies → Independent Samples (χ² test of association)')}: Rows 부서, Columns 이직여부, Layers 직급`, 'Statistics: χ², χ² continuity correction, Phi and Cramer\'s V / Cells: Row percentages', 'Mantel-Haenszel 검정은 jamovi 버전에 따라 Statistics에 있거나 없습니다. 없으면 R로 확인합니다.'],
+    ai: { p: 'hr_turnover_dept_1000.csv로 부서별 이직률을 비교하는 카이제곱 검정 R 코드를 작성해줘. 행 백분율, 기대빈도, 표준화 잔차, φ를 출력하고, 직급별로 나눈 분석(Mantel-Haenszel)도 추가해서 결론이 바뀌는지 설명해줘.',
+      c: ['<b>Yates 보정</b>: 2×2 표에서 R <code>chisq.test</code>는 연속성 보정을 기본 적용합니다. SPSS·논문 값과 비교할 때 어느 값인지 확인합니다.', '<b>기대빈도</b>: 기대빈도 5 미만 칸이 많으면 Fisher 정확검정을 써야 합니다. AI가 이 점검을 빠뜨리는 경우가 많습니다.', '<b>교란변수</b>: 부서처럼 구성 차이(직급·연령)가 있는 비교에서 층화 분석이나 통제 없이 "부서 때문"이라고 결론 내리지 않았는지 확인합니다.'] } },
+
+  survival: { ds: ['surv'], r: 'survival', rep: '설명용 가상 데이터 · IT개발직 중앙 근속 23개월 vs 경영지원 38개월, 로그순위 p = .008, Cox에서 직무만족 HR 0.67, 비례위험 가정 충족 · 상태 열은 경쟁위험 실습용',
+    spss: [`카플란-마이어: ${P_('분석 → 생존분석 → Kaplan-Meier')}, 시간 근속개월, 상태 퇴사([사건 정의] 단일값 1), 요인 직군 → [요인 비교]에서 <b>로그 순위</b>`, `Cox: ${P_('분석 → 생존분석 → Cox 회귀')}, [범주형]에서 직군 지정, [옵션]에서 Exp(B)의 신뢰구간`, `비례위험 점검은 ${P_('분석 → 생존분석 → 시간 종속 공변량 Cox')}에서 T_COV_ × 변수 상호작용으로 확인합니다. 경쟁위험(CIF)·Fine-Gray는 기본 메뉴에 없어 R을 씁니다.`],
+    jam: ['jamovi 기본 메뉴에는 생존분석이 없습니다. 오른쪽 위 <b>Modules → jamovi library</b>에서 생존분석 모듈(예: jsurvival 계열)을 설치하면 Survival 메뉴가 생깁니다.', '모듈 이름과 메뉴 구성은 버전에 따라 다르므로, 결과는 R 기대 출력과 숫자로 대조해 봅니다.'],
+    ai: { p: 'hr_survival_300.csv(근속개월, 퇴사 1/0, 직군, 연봉인상률, 직무만족)로 카플란-마이어 곡선, 12·24·36개월 재직률, 로그순위 검정, Cox 회귀(HR과 95% CI), 비례위험 가정 점검을 하는 R 코드를 작성해줘.',
+      c: ['<b>사건 코딩</b>: 1 = 퇴사(사건), 0 = 재직 중(중도절단)인지 확인합니다. 반대로 넣으면 곡선이 "재직 확률"이 아니게 됩니다.', '<b>비례위험 가정</b>: <code>cox.zph()</code> 점검을 했는지, HR의 기준 범주(여기서는 IT개발)가 무엇인지 확인합니다.', '<b>시간과 경쟁위험</b>: 해마다 바뀌는 연봉인상률을 한 값으로 넣지 않았는지, 자발적·비자발적 퇴사를 구분해야 하는 질문인지(9.6절 경쟁위험) 확인합니다.'] } },
+
+  kmeans: { ds: ['kmeans'], r: 'kmeans', rep: '10.5 사례표 기준 · 군집 크기 70 · 80 · 50, 군집 평균이 사례표(4.6/4.5/2.2/3.1 등)와 일치, 실루엣은 K = 3에서 최대(.586)',
+    spss: [`표준화: ${P_('분석 → 기술통계량 → 기술통계')}에서 <b>표준화 값을 변수로 저장</b>`, `${P_('분석 → 분류분석 → K-평균 군집분석')}: Z점수 변수 4개, 군집 수 3, [반복계산] 최대 반복 수 늘리기, [저장] 소속 군집`, '엘보우·실루엣 그래프는 기본 메뉴에 없어 K를 바꿔 여러 번 실행해 비교합니다. 초기값 방식이 R과 달라 군집 번호와 일부 소속이 다를 수 있습니다.'],
+    jam: ['jamovi library에서 군집분석 모듈(예: snowCluster)을 설치하면 K-means 메뉴가 생깁니다. 변수 표준화 옵션과 최적 군집 수 그래프를 확인합니다.', '모듈이 없으면 R 결과를 기준으로 합니다.'],
+    ai: { p: 'hr_culture_200.csv의 자율성·도전성·절차준수·관계협력 4개 변수로 K-means 군집분석을 하는 R 코드를 작성해줘. 표준화, 엘보우·실루엣으로 K 선택, 군집별 원점수 평균표, 부서별 군집 분포 교차표를 포함해줘.',
+      c: ['<b>표준화</b>: 척도가 다른 변수를 <code>scale()</code> 없이 넣지 않았는지 확인합니다.', '<b>재현성</b>: <code>set.seed()</code>와 <code>nstart</code>(초기값 여러 번)를 넣었는지 확인합니다. 군집 번호는 실행마다 바뀔 수 있어 번호가 아니라 프로파일로 이름을 붙입니다.', '<b>K 선택 근거</b>: K를 정한 근거(엘보우, 실루엣, 해석 가능성)를 제시했는지, 군집을 "실제로 존재하는 유형"으로 과장하지 않았는지 확인합니다.'] } },
+
+  text: { ds: ['sna'], r: 'text', rep: '11.2 관계망 시뮬레이터와 같은 12명 · 16개 연결 · 매개 중심성 1위 직원A(30.5), 직원A가 빠지면 관계망이 2개로 끊어짐 · 토픽모델링은 자유응답 원문이 필요해 실습 데이터에서 제외',
+    spss: ['토픽모델링과 SNA는 SPSS 기본 메뉴에 없습니다(별도 Text Analytics 제품). R의 <code>topicmodels</code>·<code>igraph</code>나 Python을 씁니다.', '무료 SNA 도구 <b>Gephi</b>로도 같은 CSV를 열 수 있습니다. 열 이름을 from → <b>Source</b>, to → <b>Target</b>으로 바꾼 뒤 [파일 → 가져오기 → 스프레드시트]로 불러오고 [통계]에서 중심성을 계산합니다.'],
+    jam: ['jamovi에는 텍스트·관계망 분석 메뉴가 없습니다. R 코드(왼쪽 탭)나 Gephi를 사용합니다.'],
+    ai: { p: '협업 관계 CSV(from, to 열)를 igraph로 불러와 연결 중심성·매개 중심성 상위 5명을 표로 정리하고, 매개 중심성 1위가 빠졌을 때 관계망이 몇 덩어리로 나뉘는지 계산하는 R 코드를 작성해줘. 부서별로 색을 달리한 관계망 그림도 그려줘.',
+      c: ['<b>관계의 방향·가중치</b>: 방향이 없는 협업인지(<code>directed = FALSE</code>), 연락 횟수 같은 가중치를 써야 하는지 확인합니다.', '<b>중심성 정의</b>: 매개 중심성을 정규화했는지 여부에 따라 값이 크게 다릅니다. 비교할 때 같은 기준인지 확인합니다.', '<b>텍스트 전처리</b>: 토픽모델링이면 한국어 형태소 분석·불용어(조사, "회사" 같은 흔한 말) 처리와 토픽 수 k의 근거, seed를 확인합니다.'] } },
+
+  paper: { ai: { p: '연구모형(기술수용성 → AI 리터러시 → 직무몰입)과 설문 구성(5점 척도, 345명)으로 석사논문 분석 계획을 "표집 → 측정도구 검증(CFA·α) → 기술통계 → 상관 → 매개효과(부트스트랩)" 순서로 작성해줘. 단계마다 R 패키지, 판단 기준과 그 출처 문헌을 표로 정리해줘.',
+    c: ['<b>기준값의 출처</b>: CFI ≥ .90, RMSEA ≤ .08 같은 기준이 실제 문헌(예: Hu & Bentler, 1999)과 맞는지 확인합니다. AI는 존재하지 않는 문헌을 만들어 내기도 합니다.', '<b>빠진 점검</b>: 공통방법편의(같은 사람이 모든 문항에 응답), 판별타당도(AVE, HTMT), 결측 처리 같은 단계가 빠지지 않았는지 사례 논문 보완 포인트 페이지와 대조합니다.', '<b>인과 표현</b>: 횡단 설문인데 "영향을 준다", "효과가 입증되었다"처럼 인과를 단정한 문장이 없는지 확인합니다.'] } },
+
+  descr: { ds: ['paper'], r: 'descr', rep: '사례 논문과 비교: 기술수용성 M 3.50 (논문 3.497), 직무몰입 2.80 (2.795), AI 리터러시 3.44 (3.435) · 부장급 40.0%, 연령 M 50.4 · 성별·학력·직급 등 인구통계는 논문 비율에 맞춘 가상값',
+    spss: [`${P_('분석 → 기술통계량 → 빈도분석')}: 직급, 학력 → 빈도표와 비율`, `${P_('분석 → 기술통계량 → 기술통계')}: [옵션]에서 평균, 표준편차, <b>왜도, 첨도</b> 체크 (SPSS 첨도는 정규분포 = 0인 초과첨도)`],
+    jam: [`${P_('Exploration → Descriptives')}: Variables 3개, Statistics에서 Mean, SD, <b>Skewness, Kurtosis</b>`, '범주형 변수는 Frequency tables 체크'],
+    ai: { p: 'hr_paper_345.csv로 논문 "표 1. 응답자 특성"(직급·학력·성별 빈도와 %, 연령 M·SD)과 "표 2. 주요 변수 기술통계"(M, SD, 왜도, 첨도)를 만드는 R 코드를 작성해줘. Kline(2016) 기준으로 정규성 판정 열도 추가해줘.',
+      c: ['<b>첨도 정의</b>: 출력된 첨도가 초과첨도(정규분포 = 0)인지 원래 첨도(정규분포 = 3)인지 확인합니다. 기준(|첨도| &lt; 10)이 어느 정의 기준인지도 확인합니다.', '<b>역문항</b>: 역문항이 있으면 역코딩한 뒤 평균을 냈는지 확인합니다.', '<b>결측과 n</b>: 결측 처리 방식(제외·대체)과 변수별 n이 표에 맞게 보고되었는지 확인합니다.'] } },
+
+  cfa: { ds: ['anxiety', 'paper'], r: 'cfa', rep: 'EFA(AI 불안 9문항): KMO .830 (원자료 .813), 평행분석 요인 3·주성분 2 (원자료와 같음) · CFA(기술수용성 8문항): TA1·TA2 오차상관 허용 전 RMSEA .063, 허용 후 .000 — 13.5절의 "수정지수 → 오차상관" 흐름을 재현',
+    spss: [`EFA: ${P_('분석 → 차원 축소 → 요인분석')}, [기술통계]에서 <b>KMO와 Bartlett의 구형성 검정</b>, [요인추출] 주축 요인추출(R의 minres와 가장 비슷), [요인회전] <b>직접 오블리민</b>, [옵션] 작은 계수 표시 안 함 .30`, '평행분석은 기본 메뉴에 없어 O\'Connor의 SPSS 명령문을 쓰거나 R 결과를 사용합니다.', 'CFA는 SPSS 본체에 없고 별도 프로그램 <b>IBM SPSS Amos</b>에서 경로도를 그려 분석합니다.'],
+    jam: [`EFA: ${P_('Factor → Exploratory Factor Analysis')}, Method <b>Minimum residuals</b>, Number of Factors <b>Based on parallel analysis</b>, Rotation <b>Oblimin</b>, Assumption Checks에서 KMO·Bartlett`, `CFA: ${P_('Factor → Confirmatory Factor Analysis')}, 요인별 문항 지정, Residual Covariances에 TA1–TA2 추가, Model Fit에서 CFI·TLI·RMSEA·SRMR, Modification indices`],
+    ai: { p: 'lavaan으로 기술수용성 8문항(유용성 TA1~4, 용이성 TA5~8)의 2요인 CFA 코드를 작성해줘. 적합도(χ², df, CFI, TLI, RMSEA, SRMR), 표준화 적재량, 수정지수 상위 5개를 출력하고, 오차상관을 추가할지 판단하는 기준도 설명해줘.',
+      c: ['<b>기준값과 출처</b>: CFI·TLI ≥ .90(또는 .95), RMSEA ≤ .08, SRMR ≤ .08 등 기준과 출처를 확인하고 논문 전체에서 하나로 통일합니다.', '<b>수정지수 남용</b>: AI는 MI가 큰 순서대로 오차상관을 계속 추가하라고 제안하기 쉽습니다. 문항 내용상 근거가 있을 때만 추가합니다.', '<b>추정법</b>: 5점 리커트 문항이면 ML 대신 MLR이나 WLSMV(범주형 추정)를 쓸지 검토했는지 확인합니다.'] } },
+
+  alpha: { ds: ['paper', 'ratings'], r: 'alpha', rep: '사례 논문과 비교: 하위요인 α .91 · .89 (논문 .937 · .925) · 전체 α는 논문보다 높게 나옵니다(기술수용성 .878 vs .846, AI 리터러시 .858 vs .710). 하위요인끼리 상관을 현실적인 수준으로 두어 세 변수 간 상관(.49 · .42 · .57)을 재현했기 때문입니다 · 면접 평정은 가상(가중 κ .74)',
+    spss: [`α: ${P_('분석 → 척도분석 → 신뢰도 분석')}, 모형 <b>알파</b>, [통계량]에서 <b>항목 제거 시 척도</b>`, `κ: ${P_('분석 → 기술통계량 → 교차분석')} → [통계량] <b>카파</b> (가중 κ는 SPSS 27 이상 ${P_('분석 → 척도분석 → 가중 카파')})`, 'ICC: 신뢰도 분석 → [통계량] <b>급내 상관계수</b>, 모형(이원 랜덤 등)과 유형(절대 일치)을 R과 같게 지정'],
+    jam: [`${P_('Factor → Reliability Analysis')}: Cronbach's α, McDonald's ω, Item Statistics의 "if item dropped"`, 'κ·ICC는 기본 메뉴에 없습니다. jamovi library의 평가자 일치도 모듈을 설치하거나 R을 씁니다.'],
+    ai: { p: 'hr_paper_345.csv의 하위요인별·변수별 Cronbach\'s α와 McDonald\'s ω, 항목 제거 시 α를 계산하는 R 코드를 작성해줘. 면접 평정 데이터(면접관A·B·C)로 Cohen\'s κ, 가중 κ, ICC도 계산하고 각각 어떤 상황에 쓰는지 설명해줘.',
+      c: ['<b>역문항</b>: 역문항을 역코딩하지 않으면 α가 크게 떨어지거나 음수가 됩니다. <code>psych::alpha</code>의 경고 메시지를 확인합니다.', '<b>α의 범위</b>: 하위요인 α와 변수 전체 α를 구분해 보고했는지 확인합니다(전체 α가 낮으면 하위요인 간 관련성이 약하다는 신호).', '<b>κ·ICC 종류</b>: 순서형 평정이면 가중 κ인지, ICC는 모형(일원·이원), 유형(일치·일관성), 단일·평균 중 무엇인지 명시했는지 확인합니다.'] } },
+
+  corr: { ds: ['paper'], r: 'corr', rep: '사례 논문과 비교: 기술수용성–직무몰입 r = .486 (논문 .488), 기술수용성–AI 리터러시 .424 (.426), AI 리터러시–직무몰입 .570 (.571)',
+    spss: [`${P_('분석 → 상관분석 → 이변량')}: 변수 3개, 상관계수 <b>Pearson</b>(필요하면 Spearman도), 유의성 검정 양측`],
+    jam: [`${P_('Regression → Correlation Matrix')}: Pearson(필요하면 Spearman), Report significance, Confidence intervals`],
+    ai: { p: 'hr_paper_345.csv의 기술수용성·직무몰입·AI 리터러시 상관행렬을 논문 표 형식(대각선 1, 아래 삼각형만, 유의 별표)으로 만드는 R 코드를 작성해줘. 각 쌍의 산점도도 그려줘.',
+      c: ['<b>상관 종류</b>: Pearson·Spearman 선택 근거(정규성, 이상치, 순서형 여부)를 확인합니다.', '<b>결측 처리</b>: <code>use = "pairwise"</code>와 <code>"complete.obs"</code>는 n이 달라집니다. 어느 방식인지 표 아래에 밝혔는지 확인합니다.', '<b>인과 표현</b>: 상관을 "영향", "효과"로 서술하지 않았는지, 산점도로 비선형·이상치를 확인했는지 봅니다.'] } },
+
+  mediation: { ds: ['paper'], r: 'mediation', rep: '사례 논문과 비교: 총효과 .452 (논문 .454), 직접효과 .277 (.278), 간접효과 .175 (.176), 부트스트랩 95% CI [.124, .235] (논문 [.127, .231])',
+    spss: ['<b>PROCESS 매크로 설치</b>(Andrew F. Hayes, 무료):', `① processmacro.org에서 PROCESS for SPSS 최신 버전(v4.x) zip을 내려받아 압축을 풉니다.`, `② SPSS를 <b>관리자 권한으로 실행</b>(Windows: 아이콘 우클릭 → 관리자 권한으로 실행)한 뒤 ${P_('확장 → 유틸리티 → 사용자 정의 대화상자 설치 (호환 모드)')}에서 <b>process.spd</b>를 선택합니다. 버전에 따라 ${P_('유틸리티 → 사용자 정의 대화상자 → 사용자 정의 대화상자 설치')}일 수 있습니다.`, `③ 설치 후 ${P_('분석 → 회귀분석 → PROCESS v4.x by Andrew F. Hayes')}가 생깁니다. Y 직무몰입, X 기술수용성, Mediator(s) AI리터러시, <b>Model number 4</b>, Number of bootstrap samples <b>5000</b>, [Options]에서 total effect·표준화 계수 출력.`, '<b>설치 권한이 없을 때</b>: 압축 파일의 <b>process.sps</b>를 명령문 창에서 열어 전체 실행한 뒤, 아래 명령문을 실행해도 됩니다.<br><code>process y=engage/x=tech/m=ailit/model=4/boot=5000/seed=2026/total=1/stand=1.</code>', 'PROCESS는 버전에 따라 긴 변수 이름이나 한글 이름에서 오류가 날 수 있어 <b>짧은 영문 이름</b>(tech, ailit, engage)으로 바꿔 쓰는 것이 안전합니다.'],
+    jam: ['jamovi library에서 <b>jAMM</b>(Advanced Mediation Models) 또는 <b>medmod</b> 모듈을 설치합니다.', `jAMM: ${P_('jAMM → GLM Mediation Model')}, Dependent 직무몰입, Mediators AI리터러시, Covariates 기술수용성, Confidence Intervals에서 <b>Bootstrap percentiles</b>, 반복 5000`],
+    ai: { p: 'hr_paper_345.csv로 기술수용성(X) → AI 리터러시(M) → 직무몰입(Y) 단순매개 모형(PROCESS Model 4와 같은 구조)을 lavaan으로 분석하는 코드를 작성해줘. a, b, c′, 총효과, 간접효과와 퍼센타일 부트스트랩 95% CI(5,000회, seed 2026), 표준화 간접효과를 표로 정리해줘.',
+      c: ['<b>간접효과 검정 방식</b>: 간접효과를 부트스트랩 CI(0 포함 여부)로 판단했는지, Sobel 검정이나 Baron & Kenny 단계만으로 결론 내리지 않았는지 확인합니다.', '<b>부트스트랩 설정</b>: 반복 수(5,000), seed, CI 방식(퍼센타일 vs BCa)을 명시했는지 확인합니다. 실행마다 소수점 셋째 자리가 조금씩 다릅니다.', '<b>인과 표현</b>: 횡단 자료의 매개효과를 "X가 M을 통해 Y를 높인다"고 단정하지 않고, 역방향·누락 변수 가능성을 한계로 적었는지 확인합니다.'] } },
+
+  boot: { ds: ['paper'], r: 'boot', rep: '사례 논문과 비교: 간접효과 .175 (논문 .176), Boot.SE .028 (.026), 95% CI [.123, .233] (논문 [.127, .231])',
+    spss: ['16번 모듈의 PROCESS 설치 후 Model 4로 실행하면 Boot.SE, Boot.LLCI, Boot.ULCI가 함께 나옵니다. 같은 결과를 다시 얻으려면 명령문에 <code>seed=2026</code>을 넣습니다.'],
+    jam: ['jAMM 또는 medmod 모듈의 Bootstrap 옵션을 사용합니다(16번 모듈 jamovi 탭 참고).'],
+    ai: { p: '단순매개 모형의 간접효과 a×b를 직접 부트스트랩하는 R 코드를 for 반복문으로 작성해줘(5,000회, seed 2026). Boot.SE, 퍼센타일 95% CI, 부트스트랩 분포 히스토그램을 그리고 각 줄이 무엇을 하는지 주석을 달아줘.',
+      c: ['<b>재표집 단위</b>: 행(사람) 단위로 <b>복원추출</b>(<code>replace = TRUE</code>)했는지, 원 표본 크기(345)만큼 뽑았는지 확인합니다.', '<b>재현성</b>: <code>set.seed()</code>와 반복 수를 고정했는지 확인합니다.', '<b>SE와 CI</b>: Boot.SE가 부트스트랩 분포의 표준편차인지, CI가 2.5%·97.5% 분위수(퍼센타일)인지 확인합니다.'] } }
+};
+
+/* =================== 종합 시나리오 문제 (모듈 혼합) =================== */
+const SCEN = [
+  { id: 's01', m: ['paired'], q: '신입사원 30명에게 직무역량 교육을 하고, <b>같은 사람</b>의 교육 전·후 점수를 측정했습니다. 교육 효과를 검증하는 기본 기법은?', o: ['독립표본 t-검정', '종속표본(대응표본) t-검정', '카이제곱 검정', '상관분석'], a: 1, e: '같은 사람을 두 번 잰 자료는 짝을 지어 변화량을 봐야 개인차라는 소음이 사라집니다. 다만 비교집단이 없으면 "교육 때문"이라고 단정하기는 어렵습니다.' },
+  { id: 's02', m: ['anova', 'posthoc'], q: '영업·연구·관리 3개 부서의 직무몰입 평균을 비교하려 합니다. 부서별 분산이 서로 크게 다릅니다. 가장 알맞은 순서는?', o: ['t-검정을 부서 쌍마다 3번 한다', '전통적 ANOVA 후 Tukey 사후검정', 'Welch\'s ANOVA 후 Games-Howell 사후검정', '부서별 이직률로 카이제곱 검정'], a: 2, e: '세 집단 이상이면 ANOVA, 등분산이 깨지면 Welch\'s ANOVA와 Games-Howell 조합이 안전합니다. t-검정을 여러 번 하면 1종 오류가 불어납니다(FWER).' },
+  { id: 's03', m: ['chisq'], q: '부서(4개)별로 지난 1년 퇴사 여부(퇴사/재직) <b>비율</b>이 다른지 알고 싶습니다. 어떤 기법을 쓰나요?', o: ['카이제곱 독립성 검정', '분산분석', '다중회귀분석', 'K-means 군집분석'], a: 0, e: '범주(부서) × 범주(퇴사 여부)의 관계는 교차표와 카이제곱 검정으로 봅니다. 효과크기는 Cramér\'s V입니다.' },
+  { id: 's04', m: ['survival'], q: '입사 후 <b>언제</b> 퇴사가 몰리는지 알고 싶은데, 아직 재직 중인 사람이 절반입니다. 가장 알맞은 접근은?', o: ['퇴사자만 골라 평균 근속기간을 구한다', '재직자를 "퇴사 안 함"으로 두고 로지스틱 회귀를 한다', '재직자를 중도절단으로 처리하는 생존분석(카플란-마이어)', '근속기간과 만족도의 상관을 구한다'], a: 2, e: '재직자는 "아직 사건이 일어나지 않은" 중도절단 자료입니다. 퇴사자만 보면 근속이 짧게 왜곡되고, 로지스틱은 "언제"를 다루지 못합니다.' },
+  { id: 's05', m: ['ordinal'], q: '성과등급(C < B < A < S)에 어떤 요인이 영향을 주는지 분석하려 합니다. 결과변수에 맞는 기법은?', o: ['이항 로지스틱 회귀', '순서형 로지스틱 회귀', '다항 로지스틱 회귀', '독립표본 t-검정'], a: 1, e: '순서가 있는 3개 이상 범주는 순서형 로지스틱 회귀를 씁니다. 비례오즈 가정(p ≥ .05면 충족)을 함께 점검합니다.' },
+  { id: 's06', m: ['ordinal'], q: '구성원이 교육과정 A·B·C 중 무엇을 선택하는지 예측하려 합니다. 세 과정에는 우열이 없습니다. 어떤 기법인가요?', o: ['다항 로지스틱 회귀', '순서형 로지스틱 회귀', 'ANOVA', '생존분석'], a: 0, e: '순서 없는 3개 이상 범주는 다항 로지스틱 회귀입니다. 기준 범주를 정하고 범주별 OR을 따로 해석합니다.' },
+  { id: 's07', m: ['regression'], q: '성과 점수(0~100)를 교육시간·근속연수·성실성으로 설명하고, <b>어느 요인의 상대적 영향력이 가장 큰지</b> 비교하려 합니다. 무엇을 보나요?', o: ['비표준화 계수 B의 크기', '표준화 계수 β의 크기', '각 변수의 평균', 'p값의 크기'], a: 1, e: '단위가 다른 변수(시간, 년, 점수)를 비교할 때는 표준화 계수 β를 씁니다. p값의 크기는 영향력의 크기가 아닙니다.' },
+  { id: 's08', m: ['kmeans'], q: '조직문화 인식 4개 차원(5점)으로 구성원을 몇 가지 유형으로 묶으려 합니다. 정답 라벨은 없습니다. 맞는 설명은?', o: ['로지스틱 회귀로 유형을 예측한다', 'K-means 군집분석을 하되 변수를 표준화하고 엘보우·실루엣으로 K를 정한다', '카이제곱 검정으로 유형 수를 정한다', 'K는 항상 3으로 고정한다'], a: 1, e: '정답 없이 비슷한 사람끼리 묶는 비지도 학습입니다. 표준화, 여러 초기값(nstart), K 선택 근거가 핵심입니다.' },
+  { id: 's09', m: ['text'], q: '구성원 자유응답 2,000건에서 <b>주요 불만 주제</b>를 자동으로 찾으려 합니다. 알맞은 기법은?', o: ['토픽모델링(LDA)', '매개 중심성', 'Cronbach\'s α', '생존분석'], a: 0, e: '토픽모델링은 단어가 함께 나오는 패턴으로 주제를 찾습니다. 한국어는 형태소 분석과 불용어 처리가 결과를 크게 좌우합니다.' },
+  { id: 's10', m: ['text'], q: '협업 메신저 기록으로 <b>부서와 부서를 잇는 다리 역할</b>을 하는 사람을 찾으려 합니다. 어떤 지표를 보나요?', o: ['연결 중심성(degree)', '매개 중심성(betweenness)', '밀도(density)', '오즈비'], a: 1, e: '매개 중심성은 다른 사람들 사이의 최단 경로 위에 얼마나 자주 놓이는지를 봅니다. 이 사람이 떠나면 관계망이 끊어질 수 있습니다.' },
+  { id: 's11', m: ['cfa'], q: '선행연구에서 2개 하위요인(유용성·용이성)으로 검증된 설문을 우리 회사에 그대로 썼습니다. 측정 구조가 맞는지 확인하는 방법은?', o: ['탐색적 요인분석(EFA)만 한다', '확인적 요인분석(CFA)으로 적합도와 적재량을 본다', '상관분석만 한다', 'K-means 군집분석'], a: 1, e: '구조를 미리 정해 두고 데이터가 그 구조와 맞는지 보는 것이 CFA입니다. 구조를 모르는 새 문항이면 EFA가 먼저입니다.' },
+  { id: 's12', m: ['cfa'], q: '새로 만든 9개 문항이 몇 개 요인으로 묶이는지 모릅니다. 분석 전 점검과 요인 수 결정에 함께 쓰는 것은?', o: ['KMO·Bartlett 검정과 평행분석', 'Cramér\'s V와 Fisher 검정', '로그순위 검정', 'VIF와 Durbin-Watson'], a: 0, e: 'KMO(.6 이상 권장)와 Bartlett 검정으로 요인분석이 가능한지 보고, 평행분석으로 요인 수를 정합니다(고유값 1 기준은 과대추정 경향).' },
+  { id: 's13', m: ['alpha'], q: '면접관 두 명이 지원자를 5점 척도로 평정했습니다. 두 사람의 판단이 얼마나 일치하는지 보려면?', o: ['Cronbach\'s α', '가중 카파(weighted κ) 또는 ICC', 'Pearson r만 보면 충분', '카이제곱 검정의 p'], a: 1, e: '순서형 평정의 일치도는 가중 κ나 ICC로 봅니다. 상관은 "함께 오르내림"만 봐서, 한 사람이 일관되게 1점씩 짜게 줘도 r은 높게 나옵니다.' },
+  { id: 's14', m: ['mediation', 'boot'], q: '"기술수용성이 AI 리터러시를 높이고, 그 결과 직무몰입이 높아진다"는 경로를 검증하려 합니다. 알맞은 분석은?', o: ['상관분석만', '매개효과 분석(PROCESS Model 4)과 부트스트랩 CI', '카이제곱 검정', '조절효과 분석(Model 1)'], a: 1, e: 'X → M → Y 경로는 매개효과입니다. 간접효과 a×b를 부트스트랩 95% CI로 검정합니다. 조절효과(Model 1)는 "언제 더 강한가"를 묻는 다른 질문입니다.' },
+  { id: 's15', m: ['boot'], q: '간접효과 a×b = .176, 부트스트랩 95% CI [.127, .231]. 맞는 판단은?', o: ['CI에 0이 포함되지 않으므로 간접효과는 유의하다', 'CI 폭이 좁으므로 유의하지 않다', 'p값이 없으므로 판단할 수 없다', '간접효과가 크다는 뜻이다'], a: 0, e: 'CI가 0을 포함하지 않으면 유의합니다. 다만 "0은 아니다"이지 "크다"는 뜻은 아니어서 크기는 표준화 간접효과로 따로 봅니다.' },
+  { id: 's16', m: ['ttest', 'basics'], q: '고성과·저성과 집단의 외향성 차이가 p = .004, d = 0.19로 나왔습니다. 채용 가중치에 대한 올바른 판단은?', o: ['p가 매우 작으므로 가중치를 크게 올린다', '유의하지만 효과크기가 매우 작아 가중치 상향 근거로는 약하다', '유의하지 않으므로 해석하지 않는다', 'd가 0.2 미만이면 계산 오류다'], a: 1, e: 'p는 "우연인가"를, d는 "얼마나 큰가"를 답합니다. 표본이 크면 작은 차이도 유의해지므로 효과크기로 실무적 의미를 판단합니다.' },
+  { id: 's17', m: ['corr', 'basics'], q: '전 직원 2,000명 설문에서 두 변수의 상관이 r = .08, p < .001입니다. 가장 적절한 해석은?', o: ['매우 강한 관계다', '표본이 커서 유의하게 나왔을 뿐, 공유 분산이 0.6%로 실무적 의미는 매우 작다', 'p < .001이므로 인과관계다', '음의 상관이다'], a: 1, e: 'r² = .0064, 즉 한 변수가 다른 변수 변동의 0.6%만 설명합니다. 큰 표본에서는 아주 작은 상관도 유의해집니다.' },
+  { id: 's18', m: ['logit'], q: '로지스틱 회귀에서 연봉의 OR이 1.00003(p < .001)으로 나왔습니다. 무엇을 먼저 의심해야 하나요?', o: ['연봉은 영향이 없다', '연봉 1단위(1원·1천원)가 너무 작아 생긴 착시이므로 1,000만 원 단위로 바꿔 읽는다', '모형이 잘못되었으므로 연봉을 뺀다', 'OR이 1보다 크므로 부정적 영향이다'], a: 1, e: 'OR은 "1단위 증가당" 배율입니다. e^(B×10,000)처럼 단위를 바꾸면 1,000만 원당 OR 1.36처럼 의미 있는 크기가 드러납니다.' },
+  { id: 's19', m: ['logit'], q: '이직 예측 모형의 정확도가 82%입니다. 실제 이직자는 전체의 15%입니다. 올바른 평가는?', o: ['82%이므로 매우 좋은 모형이다', '모두 "재직"으로만 찍어도 85%이므로, 기저율보다 못한 모형일 수 있다', '정확도는 기저율과 무관하다', 'AUC를 볼 필요가 없다'], a: 1, e: '희귀 사건일수록 정확도는 오해를 부릅니다. 기저율, 민감도(이직자를 얼마나 잡아내나), AUC를 함께 봅니다.' },
+  { id: 's20', m: ['chisq'], q: '영업부의 이직률이 연구부의 2배로 유의했습니다. 그런데 영업부는 이직률이 높은 사원 비중이 80%입니다. 다음 단계는?', o: ['영업부 리텐션 예산을 바로 늘린다', '직급별로 나눠 비교(층화, Mantel-Haenszel)하거나 직급을 통제한 로지스틱 회귀를 한다', '카이제곱 대신 t-검정을 한다', '표본을 줄여 다시 검정한다'], a: 1, e: '직급이 부서와 이직 모두에 관련된 교란변수입니다. 층화하면 차이가 사라지는 심슨의 역설일 수 있습니다(8.6절).' },
+  { id: 's21', m: ['paired'], q: '역량 진단 <b>하위 20%</b>만 골라 보충교육을 했더니 사후 점수가 평균 0.4점 올랐습니다. 비교집단은 없습니다. 가장 큰 문제는?', o: ['표본이 작다', '평균으로의 회귀 때문에 교육 효과가 없어도 점수가 오를 수 있다', '종속표본 t-검정을 쓸 수 없다', '효과크기를 계산할 수 없다'], a: 1, e: '점수로 골라낸 하위 집단은 다시 재면 평균 쪽으로 돌아오는 경향이 있습니다. 같은 기준으로 고른 비교집단이나 ANCOVA가 필요합니다.' },
+  { id: 's22', m: ['survival'], q: 'Cox 회귀에서 직군(기준: IT개발) 경영지원의 HR = 0.62, p = .008입니다. 맞는 해석은?', o: ['경영지원직의 퇴사 위험이 IT개발직보다 약 38% 낮다', '경영지원직의 62%가 퇴사했다', '경영지원직의 근속이 62% 길다', 'IT개발직의 퇴사 위험이 62% 낮다'], a: 0, e: 'HR은 순간 위험의 배율입니다. 0.62 = (1 − 0.62) = 38% 낮음. 기준 범주가 무엇인지 꼭 확인합니다.' },
+  { id: 's23', m: ['ordinal'], q: '순서형 로지스틱 회귀의 비례오즈 가정 검정(Brant) 결과 p = .574입니다. 맞는 판단은?', o: ['가정이 깨졌으므로 다항 로지스틱으로 바꾼다', 'p ≥ .05이므로 가정 충족, 공통 OR을 써도 된다', '모든 변수가 유의하지 않다', '표본이 부족하다'], a: 1, e: '가정 검정은 일반 검정과 판정 방향이 반대입니다. p가 크면 "가정을 깰 증거가 없다"는 뜻입니다.' },
+  { id: 's24', m: ['regression'], q: '다중회귀에서 "근속연수"와 "연차"의 VIF가 각각 12입니다. 적절한 조치는?', o: ['그대로 해석한다', '거의 같은 정보이므로 하나를 빼거나 합친다', '표본을 늘리면 VIF는 상관없다', 'β 대신 B를 본다'], a: 1, e: 'VIF 10 이상은 다중공선성 신호입니다. 계수가 불안정해지고 부호가 뒤집히기도 하므로 변수를 정리합니다.' },
+  { id: 's25', m: ['cfa'], q: 'CFA에서 RMSEA가 .103으로 기준을 살짝 넘었고, 수정지수 1위가 "I1 ~~ I2" 오차상관입니다. 바람직한 태도는?', o: ['MI가 큰 순서대로 기준을 넘을 때까지 오차상관을 추가한다', '두 문항의 내용이 실제로 비슷한지 확인한 뒤에만 추가하고, 그 근거를 보고한다', '문항을 모두 삭제한다', 'RMSEA는 무시한다'], a: 1, e: '내용 근거가 있는 수정은 허용되지만 MI만 보고 반복 수정하면 데이터에 과적합됩니다.' },
+  { id: 's26', m: ['ttest'], q: '<b>합격자</b> 데이터로 선발점수와 입사 후 성과의 상관을 구했더니 r = .15였습니다. 이 값은 선발도구의 실제 타당도에 비해 어떤가요?', o: ['정확하다', '범위 제한 때문에 실제(지원자 전체 기준)보다 과소추정되었을 가능성이 크다', '과대추정되었다', '상관은 표본과 무관하다'], a: 1, e: '합격자는 점수 범위가 좁아 상관이 약하게 나옵니다. Thorndike Case II 공식으로 교정합니다(1.6절).' },
+  { id: 's27', m: ['chisq'], q: '3×4 교차표에서 기대빈도 5 미만인 칸이 40%입니다. 어떻게 하나요?', o: ['그대로 카이제곱 p를 보고한다', 'Fisher 정확검정을 쓰거나 범주를 합친다', 't-검정으로 바꾼다', 'Cramér\'s V만 보고한다'], a: 1, e: '기대빈도 5 미만 칸이 20%를 넘으면 카이제곱 근사가 부정확해집니다.' },
+  { id: 's28', m: ['kmeans'], q: '같은 데이터로 K-means를 다시 돌렸더니 "군집 1"과 "군집 3"의 내용이 서로 바뀌었습니다. 맞는 설명은?', o: ['분석이 잘못되었다', '군집 번호는 임의이므로 정상이며, set.seed와 nstart로 재현성을 확보하고 프로파일로 이름을 붙인다', 'K를 늘려야 한다', '표준화를 하면 안 된다'], a: 1, e: '번호 자체에는 의미가 없습니다. 군집별 평균 프로파일을 보고 "혁신·자율형"처럼 이름을 붙입니다.' },
+  { id: 's29', m: ['descr'], q: '주요 변수의 왜도 1.2, 첨도 2.5입니다. Kline(2016) 기준으로 판단하면?', o: ['정규성 가정을 크게 벗어난다', '|왜도| < 3, |첨도| < 10이므로 허용 범위다', '비모수 검정만 써야 한다', '첨도는 0이어야 한다'], a: 1, e: '사례 논문이 쓴 Kline 기준입니다. 더 엄격한 기준(|왜도| < 2, |첨도| < 7)을 쓰는 연구도 있습니다.' },
+  { id: 's30', m: ['alpha'], q: '하위요인 α는 모두 .90 안팎인데, 12문항 전체 α는 .71입니다. 무엇을 시사하나요?', o: ['문항 수가 많아 α가 높아야 정상이므로 계산 오류다', '하위요인끼리의 관련성이 약해 하나의 평균 점수로 합치는 것을 다시 검토해야 한다', '전체 α가 낮으므로 하위요인도 신뢰할 수 없다', '역문항이 없다는 뜻이다'], a: 1, e: '문항이 많으면 α는 올라가는 경향이 있는데도 낮다면, 하위요인이 서로 다른 것을 잴 가능성이 큽니다. 2차 요인 CFA 등으로 확인합니다.' },
+  { id: 's31', m: ['anova', 'posthoc'], q: 'Welch\'s ANOVA는 p = .20인데, 사후검정 한 쌍만 p = .04입니다. 이 강의의 관례에 따른 판단은?', o: ['그 한 쌍의 차이를 결론으로 보고한다', '전체 검정이 유의하지 않으므로 사후검정 결과를 해석하지 않는다', 'ANOVA를 다시 돌린다', 't-검정으로 바꿔 유의하게 만든다'], a: 1, e: '강의와 많은 논문은 "ANOVA 유의 → 사후검정" 순서를 따릅니다. 원하는 결과가 나올 때까지 검정을 바꾸는 것은 p-해킹입니다.' },
+  { id: 's32', m: ['logit'], q: 'AI 채용 모형의 예측 합격률이 남성 40%, 여성 20%입니다. 4/5 규칙으로 보면?', o: ['차이가 20%p뿐이므로 문제없다', '선발률 비율 .50이 .80 미만이므로 불리효과(adverse impact)를 점검해야 한다', '여성이 더 우수하다는 뜻이다', '성별을 변수에서 빼면 항상 해결된다'], a: 1, e: '20% ÷ 40% = .50 < .80. 성별을 빼도 대리 변수(근무형태, 경력 공백 등)로 같은 편향이 남을 수 있습니다.' },
+  { id: 's33', m: ['survival'], q: '퇴사를 자발적·비자발적(권고사직 등)으로 구분해 자발적 퇴사만의 누적 발생률을 구하려 합니다. 주의할 점은?', o: ['비자발적 퇴사자를 중도절단으로 두고 1 − KM으로 구하면 된다', '경쟁위험이므로 누적발생함수(CIF)를 쓴다. 1 − KM은 과대추정한다', '로지스틱 회귀로 충분하다', '구분할 필요가 없다'], a: 1, e: '비자발적으로 떠난 사람은 다시는 자발적 퇴사를 할 수 없는 경쟁 사건입니다. CIF나 Fine-Gray 모형을 씁니다(9.6절).' },
+  { id: 's34', m: ['paired'], q: '교육집단과 비교집단 모두 사전·사후 점수가 있습니다. 사전 점수 차이를 감안해 교육 효과를 비교하는 대표 방법은?', o: ['교육집단만 종속표본 t-검정', '사전 점수를 공변량으로 둔 ANCOVA(또는 집단 × 시점 혼합 ANOVA)', '사후 점수만 독립표본 t-검정', '카이제곱 검정'], a: 1, e: 'ANCOVA는 사전 점수를 통제한 조정 평균을 비교해 검정력이 높습니다. 혼합 ANOVA에서는 집단 × 시점 상호작용을 봅니다.' },
+  { id: 's35', m: ['ttest'], q: '선발도구 개선의 가치를 경영진에게 금액으로 보여 주려 합니다. 어떤 모형을 쓰나요?', o: ['BCG(Brogden-Cronbach-Gleser) 효용분석', 'Kaplan-Meier', 'Cronbach\'s α', 'Games-Howell'], a: 0, e: 'ΔU = Ns × T × r × SDy × Z̄x − C. 가정(SDy, 재직기간)에 민감하므로 보수적 값과 범위를 함께 제시합니다.' },
+  { id: 's36', m: ['logit'], q: '로지스틱 회귀에서 조직적합도 OR = 1.48입니다. 경영진 보고에 더 직관적인 표현으로 바꾸려면?', o: ['고성과 확률이 48% 오른다', '평균 한계효과(AME)로 "1점 높을수록 고성과 확률이 약 ○%p 높다"고 바꿔 말한다', 'OR은 바꿀 수 없다', '확률이 1.48배가 된다'], a: 1, e: 'OR은 확률이 아니라 오즈의 배율입니다. 확률 변화로 말하려면 AME나 예측확률을 계산합니다(5.8절).' },
+  { id: 's37', m: ['corr', 'mediation'], q: '횡단 설문에서 AI 리터러시와 직무몰입의 상관이 .571이었습니다. 보고서에 쓸 수 있는 가장 정확한 문장은?', o: ['AI 리터러시가 직무몰입을 높인다', 'AI 리터러시가 높은 구성원일수록 직무몰입도 높은 경향이 있었다(r = .571)', 'AI 리터러시 때문에 몰입이 57% 증가한다', '직무몰입이 AI 리터러시를 결정한다'], a: 1, e: '상관은 방향과 인과를 알려 주지 않습니다. "경향이 있었다", "관련이 있었다"처럼 씁니다.' },
+  { id: 's38', m: ['basics'], q: '"p = .03이므로 귀무가설이 참일 확률은 3%다." 이 문장은?', o: ['맞다', '틀리다. p는 귀무가설이 참이라고 가정했을 때 이만큼 극단적인 결과가 나올 확률이다', '맞다. 단 양측검정일 때만', '틀리다. p는 대립가설이 참일 확률이다'], a: 1, e: 'p값은 가설의 확률이 아니라 "귀무가설 아래에서 데이터의 확률"입니다. 가장 흔한 오해입니다.' }
+];
+
+/* =================== 용어집: [한글, 영문, 한 줄 정의, 관련 모듈, 본문에서 찾을 표기들] =================== */
+const GLOSS = [
+  ['p값', 'p-value', '귀무가설이 맞다고 가정할 때, 지금만큼 또는 더 극단적인 결과가 나올 확률. 가설이 참일 확률이 아님', 'basics', ['p-value', 'p값']],
+  ['유의수준', 'significance level (α)', '"우연이 아니다"라고 판정할 기준선. 보통 .05', 'basics', ['유의수준']],
+  ['귀무가설', 'null hypothesis (H₀)', '"차이·관계가 없다"는 기본 가설. 검정은 이 가설을 기각할 수 있는지 본다', 'basics', ['귀무가설', '영가설']],
+  ['효과크기', 'effect size', '차이나 관계가 실무적으로 얼마나 큰지를 단위 없이 나타낸 값(d, r, V, η² 등)', 'basics', ['효과크기']],
+  ['신뢰구간', 'confidence interval (CI)', '같은 방법으로 구간을 반복해 만들면 95%가 참값을 포함하는 범위', 'basics', ['신뢰구간']],
+  ['표준편차', 'standard deviation (SD)', '값들이 평균에서 평균적으로 얼마나 떨어져 있는지', 'basics', ['표준편차']],
+  ['표준오차', 'standard error (SE)', '표본에서 구한 통계량(평균, 계수)이 표본마다 얼마나 흔들리는지', 'basics', ['표준오차']],
+  ['자유도', 'degrees of freedom (df)', '통계량을 계산할 때 자유롭게 변할 수 있는 값의 수. 검정 분포의 모양을 정함', 'basics', ['자유도']],
+  ['1종 오류', 'Type I error', '실제로는 차이가 없는데 "있다"고 잘못 판정하는 오류. 확률 = 유의수준', 'basics', ['1종 오류']],
+  ['검정력', 'statistical power', '실제로 차이가 있을 때 그것을 찾아낼 확률. 표본이 클수록 높음', 'basics', ['검정력']],
+  ['중심극한정리', 'central limit theorem', '표본이 충분히 크면 표본평균의 분포가 정규분포에 가까워진다는 원리', 'basics', ['중심극한정리']],
+  ['Cohen\'s d', 'Cohen\'s d', '두 평균의 차이가 표준편차 몇 개 분량인지. 0.2 / 0.5 / 0.8 = 작음 / 중간 / 큼', 'ttest', ['Cohen\'s d']],
+  ['Welch 검정', 'Welch\'s t-test', '두 집단의 분산이 달라도 쓸 수 있는 t-검정. R의 기본값', 'ttest', ['Welch\'s t-test', 'Welch 검정']],
+  ['등분산', 'homogeneity of variance', '비교하는 집단들의 분산이 같다는 가정. 깨지면 Welch 방식을 씀', 'ttest', ['등분산']],
+  ['범위 제한', 'range restriction', '합격자처럼 점수 범위가 좁은 집단에서 상관이 실제보다 약하게 나오는 현상', 'ttest', ['범위 제한']],
+  ['효용분석', 'utility analysis', '선발도구 개선이 만드는 성과 향상을 금액으로 추정하는 방법(BCG 모형)', 'ttest', ['효용분석']],
+  ['종속표본', 'paired samples', '같은 사람을 두 번 재는 등 짝이 지어진 자료', 'paired', ['종속표본', '대응표본']],
+  ['평균으로의 회귀', 'regression to the mean', '극단적인 점수로 고른 집단이 다시 재면 평균 쪽으로 돌아오는 현상', 'paired', ['평균으로의 회귀']],
+  ['공분산분석', 'ANCOVA', '사전 점수 같은 공변량을 통제한 뒤 집단 평균을 비교하는 분석', 'paired', ['ANCOVA', '공분산분석']],
+  ['분산분석', 'ANOVA', '세 집단 이상의 평균 차이를 한 번에 검정하는 방법', 'anova', ['분산분석', 'ANOVA']],
+  ['F값', 'F statistic', '집단 간 차이(신호)를 집단 내 흩어짐(소음)으로 나눈 비율', 'anova', ['F값']],
+  ['가족오류율', 'family-wise error rate (FWER)', '여러 번 검정할 때 그중 하나라도 1종 오류가 날 확률', 'anova', ['가족오류율', 'FWER']],
+  ['에타제곱', 'eta squared (η²)', '전체 변동 중 집단 차이가 설명하는 비율. .01 / .06 / .14', 'anova', ['η²', '에타제곱']],
+  ['사후검정', 'post-hoc test', 'ANOVA 뒤에 정확히 어느 집단끼리 다른지 쌍별로 비교하는 검정', 'posthoc', ['사후검정']],
+  ['Games-Howell', 'Games-Howell test', '등분산 가정이 필요 없는 사후검정', 'posthoc', ['Games-Howell']],
+  ['오즈', 'odds', '사건이 일어날 확률 ÷ 일어나지 않을 확률', 'logit', ['오즈']],
+  ['오즈비', 'odds ratio (OR)', 'X가 1단위 늘 때 오즈가 몇 배가 되는지. 1보다 크면 증가', 'logit', ['오즈비', 'OR']],
+  ['기준 범주', 'reference category', '범주형 변수의 계수를 비교하는 기준이 되는 범주', 'logit', ['기준 범주', '참조 범주']],
+  ['GVIF', 'generalized VIF', '범주형 변수가 포함된 모형의 다중공선성 지표', 'logit', ['GVIF']],
+  ['Nagelkerke R²', 'Nagelkerke pseudo R²', '로지스틱 회귀의 설명력을 0~1로 나타낸 유사 결정계수', 'logit', ['Nagelkerke']],
+  ['Hosmer-Lemeshow 검정', 'Hosmer-Lemeshow test', '예측확률과 실제 비율이 맞는지 보는 적합도 검정. p ≥ .05면 적합', 'logit', ['Hosmer-Lemeshow']],
+  ['민감도', 'sensitivity', '실제 사건(예: 고성과자) 중 모형이 맞힌 비율', 'logit', ['민감도']],
+  ['특이도', 'specificity', '실제 비사건(예: 저성과자) 중 모형이 맞힌 비율', 'logit', ['특이도']],
+  ['기저율', 'base rate', '아무 정보 없이 다수 범주로만 찍을 때의 정확도', 'logit', ['기저율']],
+  ['AUC', 'area under the ROC curve', '무작위로 고른 사건·비사건 한 쌍을 모형이 올바르게 순서 짓는 확률. .5 = 동전 던지기', 'logit', ['AUC']],
+  ['평균 한계효과', 'average marginal effect (AME)', 'X가 1단위 늘 때 사건 확률이 평균 몇 %p 바뀌는지', 'logit', ['평균 한계효과', 'AME']],
+  ['4/5 규칙', 'four-fifths rule', '한 집단의 선발률이 가장 높은 집단의 80% 미만이면 불리효과를 의심하는 기준', 'logit', ['4/5 규칙']],
+  ['비례오즈 가정', 'proportional odds assumption', '순서형 로지스틱에서 모든 경계에 같은 OR이 적용된다는 가정. p ≥ .05면 충족', 'ordinal', ['비례오즈']],
+  ['누적 오즈', 'cumulative odds', '"이 범주 이상"일 오즈. 순서형 로지스틱의 기본 단위', 'ordinal', ['누적 오즈']],
+  ['결정계수', 'coefficient of determination (R²)', '종속변수 변동 중 모형이 설명하는 비율', 'regression', ['결정계수', '수정된 R²']],
+  ['표준화 계수', 'standardized coefficient (β)', '모든 변수를 표준화했을 때의 회귀계수. 변수 간 상대적 영향력 비교에 사용', 'regression', ['표준화 계수']],
+  ['비표준화 계수', 'unstandardized coefficient (B)', 'X가 원래 단위로 1 늘 때 Y가 원래 단위로 얼마나 변하는지', 'regression', ['비표준화 계수']],
+  ['다중공선성', 'multicollinearity', '독립변수끼리 너무 비슷해 계수가 불안정해지는 문제', 'regression', ['다중공선성']],
+  ['VIF', 'variance inflation factor', '다중공선성 정도. 10 이상이면 문제로 봄', 'regression', ['VIF']],
+  ['잔차', 'residual', '실제값 − 예측값. 회귀 가정 점검의 재료', 'regression', ['잔차']],
+  ['단계적 선택', 'stepwise selection', '통계 기준으로 변수를 자동으로 넣고 빼는 방법. R²와 계수를 부풀려 비판받음', 'regression', ['단계적 선택']],
+  ['교차표', 'contingency table', '두 범주형 변수의 조합별 인원수를 정리한 표', 'chisq', ['교차표']],
+  ['기대빈도', 'expected frequency', '두 변수가 서로 관련이 없다면 각 칸에 있어야 할 인원수', 'chisq', ['기대빈도']],
+  ['표준화 잔차', 'standardized residual', '각 칸의 실제 빈도가 기대빈도에서 얼마나 벗어났는지. |값| > 1.96이면 두드러짐', 'chisq', ['표준화 잔차']],
+  ['Cramér\'s V', 'Cramér\'s V', '카이제곱 검정의 효과크기. 0~1', 'chisq', ['Cramér\'s V']],
+  ['Fisher 정확검정', 'Fisher\'s exact test', '기대빈도가 작을 때 카이제곱 대신 쓰는 정확한 검정', 'chisq', ['Fisher 정확검정']],
+  ['심슨의 역설', 'Simpson\'s paradox', '전체로 본 관계가 하위집단별로 나누면 사라지거나 뒤집히는 현상', 'chisq', ['심슨의 역설']],
+  ['교란변수', 'confounder', '원인과 결과 양쪽에 관련되어 겉보기 관계를 만드는 제3의 변수', 'chisq', ['교란변수']],
+  ['중도절단', 'censoring', '관찰 기간 안에 사건(퇴사)이 아직 일어나지 않아 끝을 모르는 자료', 'survival', ['중도절단']],
+  ['카플란-마이어', 'Kaplan-Meier estimator', '중도절단을 반영해 시점별 생존(재직) 확률을 계단 모양으로 추정하는 방법', 'survival', ['카플란-마이어']],
+  ['로그순위 검정', 'log-rank test', '두 집단 이상의 생존곡선이 다른지 검정', 'survival', ['로그순위 검정']],
+  ['위험비', 'hazard ratio (HR)', '어느 시점에서든 한 집단의 순간 사건 위험이 다른 집단의 몇 배인지', 'survival', ['위험비']],
+  ['비례위험 가정', 'proportional hazards assumption', 'Cox 회귀에서 위험비가 시간에 따라 일정하다는 가정', 'survival', ['비례위험']],
+  ['경쟁위험', 'competing risks', '한 사건(비자발적 퇴사)이 다른 사건(자발적 퇴사)의 발생을 막는 상황', 'survival', ['경쟁위험']],
+  ['누적발생함수', 'cumulative incidence function (CIF)', '경쟁위험이 있을 때 특정 사건의 누적 발생 확률', 'survival', ['누적발생함수']],
+  ['표준화', 'standardization (z-score)', '(값 − 평균) ÷ SD로 단위를 없애는 변환', 'kmeans', ['표준화']],
+  ['엘보우 방법', 'elbow method', 'K를 늘릴 때 군집 내 제곱합 감소가 꺾이는 지점으로 K를 정하는 방법', 'kmeans', ['엘보우']],
+  ['실루엣 계수', 'silhouette coefficient', '각 점이 자기 군집에 얼마나 잘 속하고 다른 군집과 얼마나 떨어져 있는지. 1에 가까울수록 좋음', 'kmeans', ['실루엣']],
+  ['잠재프로파일분석', 'latent profile analysis (LPA)', '확률 모형으로 유형을 찾는 군집 방법. 소속을 확률로 주고 유형 수를 통계 지표로 비교', 'kmeans', ['잠재프로파일분석', 'LPA']],
+  ['토픽모델링', 'topic modeling (LDA)', '단어가 함께 나오는 패턴으로 문서 묶음의 주제를 찾는 방법', 'text', ['토픽모델링', 'LDA']],
+  ['매개 중심성', 'betweenness centrality', '다른 사람들 사이 최단 경로에 얼마나 자주 놓이는지. 다리 역할 지표', 'text', ['매개 중심성']],
+  ['연결 중심성', 'degree centrality', '직접 연결된 사람 수', 'text', ['연결 중심성']],
+  ['비확률표집', 'non-probability sampling', '무작위가 아닌 방식(편의·목적표집)으로 표본을 모으는 것. 일반화에 한계', 'descr', ['비확률표집']],
+  ['왜도', 'skewness', '분포가 한쪽으로 쏠린 정도. 0이면 대칭', 'descr', ['왜도']],
+  ['첨도', 'kurtosis', '분포의 뾰족함과 꼬리 두께. SPSS·psych는 정규분포 = 0인 초과첨도', 'descr', ['첨도']],
+  ['잠재변수', 'latent variable', '직접 잴 수 없어 여러 문항으로 간접 측정하는 개념(몰입, 불안 등)', 'cfa', ['잠재변수']],
+  ['요인적재량', 'factor loading', '문항이 잠재요인을 얼마나 잘 반영하는지. 보통 .5 또는 .7 이상', 'cfa', ['요인적재량', '적재량']],
+  ['확인적 요인분석', 'confirmatory factor analysis (CFA)', '미리 정한 요인 구조가 데이터와 맞는지 검증하는 분석', 'cfa', ['확인적 요인분석', 'CFA']],
+  ['탐색적 요인분석', 'exploratory factor analysis (EFA)', '문항이 몇 개 요인으로 묶이는지 데이터에서 찾는 분석', 'cfa', ['탐색적 요인분석', 'EFA']],
+  ['KMO', 'Kaiser-Meyer-Olkin measure', '요인분석에 적합한 데이터인지 보는 지표. .6 이상 권장', 'cfa', ['KMO']],
+  ['평행분석', 'parallel analysis', '무작위 데이터의 고유값과 비교해 요인 수를 정하는 방법', 'cfa', ['평행분석']],
+  ['RMSEA', 'root mean square error of approximation', '모형이 데이터와 어긋나는 정도. .08 이하 양호, .10 초과 부적합', 'cfa', ['RMSEA']],
+  ['CFI', 'comparative fit index', '기초 모형보다 얼마나 나은지. .90 이상(엄격하게 .95) 양호', 'cfa', ['CFI']],
+  ['수정지수', 'modification index (MI)', '특정 경로나 오차상관을 추가하면 χ²가 얼마나 줄어드는지 추정한 값', 'cfa', ['수정지수']],
+  ['Cronbach\'s α', 'Cronbach\'s alpha', '문항들이 같은 것을 일관되게 재는지 보는 내적 일관성 신뢰도. .7 이상 권장', 'alpha', ['Cronbach\'s α', 'Cronbach']],
+  ['맥도널드 ω', 'McDonald\'s omega', '문항마다 적재량이 다를 수 있음을 반영한 신뢰도. α의 대안', 'alpha', ['맥도널드 ω', 'McDonald\'s ω']],
+  ['Cohen\'s κ', 'Cohen\'s kappa', '두 평가자의 범주 판정이 우연 이상으로 일치하는 정도', 'alpha', ['Cohen\'s κ', '카파']],
+  ['급내상관계수', 'intraclass correlation (ICC)', '여러 평가자의 연속형 평정이 얼마나 일치하는지', 'alpha', ['ICC', '급내상관']],
+  ['상관계수', 'correlation coefficient (r)', '두 연속 변수가 직선으로 함께 움직이는 정도. −1 ~ +1', 'corr', ['상관계수']],
+  ['매개효과', 'mediation effect', 'X가 중간 변수 M을 거쳐 Y에 미치는 효과', 'mediation', ['매개효과']],
+  ['간접효과', 'indirect effect (a×b)', 'X → M → Y 경로의 효과 크기. a와 b의 곱', 'mediation', ['간접효과']],
+  ['직접효과', 'direct effect (c′)', 'M을 통제한 뒤 남는 X → Y 효과', 'mediation', ['직접효과']],
+  ['부분매개', 'partial mediation', '간접효과와 직접효과가 모두 유의한 경우', 'mediation', ['부분매개']],
+  ['부트스트랩', 'bootstrap', '원 표본에서 복원추출을 수천 번 반복해 통계량의 분포와 신뢰구간을 구하는 방법', 'boot', ['부트스트랩']],
+  ['복원추출', 'sampling with replacement', '뽑은 사람을 다시 넣고 뽑는 방식. 같은 사람이 여러 번 뽑힐 수 있음', 'boot', ['복원추출']]
+];
+
+/* =================== 해석 문장 쓰기 연습: 결과표 → 보고 문장 → 모범답안·체크리스트 =================== */
+const WT = (head, rows) => `<div class="tbl"><table><thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map((c, i) => `<td${i ? ' class="num"' : ''}>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+const WRITE = {
+  ttest: { src: '강의 실습 사례(1.5절) · Welch\'s t-test, 고성과 560명 vs 저성과 359명',
+    table: WT(['변수', '고성과 M', '저성과 M', '차이', 'p', 'Cohen\'s d'], [['성실성', '4.313', '2.497', '+1.815', '&lt; .001', '3.707'], ['외향성', '2.776', '2.567', '+0.209', '.004', '0.189'], ['수리 적성', '3.657', '3.652', '+0.006', '.923', '0.006']]),
+    task: '세 변수의 결과를 2~3문장의 보고 문장으로 쓰고, 채용 평가 설계에 주는 시사점을 한 문장 덧붙이세요.',
+    model: 'Welch\'s t-검정 결과, 고성과자의 성실성(M = 4.31)은 저성과자(M = 2.50)보다 유의하게 높았고(p &lt; .001) 효과크기도 매우 컸다(d = 3.71). 외향성도 고성과자가 유의하게 높았으나(p = .004) 효과크기는 매우 작았으며(d = 0.19), 수리 적성은 두 집단 간 차이가 유의하지 않았다(p = .923). 따라서 선발 가중치는 성실성 중심으로 높이되, 효과크기가 이례적으로 큰 만큼 성과 기준이 성실성과 겹치는 준거 오염 가능성을 함께 점검할 필요가 있다.',
+    checks: [['검정 방법', 'Welch\'s t-검정임을 밝혔다'], ['방향과 평균', '어느 집단이 더 높은지와 평균값을 썼다'], ['통계적 유의성', '변수별 p를 썼다'], ['효과크기', 'd와 크기 판정(매우 큼·매우 작음)을 썼다'], ['ns 처리', '유의하지 않은 수리 적성은 차이를 해석하지 않았다'], ['HR 시사점', '가중치·선발 설계로 연결했다']] },
+
+  posthoc: { src: '강의 실습 사례(3.5절·4.5절) · Welch\'s ANOVA와 Games-Howell 사후검정, 연령대 5집단',
+    table: WT(['분석', '결과'], [['Welch ANOVA · 학습불안', 'F = 2.004, p = .097'], ['Welch ANOVA · 직무대체불안', 'F = 0.619, p = .650'], ['Welch ANOVA · 프라이버시침해불안', 'F = 4.687, p = .0013'], ['GH · 20대 vs 40대', '차이 −0.887, p = .001, d = −0.701'], ['GH · 20대 vs 50대', '차이 −0.720, p = .017, d = −0.551'], ['GH · 20대 vs 60대', '차이 −0.806, p = .003, d = −0.638'], ['GH · 그 밖의 7쌍', '모두 p &gt; .05']]),
+    task: 'ANOVA와 사후검정 결과를 순서대로 보고하고, AI 도입 커뮤니케이션에 주는 시사점을 쓰세요.',
+    model: 'Welch\'s ANOVA 결과, AI 불안의 세 하위요인 중 프라이버시침해불안만 연령대에 따라 유의한 차이를 보였다(F = 4.69, p = .001). 학습불안(p = .097)과 직무대체불안(p = .650)은 연령대 간 차이가 유의하지 않았다. Games-Howell 사후검정 결과, 20대는 40대(p = .001, d = −0.70), 50대(p = .017, d = −0.55), 60대(p = .003, d = −0.64)보다 프라이버시침해불안이 유의하게 낮았고 효과크기는 중간 수준이었으며, 30대 이상 연령대끼리는 차이가 없었다. 따라서 AI 도입 시 개인정보 활용 투명성 커뮤니케이션은 40대 이상을 우선 대상으로 설계한다.',
+    checks: [['전체 검정 먼저', 'ANOVA의 F와 p를 사후검정보다 먼저 썼다'], ['유의하지 않은 요인', '학습불안·직무대체불안이 ns임을 밝혔다'], ['사후검정 방법', 'Games-Howell을 썼다고 밝혔다'], ['유의한 쌍과 방향', '어느 연령대가 더 높은지(낮은지) 썼다'], ['효과크기', '쌍별 d와 크기 판정을 썼다'], ['HR 시사점', '대상 연령층을 구체적으로 제시했다']] },
+
+  logit: { src: '강의 실습 사례(5.6절) · 이항 로지스틱 회귀, 신입사원 700명 고성과(1) 예측',
+    table: WT(['변수', 'OR', 'p'], [['조직적합도 (1점)', '1.479', '&lt; .001'], ['직무만족도 (1점)', '1.322', '.018'], ['연봉 (1,000만 원)', '1.360', '&lt; .001'], ['성별: 남성 (기준 여성)', '0.591', '.003'], ['학력: 석사 이상 (기준 고졸 이하)', '2.906', '.001'], ['모형 정확도 / 기저율', '72.4% / 60.3%', '—']]),
+    task: '주요 결과를 보고 문장으로 쓰고(통제 조건, OR의 단위, 모형 성능 포함), 채용 실무 시사점과 주의점을 덧붙이세요.',
+    model: '이항 로지스틱 회귀분석 결과, 다른 변수를 통제했을 때 조직적합도가 1점 높을수록 고성과일 오즈가 1.48배(p &lt; .001), 직무만족도가 1점 높을수록 1.32배(p = .018) 높았다. 연봉은 1,000만 원당 오즈가 1.36배 높았고(p &lt; .001), 석사 이상은 고졸 이하보다 오즈가 2.91배 높았다(p = .001). 남성은 여성보다 오즈가 약 41% 낮았다(OR = 0.59, p = .003). 모형의 분류 정확도는 72.4%로 기저율(60.3%)보다 12.1%p 높았다. 채용 단계에서는 조직적합도 평가의 비중을 높이는 것을 검토하되, 성별은 법적으로 선발 기준이 될 수 없으므로 평가 과정의 편향 여부를 먼저 점검한다.',
+    checks: [['통제 조건', '"다른 변수를 통제했을 때"를 밝혔다'], ['OR 방향과 크기', '몇 배(또는 몇 % 증가·감소)인지 썼다'], ['단위', '1점, 1,000만 원처럼 1단위가 무엇인지 썼다'], ['유의성', '변수별 p를 썼다'], ['모형 성능', '정확도를 기저율과 비교하거나 AUC를 썼다'], ['시사점과 윤리', '실무 제언과 보호속성(성별) 주의를 함께 썼다']] },
+
+  regression: { src: '7번 모듈 실습 데이터(hr_regression_200.csv)의 R 기대 출력 · 다중회귀, n = 200',
+    table: WT(['변수', 'B', 'β', 'p', 'VIF'], [['교육시간 (1시간)', '0.326', '.391', '&lt; .001', '1.10'], ['근속연수 (1년)', '0.535', '.186', '&lt; .001', '1.04'], ['성실성 (1점)', '6.076', '.364', '&lt; .001', '1.07'], ['모형', 'R² = .434, 수정 R² = .426', 'F(3, 196) = 50.15', '&lt; .001', '—']]),
+    task: '모형 전체 → 변수별 결과 → 상대적 영향력 순서로 보고 문장을 쓰고, 교육 투자에 대한 시사점을 덧붙이세요.',
+    model: '다중회귀분석 결과 회귀모형은 유의했으며(F(3, 196) = 50.15, p &lt; .001), 세 변수가 성과 점수 변동의 43.4%를 설명했다(수정 R² = .426). 교육시간(B = 0.33, β = .39, p &lt; .001), 성실성(B = 6.08, β = .36, p &lt; .001), 근속연수(B = 0.53, β = .19, p &lt; .001)는 모두 성과와 유의한 정(+)의 관련이 있었고, 표준화 계수로 비교하면 교육시간의 상대적 영향력이 가장 컸다. 다중공선성은 문제가 없었다(VIF ≤ 1.10). 다른 변수가 같을 때 교육시간 10시간 증가는 성과 약 3.3점 상승과 관련되므로, 교육 투자 효과를 검토할 근거가 된다. 다만 횡단 자료이므로 인과관계로 단정하지 않는다.',
+    checks: [['모형 유의성', 'F, 자유도, p를 썼다'], ['설명력', 'R²(또는 수정 R²)를 %로 해석했다'], ['변수별 결과', 'B, β, p를 함께 썼다'], ['상대적 영향력', '비교는 β로 했다'], ['가정 점검', 'VIF 등 다중공선성을 언급했다'], ['시사점과 한계', '실무 의미를 쓰되 인과 단정은 피했다']] },
+
+  chisq: { src: '8번 모듈 실습 데이터(hr_turnover_dept_1000.csv)의 R 기대 출력 · 카이제곱과 Mantel-Haenszel',
+    table: WT(['구분', '영업부', '연구부', '검정'], [['전체 이직률', '16.8% (84/500)', '8.4% (42/500)', 'χ²(1) = 15.27, p &lt; .001, φ = .13'], ['사원 이직률', '20%', '22%', '—'], ['관리자 이직률', '4%', '5%', '—'], ['직급 통제 후', '—', '—', 'Mantel-Haenszel χ² = 0.22, p = .642']]),
+    task: '전체 비교와 직급별 비교를 함께 보고하고, 영업부 리텐션 대책을 어떻게 설계해야 하는지 쓰세요.',
+    model: '부서별 이직률은 영업부 16.8%, 연구부 8.4%로 차이가 유의했으나(χ²(1) = 15.27, p &lt; .001), 연관성은 약했다(φ = .13). 그러나 직급별로 나누어 보면 사원(영업부 20% vs 연구부 22%)과 관리자(4% vs 5%) 모두 부서 간 차이가 거의 없었고, 직급을 통제한 Mantel-Haenszel 검정도 유의하지 않았다(χ² = 0.22, p = .642). 즉 영업부의 높은 이직률은 부서 자체보다 이직률이 높은 사원 비중이 큰 직급 구성 때문으로 보인다. 따라서 리텐션 대책은 "영업부"가 아니라 전 부서의 사원층을 대상으로 설계한다.',
+    checks: [['비율 제시', '집단별 이직률(%)을 썼다'], ['검정 결과', 'χ², 자유도, p를 썼다'], ['효과크기', 'φ 또는 Cramér\'s V와 크기 판정을 썼다'], ['층화 결과', '직급별 비교와 Mantel-Haenszel 결과를 썼다'], ['해석', '교란변수(직급 구성) 때문이라는 해석을 했다'], ['HR 시사점', '대상을 다시 정의한 대책을 제시했다']] },
+
+  survival: { src: '9번 모듈 실습 데이터(hr_survival_300.csv)의 R 기대 출력 · 카플란-마이어와 Cox 회귀',
+    table: WT(['지표', 'IT개발직', '경영지원직'], [['중앙 근속기간', '23개월', '38개월'], ['12개월 재직률', '69.7%', '85.1%'], ['로그순위 검정', 'χ²(1) = 7.1, p = .008', ''], ['Cox HR · 경영지원 (기준 IT개발)', '0.62 [0.43, 0.88], p = .008', ''], ['Cox HR · 직무만족 (1점)', '0.67 [0.51, 0.87], p = .002', ''], ['Cox HR · 연봉인상률 (1%p)', '0.86 [0.73, 1.00], p = .043', ''], ['비례위험 가정 (cox.zph 전체)', 'p = .40', '']]),
+    task: '생존곡선 비교 → Cox 회귀 → 가정 점검 순서로 보고 문장을 쓰고, 언제 무엇을 해야 하는지 시점이 들어간 시사점을 쓰세요.',
+    model: '카플란-마이어 분석 결과, IT개발직의 중앙 근속기간은 23개월로 경영지원직(38개월)보다 짧았고, 입사 12개월 시점 재직률도 69.7%로 경영지원직(85.1%)보다 낮았다(로그순위 χ²(1) = 7.1, p = .008). 직군·직무만족·연봉인상률을 함께 투입한 Cox 회귀에서 경영지원직의 퇴사 위험은 IT개발직보다 38% 낮았고(HR = 0.62, p = .008), 직무만족이 1점 높을수록 퇴사 위험이 33% 낮았다(HR = 0.67, p = .002). 비례위험 가정은 충족되었다(p = .40). 따라서 IT개발직 입사 1년 차까지를 집중 관리 구간으로 정하고, 이 기간의 직무만족 관리(온보딩, 1:1 면담)를 우선 강화한다.',
+    checks: [['생존 요약', '중앙 근속기간이나 특정 시점 재직률을 썼다'], ['집단 비교 검정', '로그순위 검정 결과를 썼다'], ['HR과 기준 범주', '무엇 대비 몇 배(몇 % 낮음)인지 썼다'], ['통제 조건', 'Cox에 함께 넣은 변수를 밝혔다'], ['가정 점검', '비례위험 가정 결과를 썼다'], ['시점이 있는 시사점', '"언제까지 무엇을"을 구체적으로 썼다']] },
+
+  mediation: { src: '사례 논문 결과(17.3절) · PROCESS Model 4, 부트스트랩 5,000회',
+    table: WT(['효과', 'B', 'SE', 'β', '95% CI'], [['총효과 (c)', '.454', '.044', '.488', '[.367, .540]'], ['직접효과 (c′)', '.278', '.043', '.299', '[.193, .362]'], ['간접효과 (a×b)', '.176', '(.026)', '.189', '[.127, .231] 부트스트랩']]),
+    task: '총·직접·간접효과를 구분해 보고하고, 매개 유형과 HR 시사점, 연구 설계의 한계를 한 문장씩 덧붙이세요.',
+    model: '기술수용성은 직무몰입에 유의한 정(+)의 총효과를 보였다(B = .454, 95% CI [.367, .540]). AI 리터러시를 투입한 뒤에도 직접효과는 유의했고(B = .278, 95% CI [.193, .362]), AI 리터러시를 거친 간접효과는 .176으로 5,000회 부트스트랩 95% 신뢰구간 [.127, .231]이 0을 포함하지 않아 유의했다(표준화 간접효과 = .189). 직접효과와 간접효과가 모두 유의하므로 부분매개에 해당한다. 따라서 AI 도입 시 기술수용성을 높이는 활동과 함께 AI 리터러시 교육을 병행하는 것이 몰입 향상에 유리할 수 있다. 다만 횡단 설문 자료이므로 인과 방향은 종단 연구로 확인할 필요가 있다.',
+    checks: [['세 효과 구분', '총·직접·간접효과를 각각 썼다'], ['간접효과 검정', '부트스트랩 CI와 0 포함 여부로 판단했다'], ['부트스트랩 설정', '반복 수(5,000)를 밝혔다'], ['매개 유형', '부분매개·완전매개를 판정했다'], ['효과의 크기', '표준화 간접효과 등으로 크기를 언급했다'], ['시사점과 한계', '실무 제언과 횡단 자료의 인과 한계를 썼다']] }
+};
+
+/* =================== 학습 기능: 실습 데이터 · SPSS/jamovi 탭 · AI · 쓰기 · 용어 · 오답노트 · 종합 퀴즈 · 캡스톤 =================== */
+const hlR = (code) => esc(code).split('\n').map(line => { let q = null;
+  for (let i = 0; i < line.length; i++) { const c = line[i]; if (q) { if (c === q && line[i - 1] !== '\\') q = null; } else if (c === '"' || c === "'") q = c; else if (c === '#') return line.slice(0, i) + `<span class="cm">${line.slice(i)}</span>`; }
+  return line; }).join('\n');
+const modT = (id) => { const m = MODS.find(x => x.id === id); return m ? (m.n ? m.n + '. ' : '') + m.t : id; };
+
+/* ---------- 파일 저장 (claude.ai에서는 downloads 기능, 그 밖에서는 브라우저 내려받기) ---------- */
+let _dl = null;
+const _dlReady = (window.claude && typeof window.claude.use === 'function') ? window.claude.use('downloads').then(d => (_dl = d), () => null) : Promise.resolve(null);
+const _csv = {};
+const csvOf = (k) => _csv[k] || (_csv[k] = toCSV(DATASETS[k].gen()));
+async function saveCSV(k, msg) {
+  const d = DATASETS[k], data = '﻿' + csvOf(k), say = (t) => { if (msg) msg.textContent = t; };
+  say('파일을 만드는 중…'); await _dlReady;
+  if (_dl) { try { await _dl.save({ filename: d.file, data }); say('저장했습니다: ' + d.file); return; }
+    catch (e) { const c = e && e.code; if (c === 'declined') { say('저장을 취소했습니다.'); return; } if (c === 'rate_limited') { say('저장 창이 이미 열려 있습니다. 잠시 후 다시 눌러 주세요.'); return; } } }
+  try { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([data], { type: 'text/csv;charset=utf-8' })); a.download = d.file;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+    say('내려받기를 시작했습니다. 파일이 저장되지 않으면 "CSV 미리보기"에서 전체 텍스트를 복사해 ' + d.file + '로 저장하세요.'); }
+  catch (e) { say('이 화면에서는 내려받기가 막혀 있습니다. "CSV 미리보기"에서 텍스트를 복사하세요.'); }
+}
+function csvPreview(k, box) {
+  if (!box.hidden) { box.hidden = true; return; }
+  const g = DATASETS[k].gen(), rows = g.rows.slice(0, 6);
+  box.innerHTML = `<div class="tbl"><table><thead><tr>${g.cols.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(v => `<td>${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    <p class="caption" style="margin:0">처음 6행 · 전체 ${g.rows.length.toLocaleString()}행 × ${g.cols.length}열. 아래 텍스트를 모두 복사해 메모장에 붙여 넣고 <b>${DATASETS[k].file}</b>(UTF-8)로 저장해도 됩니다.</p>
+    <textarea readonly aria-label="CSV 전체 텍스트">${esc(csvOf(k))}</textarea>`;
+  box.hidden = false;
+}
+const dsBlock = (k) => { const d = DATASETS[k]; return `<div class="dsrow"><b>${d.title}</b><span class="caption">${d.basis}</span>
+  <div class="presets"><button type="button" class="btn pri" data-dl="${k}">CSV 내려받기 · ${d.file}</button><button type="button" class="btn" data-csvv="${k}">CSV 미리보기</button><span class="dlmsg" aria-live="polite"></span></div><div class="csvprev" hidden></div></div>`; };
+const codeBlock = (code) => `<div class="code"><button type="button" class="copy">복사</button><pre>${hlR(code.replace(/\s+$/, ''))}</pre></div>`;
+const expectBlock = (id) => `<details class="expect"><summary>이 데이터로 돌리면 나와야 하는 결과 (기대 출력)</summary><pre class="out">${esc(PRACTICE_OUT[id] || '')}</pre>
+  <p class="caption">R 4.3.3에서 위 코드를 그대로 실행한 실제 출력입니다. 패키지 버전에 따라 표 모양이나 마지막 자리가 조금 다를 수 있고, 부트스트랩처럼 무작위 재표집을 쓰는 값은 R·패키지 버전에 따라 소수점 셋째 자리가 달라질 수 있습니다.</p></details>`;
+
+/* ---------- C1·C6·C7: 모듈에 실습·탭·AI 섹션 끼워 넣기 ---------- */
+function initPractice() {
+  Object.entries(PRAC).forEach(([mid, p]) => {
+    const mod = $('#m-' + mid); if (!mod) return;
+    const quizSec = $('.quiz', mod)?.closest('.sec');
+    const rsec = $$('.sec', mod).find(s => /R 코드/.test($('h2', s)?.textContent || ''));
+    let after = rsec || null;
+    if (rsec && p.spss) {
+      const kids = [...rsec.children].filter(c => c.tagName !== 'H2'), wrap = document.createElement('div');
+      wrap.className = 'rpanel r'; wrap.dataset.p = 'r'; kids.forEach(c => wrap.appendChild(c));
+      const menu = (arr, note) => `<div class="menu"><ol>${arr.map(s => `<li>${s}</li>`).join('')}</ol>${note || ''}</div>`;
+      rsec.insertAdjacentHTML('beforeend', `<div class="rtabs" role="tablist" aria-label="분석 도구 선택"><button type="button" class="btn on" role="tab" aria-selected="true" data-tab="r">R 코드</button><button type="button" class="btn" role="tab" aria-selected="false" data-tab="spss">SPSS 메뉴 경로</button><button type="button" class="btn" role="tab" aria-selected="false" data-tab="jamovi">jamovi (무료)</button></div>`);
+      rsec.appendChild(wrap);
+      rsec.insertAdjacentHTML('beforeend', `<div class="rpanel" data-p="spss" hidden>${menu(p.spss, '<p class="caption">메뉴 이름은 SPSS 한글판 기준이며 버전에 따라 조금 다를 수 있습니다. 숫자는 R 기대 출력과 같아야 합니다(반올림 차이 제외).</p>')}</div>
+        <div class="rpanel" data-p="jamovi" hidden>${menu(p.jam, '<p class="caption">jamovi는 무료 통계 프로그램(jamovi.org)입니다. 메뉴는 영문 기준이며, 추가 모듈은 오른쪽 위 Modules → jamovi library에서 설치합니다.</p>')}</div>`);
+      $$('[data-tab]', rsec).forEach(b => b.addEventListener('click', () => {
+        $$('[data-tab]', rsec).forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-selected', on); });
+        $$('.rpanel', rsec).forEach(pn => pn.hidden = pn.dataset.p !== b.dataset.tab);
+      }));
+    }
+    let html = '';
+    if (p.r) html += `<div class="sec prac" id="prac-${mid}"><h2><span class="no">▶</span>실습: 직접 돌려 보고 결과 맞춰 보기</h2>
+      <div class="prose"><p>강의 원자료 파일 대신, 원자료·논문의 평균·표준편차·상관을 재현하도록 설계한 <b>가상 데이터</b>를 이 브라우저에서 바로 만듭니다. seed가 고정되어 있어 누가 받아도 같은 파일입니다. CSV를 R 작업 폴더에 두고 실습 코드를 실행한 뒤 기대 출력과 맞춰 보세요.</p></div>
+      ${p.ds.map(dsBlock).join('')}
+      <div class="note"><span class="lab">원자료·논문과 얼마나 같은가</span><p>${p.rep}</p></div>
+      <h4>실습 코드</h4>${codeBlock(PRACTICE_CODE[p.r] || '')}${expectBlock(p.r)}</div>`;
+    if (p.ai) html += `<div class="sec" id="ai-${mid}"><h2><span class="no">AI</span>생성형 AI에게 맡길 때</h2><div class="aibox"><span class="lab">프롬프트 예시</span><div class="prompt">${p.ai.p}</div>
+      <div class="presets"><button type="button" class="btn" data-cpy>프롬프트 복사</button></div><span class="lab">AI가 준 코드·해석에서 꼭 확인할 3가지</span><ol>${p.ai.c.map(c => `<li>${c}</li>`).join('')}</ol></div></div>`;
+    if (after) after.insertAdjacentHTML('afterend', html); else if (quizSec) quizSec.insertAdjacentHTML('beforebegin', html); else mod.insertAdjacentHTML('beforeend', html);
+  });
+  document.addEventListener('click', (e) => {
+    const d = e.target.closest('[data-dl]'); if (d) { saveCSV(d.dataset.dl, d.parentElement.querySelector('.dlmsg')); return; }
+    const v = e.target.closest('[data-csvv]'); if (v) { csvPreview(v.dataset.csvv, v.closest('.dsrow').querySelector('.csvprev')); return; }
+    const c = e.target.closest('[data-cpy]'); if (c) { const t = c.closest('.aibox').querySelector('.prompt').innerText;
+      const ok = () => { c.textContent = '복사됨'; setTimeout(() => c.textContent = '프롬프트 복사', 1400); };
+      try { navigator.clipboard.writeText(t).then(ok, () => {}); } catch (err) {} }
+  });
+}
+
+/* ---------- C4: 해석 문장 쓰기 연습 ---------- */
+function initWrite() {
+  Object.entries(WRITE).forEach(([mid, w]) => {
+    const mod = $('#m-' + mid); if (!mod) return; const quizSec = $('.quiz', mod)?.closest('.sec');
+    const html = `<div class="sec" id="write-${mid}"><h2><span class="no">✎</span>해석 문장 쓰기 연습</h2><div class="writebox" data-w="${mid}">
+      <p class="caption" style="margin:0">${w.src}</p>${w.table}<p><b>과제</b> ${w.task}</p>
+      <textarea placeholder="여기에 보고 문장을 써 보세요. 이 브라우저에 자동 저장됩니다." aria-label="보고 문장 작성"></textarea>
+      <div class="presets"><button type="button" class="btn pri" data-wshow>모범답안 보기</button><button type="button" class="btn" data-wclear>내 문장 지우기</button></div>
+      <div class="wans" hidden><div class="model"><span class="lab">모범답안</span><p>${w.model}</p></div>
+      <p><b>스스로 채점하기</b> 내 문장에 들어 있는 요소에 체크하세요.</p>
+      <div class="checks">${w.checks.map(([h, d], i) => `<label><input type="checkbox" data-wc="${i}"><span>${h}<small>${d}</small></span></label>`).join('')}</div><div class="wscore" aria-live="polite"></div></div></div></div>`;
+    if (quizSec) quizSec.insertAdjacentHTML('beforebegin', html); else mod.insertAdjacentHTML('beforeend', html);
+    const box = $(`[data-w="${mid}"]`), ta = $('textarea', box), st = store.get('write:' + mid, { t: '', c: [], open: false });
+    ta.value = st.t || ''; $$('[data-wc]', box).forEach(c => c.checked = (st.c || []).includes(+c.dataset.wc));
+    const save = () => store.set('write:' + mid, { t: ta.value, c: $$('[data-wc]', box).filter(c => c.checked).map(c => +c.dataset.wc), open: !$('.wans', box).hidden });
+    const score = () => { const n = $$('[data-wc]', box).filter(c => c.checked).length, k = w.checks.length;
+      $('.wscore', box).textContent = `${k}개 요소 중 ${n}개 충족` + (n === k ? ' · 보고 문장의 필수 요소를 모두 갖췄습니다.' : n >= k - 2 ? ' · 빠진 요소를 보충해 다시 써 보세요.' : ' · 모범답안의 구조(결과 → 수치 → 효과크기 → 시사점)를 따라 다시 써 보세요.'); };
+    const show = (on) => { $('.wans', box).hidden = !on; $('[data-wshow]', box).textContent = on ? '모범답안 닫기' : '모범답안 보기'; if (on) score(); };
+    if (st.open) show(true);
+    let tm; ta.addEventListener('input', () => { clearTimeout(tm); tm = setTimeout(save, 400); });
+    $('[data-wshow]', box).addEventListener('click', () => { show($('.wans', box).hidden); save(); });
+    $('[data-wclear]', box).addEventListener('click', () => { ta.value = ''; save(); ta.focus(); });
+    $$('[data-wc]', box).forEach(c => c.addEventListener('change', () => { score(); save(); }));
+  });
+}
+
+/* ---------- C5: 용어집 페이지와 본문 툴팁 ---------- */
+const GL_SKIP = 'h1,h2,h3,h4,pre,code,button,a,svg,select,option,textarea,label,.simbox,.quiz,.gl,.mfoot,.prac,.aibox,.writebox,.rtabs,.eyebrow,.chips,.glpop,.tip,.formula,.guide,#sorter,.map,.pager,th';
+let GL_RX = null; const GL_IDX = {}, glDone = new Set();
+function initGloss() {
+  const strs = [];
+  GLOSS.forEach((g, i) => g[4].forEach(s => { GL_IDX[s] = i; strs.push(s); }));
+  strs.sort((a, b) => b.length - a.length);
+  GL_RX = new RegExp(strs.map(s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
+  const tb = $('#gl-rows'); if (tb) {
+    const order = MODS.map(m => m.id);
+    const rows = GLOSS.map((g, i) => ({ g, i })).sort((a, b) => order.indexOf(a.g[3]) - order.indexOf(b.g[3]));
+    tb.innerHTML = rows.map(({ g, i }) => `<tr id="gl-${i}" data-s="${esc((g[0] + ' ' + g[1] + ' ' + g[2]).toLowerCase())}"><td>${g[0]}</td><td class="en">${g[1]}</td><td>${g[2]}</td><td><a href="#${g[3]}">${modT(g[3])}</a></td></tr>`).join('');
+    $('#gl-q').addEventListener('input', (e) => { const q = e.target.value.trim().toLowerCase(); let n = 0;
+      $$('#gl-rows tr').forEach(r => { const on = !q || r.dataset.s.includes(q); r.hidden = !on; if (on) n++; }); $('#gl-n').textContent = `${n}개 용어`; });
+    $('#gl-n').textContent = `${GLOSS.length}개 용어`;
+  }
+  const pop = document.createElement('div'); pop.className = 'glpop'; pop.id = 'glpop'; pop.hidden = true; pop.setAttribute('role', 'tooltip'); document.body.appendChild(pop);
+  let cur = null, pinned = false, hideT;
+  const show = (el, pin) => { clearTimeout(hideT); const g = GLOSS[+el.dataset.g];
+    pop.innerHTML = `<b>${g[0]}</b><span class="en">${g[1]}</span><span>${g[2]}</span><span><a href="#glossary" data-goto="glossary/gl-${el.dataset.g}">용어집</a> · <a href="#${g[3]}">${modT(g[3])}</a></span>`;
+    pop.hidden = false; const r = el.getBoundingClientRect(), w = Math.min(300, innerWidth - 24);
+    pop.style.maxWidth = w + 'px'; let x = r.left + scrollX; x = Math.max(12 + scrollX, Math.min(x, scrollX + innerWidth - pop.offsetWidth - 12));
+    let y = r.bottom + scrollY + 6; if (r.bottom + pop.offsetHeight + 12 > innerHeight && r.top > pop.offsetHeight + 12) y = r.top + scrollY - pop.offsetHeight - 6;
+    pop.style.left = x + 'px'; pop.style.top = y + 'px'; if (cur && cur !== el) cur.setAttribute('aria-expanded', 'false'); cur = el; pinned = !!pin; el.setAttribute('aria-expanded', 'true'); };
+  const hide = () => { pop.hidden = true; pinned = false; if (cur) cur.setAttribute('aria-expanded', 'false'); cur = null; };
+  document.addEventListener('click', (e) => { const el = e.target.closest('.gl');
+    if (el) { e.preventDefault(); if (cur === el && pinned) hide(); else show(el, true); return; }
+    if (!e.target.closest('.glpop')) hide(); else if (e.target.closest('a')) hide(); });
+  document.addEventListener('pointerover', (e) => { if (e.pointerType !== 'mouse') return; const el = e.target.closest('.gl'); if (el && !pinned) show(el, false); if (e.target.closest('.glpop')) clearTimeout(hideT); });
+  document.addEventListener('pointerout', (e) => { if (e.pointerType !== 'mouse' || pinned) return; if (e.target.closest('.gl') || e.target.closest('.glpop')) { hideT = setTimeout(hide, 220); } });
+  document.addEventListener('focusin', (e) => { const el = e.target.closest && e.target.closest('.gl'); if (el) show(el, false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !pop.hidden) { const c = cur; hide(); if (c) c.focus(); }
+    const el = e.target.closest && e.target.closest('.gl'); if (el && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); show(el, true); } });
+  window.addEventListener('hashchange', hide);
+}
+function tagGloss(id) {
+  if (glDone.has(id) || ['glossary', 'scenario', 'review'].includes(id)) return; glDone.add(id);
+  const mod = $('#m-' + id); if (!mod || !GL_RX) return; const used = new Set(), nodes = [];
+  const tw = document.createTreeWalker(mod, NodeFilter.SHOW_TEXT, { acceptNode: (n) => !n.nodeValue.trim() || n.parentElement.closest(GL_SKIP) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+  while (tw.nextNode()) nodes.push(tw.currentNode);
+  const isA = (c) => !!c && /[A-Za-z]/.test(c);
+  nodes.forEach(node => { const t = node.nodeValue; let m, last = 0; const parts = []; GL_RX.lastIndex = 0;
+    while ((m = GL_RX.exec(t))) { const s = m[0], gi = GL_IDX[s];
+      if (used.has(gi)) continue; if (/^[A-Za-z]/.test(s) && isA(t[m.index - 1])) continue; if (/[A-Za-z]$/.test(s) && isA(t[m.index + s.length])) continue;
+      used.add(gi); parts.push(t.slice(last, m.index), [s, gi]); last = m.index + s.length; }
+    if (!parts.length) return; parts.push(t.slice(last));
+    const f = document.createDocumentFragment();
+    parts.forEach(p => { if (typeof p === 'string') { if (p) f.appendChild(document.createTextNode(p)); } else { const sp = document.createElement('span'); sp.className = 'gl'; sp.tabIndex = 0; sp.setAttribute('role', 'button'); sp.setAttribute('aria-expanded', 'false'); sp.dataset.g = p[1]; sp.textContent = p[0]; f.appendChild(sp); } });
+    node.replaceWith(f); });
+}
+
+/* ---------- C3: 오답 기록과 1·3·7일 간격 복습 ---------- */
+const GAPS = [1, 3, 7];
+const today = () => { const d = new Date(); return Math.floor((d.getTime() - d.getTimezoneOffset() * 60000) / 86400000); };
+const WN = {
+  all() { const o = store.get('wrong', {}); return o && typeof o === 'object' ? o : {}; },
+  save(o) { store.set('wrong', o); renderRevBadge(); },
+  due(e) { return e.d + GAPS[Math.min(e.st, 2)]; },
+  isDue(e) { return !e.m && today() >= this.due(e); },
+  record(src, k, i, ok) {
+    const o = this.all(), id = src + ':' + k + ':' + i, e = o[id], t = today();
+    if (!ok) { o[id] = { s: src, k, i, d: t, st: 0, n: (e ? e.n || 0 : 0) + 1, m: 0 }; this.save(o); return o[id]; }
+    if (e && this.isDue(e)) { let j = e.st + 1; while (j < 3 && e.d + GAPS[j] <= t) j++; if (j >= 3) { e.m = 1; e.md = t; } else e.st = j; this.save(o); }
+    return e || null;
+  },
+  q(e) { if (e.s === 'q') { const q = (QUIZ[e.k] || [])[e.i]; return q ? { q: q.q, o: q.o, a: q.a, e: q.e, mods: [e.k] } : null; }
+    const s = SCEN.find(x => x.id === e.k); return s ? { q: s.q, o: s.o, a: s.a, e: s.e, mods: s.m } : null; },
+  counts() { const v = Object.values(this.all()); return { due: v.filter(e => this.isDue(e)).length, open: v.filter(e => !e.m).length, done: v.filter(e => e.m).length, all: v.length }; }
+};
+function renderRevBadge() {
+  const c = WN.counts(), rb = $('#revbadge'), tb = $('#toprev');
+  if (rb) { rb.classList.toggle('due', c.due > 0); rb.innerHTML = `<span>${c.due ? '오늘 복습할 문항' : c.open ? '오늘은 복습할 문항 없음' : '오답노트'}</span><b>${c.due}</b>`; }
+  if (tb) { tb.hidden = c.due === 0; tb.classList.toggle('due', c.due > 0); tb.textContent = `복습 ${c.due}`; }
+  const nav = $('[data-nav="review"] span:nth-child(2)'); if (nav) nav.innerHTML = '오답노트' + (c.due ? ` <span class="nb">${c.due}</span>` : '');
+  if (!$('#m-review').hidden) renderReviewHead();
+}
+const nextTxt = (e) => { if (!e) return ''; if (e.m) return '세 번의 간격 복습을 모두 마쳐 "복습 완료"로 옮겼습니다.'; const d = WN.due(e) - today();
+  return d <= 0 ? '오늘 복습할 문항입니다.' : `다음 복습: ${d}일 뒤 (틀린 날로부터 ${GAPS[e.st]}일째)`; };
+function quizItemHTML(it, idx, label) {
+  return `<div class="qitem" data-i="${idx}"><div class="qsrc">${label}</div><div class="qq"><span>Q${idx + 1}</span>${it.q}</div><div class="qopts">${it.o.map((o, j) => `<button type="button" class="qopt" data-j="${j}">${o}</button>`).join('')}</div><div class="qex" hidden></div></div>`;
+}
+let revMode = 'due';
+function renderReviewHead() {
+  const c = WN.counts();
+  $('#rv-stats').innerHTML = ro('오늘 복습할 문항', c.due) + ro('복습 중인 오답', c.open) + ro('복습 완료', c.done);
+  $$('#rv-seg [data-rv]').forEach(b => b.classList.toggle('on', b.dataset.rv === revMode));
+}
+function renderReview() {
+  renderReviewHead();
+  const o = WN.all(), ids = Object.keys(o).filter(id => { const e = o[id]; return revMode === 'due' ? WN.isDue(e) : revMode === 'open' ? !e.m : e.m; })
+    .sort((a, b) => WN.due(o[a]) - WN.due(o[b]));
+  const list = $('#rv-list');
+  if (!ids.length) { list.innerHTML = `<div class="note"><p>${revMode === 'due' ? (WN.counts().open ? '오늘 복습할 문항이 없습니다. 예정된 복습은 "복습 중인 오답 전체"에서 미리 풀어 볼 수 있습니다.' : '아직 저장된 오답이 없습니다. 모듈 끝의 확인 퀴즈나 종합 시나리오 퀴즈에서 틀린 문항이 여기에 모입니다.') : revMode === 'open' ? '복습 중인 오답이 없습니다.' : '아직 세 번의 복습을 모두 마친 문항이 없습니다.'}</p></div>`; return; }
+  list.innerHTML = ids.map((id, n) => { const e = o[id], it = WN.q(e); if (!it) return '';
+    const lab = `${e.s === 'q' ? '모듈 퀴즈' : '종합 퀴즈'} · ${it.mods.map(modT).join(', ')} · 틀린 횟수 ${e.n || 1} · ${e.m ? '복습 완료' : nextTxt(e)}`;
+    return quizItemHTML(it, n, lab).replace('class="qitem"', `class="qitem" data-id="${id}"`); }).join('');
+}
+function initReview() {
+  $('#rv-seg').addEventListener('click', (e) => { const b = e.target.closest('[data-rv]'); if (!b) return; revMode = b.dataset.rv; renderReview(); });
+  $('#rv-list').addEventListener('click', (e) => {
+    const b = e.target.closest('.qopt'); if (!b) return; const it = b.closest('.qitem'); if (it.dataset.ans != null) return;
+    const id = it.dataset.id, en = WN.all()[id], q = WN.q(en), j = +b.dataset.j, ok = j === q.a;
+    $$('.qopt', it).forEach((x, k) => { x.disabled = true; if (k === q.a) x.classList.add('right'); }); if (!ok) b.classList.add('wrong'); it.dataset.ans = ok ? 'r' : 'w';
+    const wasDue = WN.isDue(en), after = WN.record(en.s, en.k, en.i, ok);
+    const ex = $('.qex', it); ex.innerHTML = `<b>${ok ? '정답입니다.' : '다시 확인해 보세요.'}</b> ${q.e}<div class="qmeta">${q.mods.map(m => `<a class="chip" href="#${m}">${modT(m)} 다시 보기</a>`).join('')}</div><p class="qnext">${ok ? (wasDue ? nextTxt(after) : '예정일 전에 맞힌 문항은 일정이 바뀌지 않습니다. ' + nextTxt(after)) : '틀린 날이 오늘로 바뀌어 1일 뒤부터 다시 복습합니다.'}</p>`; ex.hidden = false;
+  });
+  $('#rv-clear').addEventListener('click', (e) => { const b = e.currentTarget;
+    if (b.dataset.arm) { store.set('wrong', {}); delete b.dataset.arm; b.textContent = '오답 기록 모두 지우기'; renderRevBadge(); renderReview(); }
+    else { b.dataset.arm = '1'; b.textContent = '한 번 더 누르면 오답 기록만 지웁니다'; setTimeout(() => { if (b.dataset.arm) { delete b.dataset.arm; b.textContent = '오답 기록 모두 지우기'; } }, 4000); } });
+  // 사이드바와 상단바 배지
+  const prog = $('.rail .prog'); if (prog) prog.insertAdjacentHTML('afterend', '<a class="revbadge" id="revbadge" href="#review"></a>');
+  const sel = $('#navsel'); if (sel) sel.insertAdjacentHTML('afterend', '<a class="toprev" id="toprev" href="#review" hidden>복습 0</a>');
+  renderRevBadge();
+}
+
+/* ---------- C2: 종합 시나리오 퀴즈 ---------- */
+let scenSet = [];
+function newScen() {
+  let seen = store.get('scenSeen', []); if (!Array.isArray(seen)) seen = [];
+  let pool = SCEN.filter(s => !seen.includes(s.id)); if (pool.length < 10) { seen = []; pool = SCEN.slice(); }
+  const pick = []; while (pick.length < 10 && pool.length) pick.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+  scenSet = pick; store.set('scenSeen', seen.concat(pick.map(s => s.id)));
+  $('#sc-list').innerHTML = pick.map((s, n) => quizItemHTML(s, n, s.m.map(modT).join(' · ')).replace('class="qitem"', `class="qitem" data-id="${s.id}"`)).join('');
+  $('#sc-res').hidden = true; $('#sc-prog').textContent = `0 / ${pick.length}문항`;
+}
+function scenResult() {
+  const its = $$('#sc-list .qitem'), right = its.filter(x => x.dataset.ans === 'r').length, by = {};
+  its.forEach(x => { const s = SCEN.find(q => q.id === x.dataset.id); s.m.forEach(m => { by[m] = by[m] || [0, 0]; by[m][1]++; if (x.dataset.ans === 'r') by[m][0]++; }); });
+  const cum = store.get('scenStat', {}); Object.entries(by).forEach(([m, [r, t]]) => { cum[m] = cum[m] || [0, 0]; cum[m][0] += r; cum[m][1] += t; }); store.set('scenStat', cum);
+  const bar = (m, r, t) => { const p = r / t; return `<div class="scorebar"><a href="#${m}">${modT(m)}</a><div class="bar"><i class="${p < .5 ? 'lo' : p >= .8 ? 'hi' : ''}" style="width:${Math.max(3, p * 100)}%"></i></div><span class="pct">${r}/${t}</span></div>`; };
+  const order = MODS.map(m => m.id), srt = (o) => Object.entries(o).sort((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]));
+  const weak = srt(cum).filter(([, [r, t]]) => t >= 2 && r / t < .6).map(([m]) => `<a href="#${m}">${modT(m)}</a>`);
+  $('#sc-res').innerHTML = `<h3 style="margin-top:0">결과: 10문항 중 ${right}문항 정답</h3><p class="caption" style="margin-top:0">틀린 문항은 오답노트에 저장되어 1일·3일·7일 뒤 복습 대상으로 올라옵니다.</p>
+    <h4>이번 회차 모듈별 정답률</h4><div style="display:grid;gap:8px">${srt(by).map(([m, [r, t]]) => bar(m, r, t)).join('')}</div>
+    <h4 style="margin-top:12px">누적 모듈별 정답률</h4><div style="display:grid;gap:8px">${srt(cum).map(([m, [r, t]]) => bar(m, r, t)).join('')}</div>
+    ${weak.length ? `<div class="note warn"><span class="lab">다시 볼 모듈</span><p>누적 정답률이 60% 미만인 모듈: ${weak.join(', ')}</p></div>` : ''}
+    <div class="presets"><button type="button" class="btn pri" data-scnew>새 10문항 풀기</button><a class="btn" href="#review" style="text-decoration:none">오답노트로 가기</a><button type="button" class="btn" data-screset>누적 기록 지우기</button></div>`;
+  $('#sc-res').hidden = false;
+}
+function initScenario() {
+  $('#sc-total').textContent = SCEN.length;
+  document.addEventListener('click', (e) => { if (e.target.closest('[data-scnew]')) { newScen(); $('#sc-list').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    if (e.target.closest('[data-screset]')) { store.set('scenStat', {}); scenResult(); } });
+  $('#sc-list').addEventListener('click', (e) => {
+    const b = e.target.closest('.qopt'); if (!b) return; const it = b.closest('.qitem'); if (it.dataset.ans != null) return;
+    const s = SCEN.find(q => q.id === it.dataset.id), j = +b.dataset.j, ok = j === s.a;
+    $$('.qopt', it).forEach((x, k) => { x.disabled = true; if (k === s.a) x.classList.add('right'); }); if (!ok) b.classList.add('wrong'); it.dataset.ans = ok ? 'r' : 'w';
+    const ex = $('.qex', it); ex.innerHTML = `<b>${ok ? '정답입니다.' : '다시 확인해 보세요.'}</b> ${s.e}<div class="qmeta">${s.m.map(m => `<a class="chip" href="#${m}">관련 모듈: ${modT(m)}</a>`).join('')}</div>`; ex.hidden = false;
+    WN.record('s', s.id, 0, ok);
+    const done = $$('#sc-list .qitem').filter(x => x.dataset.ans != null).length; $('#sc-prog').textContent = `${done} / ${scenSet.length}문항`;
+    if (done === scenSet.length) scenResult();
+  });
+  newScen();
+}
+
+/* ---------- C8: 캡스톤 코드·기대 출력 채우기 ---------- */
+function initCapstone() {
+  $$('[data-capcode]').forEach(el => { const id = el.dataset.capcode; el.innerHTML = codeBlock(PRACTICE_CODE[id] || '') + expectBlock(id); });
+  $$('[data-capds]').forEach(el => { el.innerHTML = dsBlock(el.dataset.capds); });
+}
+
+/* ---------- 라우팅 훅 ---------- */
+function onRoute(id) {
+  tagGloss(id);
+  if (id === 'review') renderReview();
+}
+function initLearn() { initPractice(); initWrite(); initCapstone(); initGloss(); initReview(); initScenario(); }
 /* =================== 부팅 =================== */
-buildNav(); initTheme(); initTip(); initCopy(); initQuiz(); initGuide(); initSorter(); initRoad(); initCrit(); renderProgress();
+buildNav(); initTheme(); initTip(); initLearn(); initCopy(); initQuiz(); initGuide(); initSorter(); initRoad(); initCrit(); renderProgress();
 window.addEventListener('hashchange', route);
 route();
 
